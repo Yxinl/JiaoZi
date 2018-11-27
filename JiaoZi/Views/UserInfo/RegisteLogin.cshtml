@@ -34,7 +34,7 @@
     </ul>
     <div id="myTabContent" class="tab-content">
         <div class="tab-pane fade in active" id="home">
-            @using (Html.BeginForm("Login", "Home"))
+            @using (Html.BeginForm("Login", "UserInfo"))
             {
                 <p>
                     ID:&nbsp;&nbsp;&nbsp;
@@ -49,18 +49,18 @@
                 <p>
                     @Html.LabelFor(m => m.YZM)
                     @Html.TextBoxFor(m => m.YZM)<br />
-                    <img id="GM" style="cursor: pointer;" src="~/Home/GetImg" title="看不清，点击换一张" />
+                    <img id="GM" style="cursor: pointer;" src="~/UserInfo/GetImg" title="看不清，点击换一张" />
                     <button type="button" id="GG">换一张</button>
                 </p>
                 <p>
                     <input type="submit" value="登录" style="width:80%;background-color:deepskyblue" />
                 </p>
-                <a href="@Url.Action("FindPassword", "Home")"><span>忘记密码</span></a>
+                <a href="@Url.Action("FindPassword", "UserInfo")"><span>忘记密码</span></a>
             }
         </div>
 
         <div class="tab-pane fade" id="re">
-            @using (Html.BeginForm("Registe", "Home"))
+            @using (Html.BeginForm("Registe", "UserInfo"))
             {
                 <p>
                     @Html.LabelFor(m => m.TrueName) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -90,7 +90,6 @@
 
     </div>
 </div>
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
@@ -98,7 +97,7 @@
 <script>
     $(function () {
         $("#GG").click(function () {
-            $("#GM").attr("src", "/Home/GetImg?t=" + Math.random());
+            $("#GM").attr("src", "/UserInfo/GetImg?t=" + Math.random());
         });
     })
 </script>

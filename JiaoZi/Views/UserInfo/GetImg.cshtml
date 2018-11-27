@@ -12,14 +12,14 @@
 </head>
 <body>
     <div class="yzm">
-        @using (Ajax.BeginForm("GetImg", "Home", new AjaxOptions()
+        @using (Ajax.BeginForm("GetImg", "UserInfo", new AjaxOptions()
         {
             HttpMethod = "Post",
             UpdateTargetId = "GM",
             InsertionMode = InsertionMode.Replace
         }))
         {
-            <img id="GL_StandardCode" style="cursor: pointer;" src="@Url.Action("GetImg", "Home")?t=@DateTime.Now.Ticks" title="看不清，点击换一张" />
+            <img id="GL_StandardCode" style="cursor: pointer;" src="@Url.Action("GetImg", "UserInfo")?t=@DateTime.Now.Ticks" title="看不清，点击换一张" />
             <button id="GG">换一张</button>
         }
     </div>

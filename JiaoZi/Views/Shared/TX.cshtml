@@ -31,7 +31,7 @@
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 </head>
 <body>
-    @using (Ajax.BeginForm("TX", "Home", new AjaxOptions()
+    @using (Ajax.BeginForm("TX", "UserInfo", new AjaxOptions()
     {
         Confirm = "您是否要退出？",
         HttpMethod = "Post",
@@ -54,7 +54,7 @@
             }
             else
             {
-                <a href="@Url.Action("RegisteLogin", "Home")">
+                <a href="@Url.Action("RegisteLogin", "UserInfo")">
                     <img src="~/images/Css/head.jpg" title="点击登录" style="width:45px;height:45px;cursor:pointer" />
                 </a>
             }
