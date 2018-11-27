@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c8ed567810624c43a67e16faaad0b72e" Name="Diagram1">
+        <EntityTypeShape EntityType="jiaoziModel.Advice" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="jiaoziModel.Attention" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="jiaoziModel.BookComment" Width="1.5" PointX="6" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="jiaoziModel.BookReply" Width="1.5" PointX="8.25" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="jiaoziModel.Books" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="jiaoziModel.Carts" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="jiaoziModel.News" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="jiaoziModel.OrderDetails" Width="1.5" PointX="5.25" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="jiaoziModel.Orders" Width="1.5" PointX="3" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="jiaoziModel.RemarkComments" Width="1.5" PointX="5.25" PointY="16.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="jiaoziModel.RemarkReply" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="jiaoziModel.Remarks" Width="1.5" PointX="3" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="jiaoziModel.Shuoshuo" Width="1.5" PointX="3" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="jiaoziModel.ShuoshuoComment" Width="1.5" PointX="8.25" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="jiaoziModel.ShuoshuoComment_Reply" Width="1.5" PointX="10.5" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="jiaoziModel.Text" Width="1.5" PointX="3" PointY="23.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="jiaoziModel.TextResource" Width="1.5" PointX="7.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="jiaoziModel.Users" Width="1.5" PointX="0.75" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="jiaoziModel.Video" Width="1.5" PointX="3" PointY="26.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="jiaoziModel.VideoResource" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="jiaoziModel.salestop3" Width="1.5" PointX="9.75" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="jiaoziModel.FK__Attention__Atten__4F7CD00D" ManuallyRouted="false" />
+        <AssociationConnector Association="jiaoziModel.FK__Attention__UserI__4E88ABD4" ManuallyRouted="false" />
+        <AssociationConnector Association="jiaoziModel.FK__BookComme__BookI__286302EC" ManuallyRouted="false" />
+        <AssociationConnector Association="jiaoziModel.FK__BookComme__UserI__276EDEB3" ManuallyRouted="false" />
+        <AssociationConnector Association="jiaoziModel.FK__BookReply__BookC__2B3F6F97" ManuallyRouted="false" />
+        <AssociationConnector Association="jiaoziModel.FK__BookReply__UserI__2C3393D0" ManuallyRouted="false" />
+        <AssociationConnector Association="jiaoziModel.FK__OrderDeta__BookI__1BFD2C07" ManuallyRouted="false" />
+        <AssociationConnector Association="jiaoziModel.FK__OrderDeta__Order__1B0907CE" ManuallyRouted="false" />
+        <AssociationConnector Association="jiaoziModel.FK__Orders__UserID__164452B1" ManuallyRouted="false" />
+        <AssociationConnector Association="jiaoziModel.FK__RemarkCom__Remar__300424B4" ManuallyRouted="false" />
+        <AssociationConnector Association="jiaoziModel.FK__RemarkCom__UserI__2F10007B" ManuallyRouted="false" />
+        <AssociationConnector Association="jiaoziModel.FK__Remarks__UserID__24927208" ManuallyRouted="false" />
+        <AssociationConnector Association="jiaoziModel.FK__Shuoshuo__UserID__3D5E1FD2" ManuallyRouted="false" />
+        <AssociationConnector Association="jiaoziModel.FK__ShuoshuoC__Shuos__46E78A0C" ManuallyRouted="false" />
+        <AssociationConnector Association="jiaoziModel.FK__ShuoshuoC__Shuos__4AB81AF0" ManuallyRouted="false" />
+        <AssociationConnector Association="jiaoziModel.FK__ShuoshuoC__UserI__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="jiaoziModel.FK__ShuoshuoC__UserI__49C3F6B7" ManuallyRouted="false" />
+        <AssociationConnector Association="jiaoziModel.FK__Text__UserID__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="jiaoziModel.FK__Video__UserID__403A8C7D" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

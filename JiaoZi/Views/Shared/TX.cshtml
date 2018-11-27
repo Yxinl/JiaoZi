@@ -1,0 +1,67 @@
+﻿
+
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    <style>
+        #tx {
+            width: 101px;
+            height: 50px;
+            float: right;
+            margin-top: -49px;
+            border: 1px solid #ffffff;
+            margin-right: 120px;
+            border-radius: 10px
+        }
+
+        #sp {
+            position: relative;
+            right: -80px;
+            top: -20px;
+        }
+    </style>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+</head>
+<body>
+    @using (Ajax.BeginForm("TX", "Home", new AjaxOptions()
+    {
+        Confirm = "您是否要退出？",
+        HttpMethod = "Post",
+
+    }))
+    {
+        @Html.AntiForgeryToken()
+        <div id="tx">
+            @if (Session["User_id"] != null)
+            {
+                <button @Url.Action("grzx", "Default") style="position:relative;right:-47px;top:5px;">
+                    <span>个人中心</span>
+                </button>
+                <img class="img1 img-circle " src="@Session["User_image"]" style="width:45px;height:45px;margin-top:-50px;cursor:pointer" />
+                <button id="sp">
+                    注销
+                </button>
+
+
+            }
+            else
+            {
+                <a href="@Url.Action("RegisteLogin", "Home")">
+                    <img src="~/images/Css/head.jpg" title="点击登录" style="width:45px;height:45px;cursor:pointer" />
+                </a>
+            }
+        </div>
+    }
+</body>
+</html>
+<script>
+
+</script>

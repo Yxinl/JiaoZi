@@ -1,36 +1,79 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - 我的 ASP.NET 应用程序</title>
+    <title>@ViewBag.Title - 教资服务网</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <style>
+        #tx {
+            width: 101px;
+            height: 50px;
+            float: right;
+            margin-top: -49px;
+            border: 1px solid #ffffff;
+            margin-right: 120px;
+            border-radius: 10px
+        }
+
+            #tx li {
+                list-style: none;
+                margin-bottom: 4px;
+                border-radius: 4px;
+                text-align: center;
+            }
+
+            #tx .ll {
+                position: relative;
+                right: 96px;
+                display: none;
+            }
+
+        #toTop {
+            position: fixed;
+            width: 50px;
+            height: 50px;
+            right: 0;
+            bottom: 0;
+            display: none;
+        }
+    </style>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div style="width:50px;height:50px;float:left;margin-left:30px">
+                <img src="~/images/Css/Logo.jpg" style="width:45px;height:45px;" />
+            </div>
+            <div class="navbar-header" style="margin-left:240px;">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("应用程序名称", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("首页", "Page", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("主页", "Index", "Home")</li>
-                    <li>@Html.ActionLink("关于", "About", "Home")</li>
-                    <li>@Html.ActionLink("联系方式", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("考试中心", "KSZX", "Default")</li>
+                    <li>@Html.ActionLink("资讯", "News", "Default")</li>
+                    <li>@Html.ActionLink("资源库", "Resource", "Default")</li>
+                    <li>@Html.ActionLink("论坛", "Lt", "Default")</li>
+                    <li>@Html.ActionLink("商城", "Shopping", "Default")</li>
                 </ul>
             </div>
         </div>
+        @Html.Partial("TX")
     </div>
     <div class="container body-content">
         @RenderBody()
         <hr />
+        <div id="toTop"><img src="~/images/Css/totop.jpg" style="width:50px;height:50px;" title="回到顶部" /></div>
         <footer>
             <p>&copy; @DateTime.Now.Year - 我的 ASP.NET 应用程序</p>
         </footer>
@@ -41,3 +84,23 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
+
+<script>
+    $(function () {
+        $("#tx").mouseover(function () {
+            $(".ll").css("display", "block");
+
+        })
+    })
+    $(window).scroll(function () {
+        var height = $(document).scrollTop();
+        if (height != 0) {
+            $("#toTop").show();
+        }
+        else
+            $("#toTop").hide();
+    })
+    $("#toTop").click(function () {
+        scrollTo(0, 0);
+    })
+</script>
