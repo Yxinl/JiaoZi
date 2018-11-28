@@ -1,6 +1,4 @@
 ﻿using JiaoZi.Models;
-using JiaoZi.Models.IJz;
-using JiaoZi.Models.Jz;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +13,7 @@ namespace JiaoZi.Controllers
         IUserInfo iuser;
         public UserInfoController()
         {
-            iuser = new UserInfo();
+            iuser = new UserInfo();                     //子类以父类的方式出现 ，多态
         }
 
 
@@ -60,10 +58,22 @@ namespace JiaoZi.Controllers
         }
 
 
-        //登录
+        // 登录
         public ActionResult Login()
         {
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Registe(string TrueName, string PasswordR, string Email)
+        {
+            var c = iuser.Registe(TrueName, PasswordR, Email);
+            if (c)
+            {
+                var id = db.Users.Where(m => m.Email == Email).FirstOrDefault().UserID;
+                return Content("<script>alert('注册成功！请记住您的ID：" + id + "');window.location.href='../Default/RL';</script>");
+            }
+            return Content("<script>alert('您的邮箱已被注册！请重试');history.go(-1);</script>");
         }
 
 
@@ -71,6 +81,7 @@ namespace JiaoZi.Controllers
         [HttpPost]
         public ActionResult Login(int? UserID, string PasswordL, string YZM)
         {
+            string data;
             var a = iuser.Login(UserID, PasswordL);
             var b = CheckYZM(YZM);
             if (a && !b)
@@ -81,7 +92,8 @@ namespace JiaoZi.Controllers
             {
                 Session["User_id"] = UserID;
                 Session["User_image"] = db.Users.Where(m => m.UserID == UserID).FirstOrDefault().HeadImage;
-                return RedirectToAction("Page","Home");
+                data = "登录成功";
+                return Content(data);                                                          //有问题
                 
             }
             else if (!a && b)
