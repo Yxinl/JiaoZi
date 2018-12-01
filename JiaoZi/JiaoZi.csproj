@@ -313,7 +313,6 @@
     <Folder Include="images\Head\" />
     <Folder Include="images\News\" />
     <Folder Include="Models\NewFolder1\" />
-    <Folder Include="Models\NewFolder2\" />
     <Folder Include="Video\" />
   </ItemGroup>
   <ItemGroup>
