@@ -81,7 +81,7 @@ namespace JiaoZi.Controllers
         [HttpPost]
         public ActionResult Login(int? UserID, string PasswordL, string YZM)
         {
-            string data;
+            //string data;
             var a = iuser.Login(UserID, PasswordL);
             var b = CheckYZM(YZM);
             if (a && !b)
@@ -92,8 +92,9 @@ namespace JiaoZi.Controllers
             {
                 Session["User_id"] = UserID;
                 Session["User_image"] = db.Users.Where(m => m.UserID == UserID).FirstOrDefault().HeadImage;
-                data = "登录成功";
-                return Content(data);                                                          //有问题
+                //data = "登录成功";
+                //return Content(data);                                                          //有问题
+                return Content("登录成功");
                 
             }
             else if (!a && b)

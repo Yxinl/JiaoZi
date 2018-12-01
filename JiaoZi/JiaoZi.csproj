@@ -156,6 +156,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MallController.cs" />
     <Compile Include="Controllers\UserInfoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -180,7 +181,9 @@
     </Compile>
     <Compile Include="Models\IJz\IMall.cs" />
     <Compile Include="Models\IJz\IUserInfo.cs" />
+    <Compile Include="Models\Jz\Mall.cs" />
     <Compile Include="Models\Jz\UserInfo.cs" />
+    <Compile Include="Models\Mallview.cs" />
     <Compile Include="Models\Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -250,13 +253,19 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Mall.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\Books\1.jpg" />
+    <Content Include="images\Books\2.jpg" />
     <Content Include="images\Css\head.jpg" />
     <Content Include="images\Css\Logo.jpg" />
     <Content Include="images\Css\totop.jpg" />
+    <Content Include="images\Head\1.jpg" />
+    <Content Include="images\Mall\logo.jpg" />
+    <Content Include="images\Mall\tx.jpg" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model1.Context.cs</LastGenOutput>
@@ -308,13 +317,13 @@
     <Content Include="Views\UserInfo\RegisteLogin.cshtml" />
     <Content Include="Views\Shared\TX.cshtml" />
     <Content Include="Views\Home\Page.cshtml" />
+    <Content Include="Views\Mall\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="images\Books\" />
-    <Folder Include="images\Head\" />
     <Folder Include="images\News\" />
     <Folder Include="Video\" />
+    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

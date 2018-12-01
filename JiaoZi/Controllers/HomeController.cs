@@ -1,6 +1,4 @@
 ﻿using JiaoZi.Models;
-using JiaoZi.Models.IJz;
-using JiaoZi.Models.Jz;
 using System;
 using System.Collections.Generic;
 using System.Linq;

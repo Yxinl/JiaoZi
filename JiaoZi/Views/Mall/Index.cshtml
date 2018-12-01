@@ -1,0 +1,164 @@
+﻿@model JiaoZi.Models.Mallview
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="~/Content/Mall.css" rel="stylesheet" />
+    <script>
+        window.onload = function () {
+            var spans = document.getElementById("navb").getElementsByTagName("span");
+            var lis = document.getElementById("navbox").getElementsByTagName("li");
+            for (var i = 0; i < spans.length; i++) {
+                spans[i].index = i;
+                spans[i].onmouseover = function () {
+
+                    for (var j = 0; j < spans.length; j++) {
+                        spans[j].className = "";
+                        lis[j].className = "";
+                    }
+                    this.className = "current";
+                    lis[this.index].className = "show";
+                }
+            }
+        }
+    </script>
+
+</head>
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid" style="width: 1400px;">
+            <div class="navbar-header" style="margin-top: 15px;">
+                <select>
+                    <option value="北京">北京</option>
+                    <option value="天津">天津</option>
+                    <option value="上海">上海</option>
+                    <option value="重庆">重庆</option>
+                    <option value="河北">河北</option>
+                    <option value="山西">山西</option>
+                    <option value="辽宁">辽宁</option>
+                    <option value="吉林">吉林</option>
+                    <option value="黑龙江">黑龙江</option>
+                    <option value="江苏">江苏</option>
+                    <option value="浙江">浙江</option>
+                    <option value="安徽">安徽</option>
+                    <option value="福建">福建</option>
+                    <option value="江西">江西</option>
+                    <option value="山东">山东</option>
+                    <option value="河南">河南</option>
+                    <option value="湖北">湖北</option>
+                    <option value="湖南">湖南</option>
+                    <option value="广东">广东</option>
+                    <option value="海南">海南</option>
+                    <option value="四川">四川</option>
+                    <option value="贵州">贵州</option>
+                    <option value="云南">云南</option>
+                    <option value="陕西">陕西</option>
+                    <option value="甘肃">甘肃</option>
+                    <option value="青海">青海</option>
+                    <option value="内蒙古自治区">内蒙古自治区</option>
+                    <option value="广西壮族自治区">广西壮族自治区</option>
+                    <option value="西藏自治区">西藏自治区</option>
+                    <option value="宁夏回族自治区">宁夏回族自治区</option>
+                    <option value="新疆维吾尔自治区">新疆维吾尔自治区</option>
+                    <option value="台湾">台湾</option>
+                    <option value="香港特别行政区">香港特别行政区</option>
+                    <option value="澳门特别行政区">澳门特别行政区</option>
+                </select>
+            </div>
+            <div>
+                <ul class="nav navbar-nav" style="float: right;">
+                    <li><a href="#" style="color:red">登录</a></li>
+                    <li><a href="#">注册</a> </li>
+                    <li><a href="#">我的订单<span class="caret" style="margin-top: -5px;"></span></a> </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="content">
+        <div class="main">
+            <div class="logo">
+                <img src="~/images/Mall/logo.jpg" style="width:120px;height:100px;">
+            </div>
+            <div class="sousuo">
+                <span class="glyphicon glyphicon-search" style="margin-left:9px;margin-top: 3px;"></span>
+                <input type="text" class="sinput" placeholder="请输入关键字">
+                <button value="搜索" class="bt">搜索</button>
+            </div>
+            <div class="lis">
+                <ul>
+                    <li><a href="#" style="color:red;">英语教资用书</a> </li>
+                    <li><a href="#">数学教资用书</a> </li>
+                    <li><a href="#">语文教资用书</a> </li>
+                    <li><a href="#">教育学</a> </li>
+                    <li><a href="#">心理学</a> </li>
+                </ul>
+            </div>
+            <div class="Tx">
+                <img src="~/images/Mall/tx.jpg">
+                <p style="text-align: center;margin-top: 2px; color:palevioletred"><span>Hi!您好</span></p>
+            </div>
+        </div>
+        <div class="center">
+            <div class="navb" id="navb">
+                <span class="current"><a href="#"> 语文</a></span>
+                <span><a href="#"> 数学</a></span>
+                <span><a href="#"> 英语</a></span>
+                <span><a href="#"> 政治</a></span>
+                <span><a href="#"> 体育</a></span>
+                <span><a href="#"> 物理</a></span>
+            </div>
+            <div class="navbox" id="navbox">
+                <ul>
+                    <li class="show">
+                        <div class="small" style="margin-left: 0;">
+                            <div class="background">
+                                <a href="#"> <img src="~/images/Books/1.jpg" class="img-responsive"></a>
+                            </div>
+                            <p>￥100</p>
+                            <span>数学用书</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="small" style="margin-left: 0;">
+                            <div class="background">
+                                <a href="#"> <img src="~/images/Books/1.jpg" class="img-responsive"></a>
+                            </div>
+                            <p>￥56</p>
+                            <span>语文用书</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div></div>
+                    </li>
+                    <li>
+                        <div></div>
+                    </li>
+                    <li>
+                        <div></div>
+                    </li>
+                    <li>
+                        <div></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="container">
+        <div class="col-md-4">
+            @foreach(var item in Model.english)
+            {
+                <img src="@item.BookImage" />
+            }
+        </div>
+    </div>
+</body>
+</html>
