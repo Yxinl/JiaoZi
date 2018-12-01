@@ -25,11 +25,20 @@ namespace JiaoZi.Controllers
             //var books = imall.GetBooks();
             Models.Mallview viewModel = new Models.Mallview
             {
-                 price = imall.GetBooksByPrice(),
+                 Price = imall.GetBooksByPrice(),
                  English = imall.GetBooksBycategory("英语"),
-                 Mate = imall.GetBooksBycategory("心理学"),
-                 Putonghua = imall.GetBooksBycategory("普通话"),
-             };
+                 Psychological= imall.GetBooksBycategory("心理学"),
+                 Chinese= imall.GetBooksBycategory("语文"),
+                 Math = imall.GetBooksBycategory("数学"),
+                 Synthesize= imall.GetBooksBycategory("综合"),
+                 Political = imall.GetBooksBycategory("政治"),
+                 Chemistry= imall.GetBooksBycategory("化学"),
+                 Art = imall.GetBooksBycategory("美术"),
+                 Interview = imall.GetBooksBycategory("面试"),
+                 Pedagogy = imall.GetBooksBycategory("教育学"),
+                 History= imall.GetBooksBycategory("历史"),
+
+            };
 
             return View(viewModel);
         }
