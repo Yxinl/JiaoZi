@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="jiaoziModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="jiaoziModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Advice">
           <Key>
             <PropertyRef Name="AdviceID" />
@@ -54,6 +54,9 @@
           <Property Name="BookAuthor" Type="varchar" MaxLength="50" />
           <Property Name="IssueTime" Type="datetime" />
           <Property Name="Publisher" Type="varchar" MaxLength="500" />
+          <Property Name="Price" Type="float" Nullable="false" />
+          <Property Name="Amount" Type="int" Nullable="false" />
+          <Property Name="Category" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="Carts">
           <Key>
@@ -563,8 +566,7 @@
             <End Role="Video" EntitySet="Video" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="jiaoziModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -626,6 +628,9 @@
           <Property Name="Publisher" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="BookComment" Relationship="Self.FK__BookComme__BookI__286302EC" FromRole="Books" ToRole="BookComment" />
           <NavigationProperty Name="OrderDetails" Relationship="Self.FK__OrderDeta__BookI__1BFD2C07" FromRole="Books" ToRole="OrderDetails" />
+          <Property Name="Price" Type="Double" Nullable="false" />
+          <Property Name="Amount" Type="Int32" Nullable="false" />
+          <Property Name="Category" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Carts">
           <Key>
@@ -1205,6 +1210,9 @@
           <EntitySetMapping Name="Books">
             <EntityTypeMapping TypeName="jiaoziModel.Books">
               <MappingFragment StoreEntitySet="Books">
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="BookID" ColumnName="BookID" />
                 <ScalarProperty Name="BookImage" ColumnName="BookImage" />
                 <ScalarProperty Name="BookName" ColumnName="BookName" />

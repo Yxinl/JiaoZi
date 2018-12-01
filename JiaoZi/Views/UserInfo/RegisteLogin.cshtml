@@ -3,7 +3,6 @@
 @{
     ViewBag.Title = "RegisteLogin";
 }
-
 <style type="text/css">
     .box1 {
         width: 410px;
@@ -34,10 +33,17 @@
     </ul>
     <div id="myTabContent" class="tab-content">
         <div class="tab-pane fade in active" id="home">
-            @using (Html.BeginForm("Login", "UserInfo"))
+            @using (Ajax.BeginForm("Login", "UserInfo", new AjaxOptions()
+            {
+                HttpMethod = "Post",
+                OnSuccess = "Success",
+                OnComplete = "Complete"
+            }
+            ))
             {
                 <p>
                     ID:&nbsp;&nbsp;&nbsp;
+                    
                     @Html.TextBoxFor(m => m.UserID) <br />
                     @Html.ValidationMessageFor(m => m.UserID)
                 </p>
@@ -94,10 +100,18 @@
     @Scripts.Render("~/bundles/jqueryval")
 }
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
-<script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script type="text/javascript">
     $(function () {
         $("#GG").click(function () {
             $("#GM").attr("src", "/UserInfo/GetImg?t=" + Math.random());
         });
     })
+    function Success(data) {
+        alert(data);
+    }
+    function Complete() {
+        window.window.location.href = history.go(-1);
+    };
 </script>
