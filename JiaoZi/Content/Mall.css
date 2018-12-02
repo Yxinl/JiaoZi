@@ -1,6 +1,4 @@
-﻿body {
-
-}
+﻿
 .content {
     width: 1400px;
     margin: 0 auto;
@@ -76,30 +74,12 @@
 }
 
     .center .small {
-        width: 180px;
-        height: 300px;
+        width: 200px;
+        height: 280px;
         float: left;
-        margin-left: 20px;
-        margin-top: 5px;
     }
 
-        .center .small .background {
-            width: 180px;
-            height: 180px;
-        }
-
-        .center .small p {
-            margin-left: 20px;
-            margin-top: 10px;
-            color: palevioletred;
-            font-size: 16px;
-        }
-
-        .center .small span {
-            font-size: 12px;
-            margin-left: 20px;
-        }
-
+       
 ul {
     list-style: none;
 }

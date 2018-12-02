@@ -1,6 +1,6 @@
 ﻿@model JiaoZi.Models.Mallview
 @{
-    Layout = null;
+    Layout ="~/Views/Shared/Layoutmall.cshtml";
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +10,10 @@
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
-    <link href="~/Content/Mall.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">   //与导航栏有矛盾
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    @*<link href="~/Content/Mall.css" rel="stylesheet" />*@
     <script>
         window.onload = function () {
             var spans = document.getElementById("navb").getElementsByTagName("span");
@@ -29,136 +32,384 @@
             }
         }
     </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
 
+        a {
+            color: black;
+        }
+
+            a:hover {
+                text-decoration: none;
+            }
+
+        .content {
+            width: 1400px;
+            margin: 0 auto;
+        }
+
+        .center {
+            width: 1005px;
+            height: 600px;
+            margin-left: 160px;
+        }
+
+            .center .small {
+                width: 200px;
+                height: 280px;
+                float: left;
+            }
+
+                .center .small .bookpic {
+                    width: 200px;
+                    height: 200px;
+                }
+
+        .bookpic img {
+            width: 200px;
+            height: 200px;
+        }
+
+        .center .small .bookdetail {
+            width: 120px;
+            margin: 0 auto;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .navb span {
+            display: inline-block;
+            width: 50px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+            .navb span.current {
+                background-color: #ccc;
+            }
+
+        .navbox {
+            border: 1px solid #cccccc;
+            height: 600px;
+        }
+
+            .navbox li {
+                width: 100%;
+                height: 600px;
+                display: none;
+            }
+
+            .navbox a {
+                text-decoration: none;
+            }
+
+            .navbox span {
+                color: darkred;
+                font-size: 20px;
+            }
+
+            .navbox li.show {
+                display: block;
+            }
+
+        .hotsale {
+            width: 200px;
+            height: 400px;
+            border: 1px solid #ccc;
+            margin-top: 100px;
+            margin-left: 155px;
+        }
+
+            .hotsale .md {
+                width: 200px;
+                height: 130px;
+            }
+
+        .picture img {
+            width: 120px;
+            height: 100px;
+        }
+
+        .hotsale .details {
+            width: 80px;
+            height: 80px;
+            margin-top: -65px;
+            margin-left: 122px;
+        }
+
+        #demo{
+            width:520px;
+            height:300px;
+        }
+        .lbt {
+            width: 200px;
+            height: 180px;
+            margin-left: 430px;
+            margin-top: -355px;
+        }
+        .lbt img{
+            width:520px;
+            height:300px;
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar navbar-default">
-        <div class="container-fluid" style="width: 1400px;">
-            <div class="navbar-header" style="margin-top: 15px;">
-                <select>
-                    <option value="北京">北京</option>
-                    <option value="天津">天津</option>
-                    <option value="上海">上海</option>
-                    <option value="重庆">重庆</option>
-                    <option value="河北">河北</option>
-                    <option value="山西">山西</option>
-                    <option value="辽宁">辽宁</option>
-                    <option value="吉林">吉林</option>
-                    <option value="黑龙江">黑龙江</option>
-                    <option value="江苏">江苏</option>
-                    <option value="浙江">浙江</option>
-                    <option value="安徽">安徽</option>
-                    <option value="福建">福建</option>
-                    <option value="江西">江西</option>
-                    <option value="山东">山东</option>
-                    <option value="河南">河南</option>
-                    <option value="湖北">湖北</option>
-                    <option value="湖南">湖南</option>
-                    <option value="广东">广东</option>
-                    <option value="海南">海南</option>
-                    <option value="四川">四川</option>
-                    <option value="贵州">贵州</option>
-                    <option value="云南">云南</option>
-                    <option value="陕西">陕西</option>
-                    <option value="甘肃">甘肃</option>
-                    <option value="青海">青海</option>
-                    <option value="内蒙古自治区">内蒙古自治区</option>
-                    <option value="广西壮族自治区">广西壮族自治区</option>
-                    <option value="西藏自治区">西藏自治区</option>
-                    <option value="宁夏回族自治区">宁夏回族自治区</option>
-                    <option value="新疆维吾尔自治区">新疆维吾尔自治区</option>
-                    <option value="台湾">台湾</option>
-                    <option value="香港特别行政区">香港特别行政区</option>
-                    <option value="澳门特别行政区">澳门特别行政区</option>
-                </select>
-            </div>
-            <div>
-                <ul class="nav navbar-nav" style="float: right;">
-                    <li><a href="#" style="color:red">登录</a></li>
-                    <li><a href="#">注册</a> </li>
-                    <li><a href="#">我的订单<span class="caret" style="margin-top: -5px;"></span></a> </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
     <div class="content">
-        <div class="main">
-            <div class="logo">
-                <img src="~/images/Mall/logo.jpg" style="width:120px;height:100px;">
-            </div>
-            <div class="sousuo">
-                <span class="glyphicon glyphicon-search" style="margin-left:9px;margin-top: 3px;"></span>
-                <input type="text" class="sinput" placeholder="请输入关键字">
-                <button value="搜索" class="bt">搜索</button>
-            </div>
-            <div class="lis">
-                <ul>
-                    <li><a href="#" style="color:red;">英语教资用书</a> </li>
-                    <li><a href="#">数学教资用书</a> </li>
-                    <li><a href="#">语文教资用书</a> </li>
-                    <li><a href="#">教育学</a> </li>
-                    <li><a href="#">心理学</a> </li>
-                </ul>
-            </div>
-            <div class="Tx">
-                <img src="~/images/Mall/tx.jpg">
-                <p style="text-align: center;margin-top: 2px; color:palevioletred"><span>Hi!您好</span></p>
-            </div>
-        </div>
-        <div class="center">
+        <div class="center" id="center">
             <div class="navb" id="navb">
                 <span class="current"><a href="#"> 语文</a></span>
                 <span><a href="#"> 数学</a></span>
                 <span><a href="#"> 英语</a></span>
+                <span><a href="#"> 综合</a></span>
                 <span><a href="#"> 政治</a></span>
-                <span><a href="#"> 体育</a></span>
-                <span><a href="#"> 物理</a></span>
+                <span><a href="#"> 化学</a></span>
+                <span><a href="#"> 历史</a></span>
+                <span><a href="#"> 面试</a></span>
+                <span><a href="#"> 心理学</a></span>
+                <span><a href="#"> 美术</a></span>
+                <span><a href="#"> 教育学</a></span>
             </div>
             <div class="navbox" id="navbox">
                 <ul>
                     <li class="show">
-                        <div class="small" style="margin-left: 0;">
-                            <div class="background">
-                                <a href="#"> <img src="~/images/Books/1.jpg" class="img-responsive"></a>
+                        @foreach (var item in Model.Chinese.Take(10))
+                        {
+                            <div class="small">
+                                <a href="#">
+                                    <div class="bookpic">
+                                        <img src="@item.BookImage" />
+                                    </div>
+                                    <div class="bookdetail">
+                                        <span>￥@item.Price</span>
+                                        <p>@item.BookName</p>
+                                    </div>
+                                </a>
                             </div>
-                            <p>￥100</p>
-                            <span>数学用书</span>
-                        </div>
+                        }
                     </li>
                     <li>
-                        <div class="small" style="margin-left: 0;">
-                            <div class="background">
-                                <a href="#"> <img src="~/images/Books/1.jpg" class="img-responsive"></a>
+                        @foreach (var item in Model.Math.Take(10))
+                        {
+                            <div class="small">
+                                <a href="#">
+                                    <div class="bookpic">
+                                        <img src="@item.BookImage" />
+                                    </div>
+                                    <div class="bookdetail">
+                                        <span>￥@item.Price</span>
+                                        <p>@item.BookName</p>
+                                    </div>
+                                </a>
                             </div>
-                            <p>￥56</p>
-                            <span>语文用书</span>
-                        </div>
+                        }
                     </li>
                     <li>
-                        <div></div>
+                        @foreach (var item in Model.English.Take(10))
+                        {
+                            <div class="small">
+                                <a href="#">
+                                    <div class="bookpic">
+                                        <img src="@item.BookImage" />
+                                    </div>
+                                    <div class="bookdetail">
+                                        <span>￥@item.Price</span>
+                                        <p>@item.BookName</p>
+                                    </div>
+                                </a>
+                            </div>
+                        }
                     </li>
                     <li>
-                        <div></div>
+                        @foreach (var item in Model.Synthesize.Take(10))
+                        {
+                            <div class="small">
+                                <a href="#">
+                                    <div class="bookpic">
+                                        <img src="@item.BookImage" />
+                                    </div>
+                                    <div class="bookdetail">
+                                        <span>￥@item.Price</span>
+                                        <p>@item.BookName</p>
+                                    </div>
+                                </a>
+                            </div>
+                        }
                     </li>
                     <li>
-                        <div></div>
+                        @foreach (var item in Model.Political.Take(10))
+                        {
+                            <div class="small">
+                                <a href="#">
+                                    <div class="bookpic">
+                                        <img src="@item.BookImage" />
+                                    </div>
+                                    <div class="bookdetail">
+                                        <span>￥@item.Price</span>
+                                        <p>@item.BookName</p>
+                                    </div>
+                                </a>
+                            </div>
+                        }
                     </li>
                     <li>
-                        <div></div>
+                        @foreach (var item in Model.Chemistry.Take(10))
+                        {
+                            <div class="small">
+                                <a href="#">
+                                    <div class="bookpic">
+                                        <img src="@item.BookImage" />
+                                    </div>
+                                    <div class="bookdetail">
+                                        <span>￥@item.Price</span>
+                                        <p>@item.BookName</p>
+                                    </div>
+                                </a>
+                            </div>
+                        }
+                    </li>
+                    <li>
+                        @foreach (var item in Model.History.Take(10))
+                        {
+                            <div class="small">
+                                <a href="#">
+                                    <div class="bookpic">
+                                        <img src="@item.BookImage" />
+                                    </div>
+                                    <div class="bookdetail">
+                                        <span>￥@item.Price</span>
+                                        <p>@item.BookName</p>
+                                    </div>
+                                </a>
+                            </div>
+                        }
+                    </li>
+                    <li>
+                        @foreach (var item in Model.Interview.Take(10))
+                        {
+                            <div class="small">
+                                <a href="#">
+                                    <div class="bookpic">
+                                        <img src="@item.BookImage" />
+                                    </div>
+                                    <div class="bookdetail">
+                                        <span>￥@item.Price</span>
+                                        <p>@item.BookName</p>
+                                    </div>
+                                </a>
+                            </div>
+                        }
+                    </li>
+                    <li>
+                        @foreach (var item in Model.Psychic.Take(10))
+                        {
+                            <div class="small">
+                                <a href="#">
+                                    <div class="bookpic">
+                                        <img src="@item.BookImage" />
+                                    </div>
+                                    <div class="bookdetail">
+                                        <span>￥@item.Price</span>
+                                        <p>@item.BookName</p>
+                                    </div>
+                                </a>
+                            </div>
+                        }
+                    </li>
+                    <li>
+                        @foreach (var item in Model.Art.Take(10))
+                        {
+                            <div class="small">
+                                <a href="#">
+                                    <div class="bookpic">
+                                        <img src="@item.BookImage" />
+                                    </div>
+                                    <div class="bookdetail">
+                                        <span>￥@item.Price</span>
+                                        <p>@item.BookName</p>
+                                    </div>
+                                </a>
+                            </div>
+                        }
+                    </li>
+                    <li>
+                        @foreach (var item in Model.Pedagogy.Take(10))
+                        {
+                            <div class="small">
+                                <a href="#">
+                                    <div class="bookpic">
+                                        <img src="@item.BookImage" />
+                                    </div>
+                                    <div class="bookdetail">
+                                        <span>￥@item.Price</span>
+                                        <p>@item.BookName</p>
+                                    </div>
+                                </a>
+                            </div>
+                        }
                     </li>
                 </ul>
             </div>
         </div>
-
-    </div>
-
-    <div class="container">
-        <div class="col-md-4">
-            @foreach(var item in Model.english)
-            {
-                <img src="@item.BookImage" />
-            }
+        <div>
+            <span style="line-height: 30px;text-align: center; display:block;position:relative;top:101px;left:155px;width:66px;height:30px;border:1px solid #ff0000;background:red;"><a href="#" style="color:white">热销榜</a></span>
+            <div class="hotsale">
+                @foreach (var item in Model.Hotsale)
+                {
+                    <div class="md">
+                        <a href="#">
+                            <div class="picture">
+                                <img src="@item.BookImage" />
+                            </div>
+                            <div class="details">
+                                <p>@item.BookName</p>
+                            </div>
+                        </a>
+                    </div>
+                }
+            </div>
         </div>
+        <div class="lbt">
+            <div id="demo" class="carousel slide" data-ride="carousel">
+                <ul class="carousel-indicators">
+                    <li data-target="#demo" data-slide-to="0" class="active"></li>
+                    <li data-target="#demo" data-slide-to="1"></li>
+                    <li data-target="#demo" data-slide-to="2"></li>
+                </ul>
+
+                <!-- 轮播图片 -->
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+
+                        <img src="~/images/Css/lbt1.jpg" />
+                    </div>
+                    <div class="carousel-item">
+                  
+                        <img src="~/images/Css/lbt2.jpg" />
+                    </div>
+                    <div class="carousel-item">
+
+                        <img src="~/images/Css/lbt3.jpg" />
+                    </div>
+                </div>
+
+                <!-- 左右切换按钮 -->
+                <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </a>
+                <a class="carousel-control-next" href="#demo" data-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </a>
+
+            </div>
+        </div>
+
     </div>
 </body>
 </html>
