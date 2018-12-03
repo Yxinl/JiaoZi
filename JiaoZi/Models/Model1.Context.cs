@@ -45,6 +45,7 @@ namespace JiaoZi.Models
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<Video> Video { get; set; }
         public virtual DbSet<VideoResource> VideoResource { get; set; }
+        public virtual DbSet<Remark_User_Comments_Reply> Remark_User_Comments_Reply { get; set; }
         public virtual DbSet<salestop3> salestop3 { get; set; }
     }
 }

@@ -1,0 +1,66 @@
+﻿@*@model IEnumerable<JiaoZi.Models.Remarks>*@
+@model IEnumerable<JiaoZi.Models.Remarks>
+@{
+    ViewBag.Title = "Index2";
+}
+
+
+<div class="jumbotron">
+    <h1>教师资格证论坛</h1>
+</div>
+<a href="@Url.Action("Index","Luntan")">论坛首页</a>
+<html>
+    <head>
+        <style>
+            #title{
+                font-family:STXingkai;
+                font-size:larger;
+                padding:20px 20px;
+            }
+            #body{
+              
+                width:600px;
+                /*height:500px;*/
+                border-color:brown;
+                background-color:crimson;
+            }
+        </style>
+     </head>
+    <body>
+        <div style="height:100%;width:100%">
+            <div style="margin:auto;z-index:-1" id="body">
+                <div>
+
+                    @foreach (var item in Model)
+                    {
+                        <div style="text-align:center;background-color:bisque">
+                            <h1><span style="font-size:25px;padding-top:10px;">@Html.DisplayFor(modelItem=>item.Title)</span></h1>
+                        </div>
+                        <div style="text-align:center;">
+                            <h1><span style="font-size:10px;padding-top:10px;">作者：<a href="#">@Html.DisplayFor(modelItem=>item.UserID)</a>&nbsp;&nbsp;时间：@Html.DisplayFor(modelItem=>item.Remark_Time)</span></h1>
+                        </div>
+
+                        <div class="nav nav-tabs">
+                        <div style="height:auto;width:30px;padding-top:30px;float:left;" class="col-md-4" ><img src="~/图/RemarksImage/@Html.DisplayFor(modelItem=>item.Image)"/></div>
+                        <div style="float:left;padding-top:30px;font-size:large;padding-left:220px"><p>@Html.DisplayFor(modelItem => item.RemarkContent);</p></div>
+                        @*<footer>@Html.DisplayFor(modelItem=>item.Remark_Time)</footer>*@
+                        </div>
+                    }
+                    @*<div style="float:right;font-size:50px;z-index:1;"><a href="#">评论</a></div>*@
+            </div>
+              @*<div><a href="#">评论</a>
+                </div>*@
+                @*<div style="float:right;font-size:50px;z-index:2;"><a href="#">评论</a></div>*@
+                
+            </div>
+            <div style="margin:auto;padding-left:800px;padding-top:50px" ><a href="#"><img style="height:10px;width:20px;" src="~/图/图标/评论.png" />评论</a>&nbsp;<a href="#"><img style="width:20px;height:10px;padding-left:40px;"  src ="~/图/图标/点赞.png" />点赞</a></div>
+            
+        </div>
+        <div style="margin:auto;padding-top:30px;height:30px;width:600px;background-color:brown;border-width:thin;"></div>
+        
+    </body>
+</html>
+
+
+
+
