@@ -27,13 +27,15 @@ namespace JiaoZi.Models
         public string BookAuthor { get; set; }
         public Nullable<System.DateTime> IssueTime { get; set; }
         public string Publisher { get; set; }
-        public double Price { get; set; }
-        public int Amount { get; set; }
+        public Nullable<double> Price { get; set; }
+        public Nullable<int> Amount { get; set; }
         public string Category { get; set; }
+        public Nullable<int> CategoryId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BookComment> BookComment { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderDetails> OrderDetails { get; set; }
+        public virtual Category Category1 { get; set; }
     }
 }

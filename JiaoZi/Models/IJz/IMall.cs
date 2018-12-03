@@ -12,8 +12,9 @@ namespace JiaoZi.Models
         IEnumerable<Books> GetBooksDetails(int id);
         IEnumerable<Books> Search(string search);
         IEnumerable<Books> GetBooksByAmount();
-        IEnumerable<Books> GetBooksBycategory(string category);
+        IEnumerable<Category> Category();
         IEnumerable<Books> GetBooksByPrice();
         void AddBooks(Books books);
+        IEnumerable<Books> GetBooksByCategory(int id);
     }
 }

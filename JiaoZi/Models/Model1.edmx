@@ -54,9 +54,10 @@
           <Property Name="BookAuthor" Type="varchar" MaxLength="50" />
           <Property Name="IssueTime" Type="datetime" />
           <Property Name="Publisher" Type="varchar" MaxLength="500" />
-          <Property Name="Price" Type="float" Nullable="false" />
-          <Property Name="Amount" Type="int" Nullable="false" />
-          <Property Name="Category" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Price" Type="float" />
+          <Property Name="Amount" Type="int" />
+          <Property Name="Category" Type="varchar" MaxLength="100" />
+          <Property Name="CategoryId" Type="int" />
         </EntityType>
         <EntityType Name="Carts">
           <Key>
@@ -68,6 +69,13 @@
           <Property Name="UnitPrice" Type="float" />
           <Property Name="Number" Type="int" />
           <Property Name="CartFlag" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryName" Type="nchar" MaxLength="10" Nullable="false" />
         </EntityType>
         <EntityType Name="News">
           <Key>
@@ -129,6 +137,7 @@
           <Property Name="Title" Type="varchar" MaxLength="100" />
           <Property Name="RemarkContent" Type="varchar(max)" />
           <Property Name="RemarkFlag" Type="int" />
+          <Property Name="Remark_Time" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Shuoshuo">
           <Key>
@@ -229,6 +238,9 @@
           <Property Name="BookAuthor" Type="varchar" MaxLength="50" />
           <Property Name="IssueTime" Type="datetime" />
           <Property Name="Publisher" Type="varchar" MaxLength="500" />
+          <Property Name="Price" Type="float" />
+          <Property Name="Amount" Type="int" />
+          <Property Name="Category" Type="varchar" MaxLength="100" />
         </EntityType>
         <Association Name="FK__Attention__Atten__4F7CD00D">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
@@ -299,6 +311,18 @@
             </Principal>
             <Dependent Role="BookReply">
               <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Books__CategoryI__5441852A">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Books" Type="Self.Books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Books">
+              <PropertyRef Name="CategoryId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -465,6 +489,7 @@
           <EntitySet Name="BookReply" EntityType="Self.BookReply" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Books" EntityType="Self.Books" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Carts" EntityType="Self.Carts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
@@ -486,7 +511,10 @@
     [salestop3].[BookName] AS [BookName], 
     [salestop3].[BookAuthor] AS [BookAuthor], 
     [salestop3].[IssueTime] AS [IssueTime], 
-    [salestop3].[Publisher] AS [Publisher]
+    [salestop3].[Publisher] AS [Publisher], 
+    [salestop3].[Price] AS [Price], 
+    [salestop3].[Amount] AS [Amount], 
+    [salestop3].[Category] AS [Category]
     FROM [dbo].[salestop3] AS [salestop3]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK__Attention__Atten__4F7CD00D" Association="Self.FK__Attention__Atten__4F7CD00D">
@@ -512,6 +540,10 @@
           <AssociationSet Name="FK__BookReply__UserI__2C3393D0" Association="Self.FK__BookReply__UserI__2C3393D0">
             <End Role="Users" EntitySet="Users" />
             <End Role="BookReply" EntitySet="BookReply" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Books__CategoryI__5441852A" Association="Self.FK__Books__CategoryI__5441852A">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Books" EntitySet="Books" />
           </AssociationSet>
           <AssociationSet Name="FK__OrderDeta__BookI__1BFD2C07" Association="Self.FK__OrderDeta__BookI__1BFD2C07">
             <End Role="Books" EntitySet="Books" />
@@ -628,9 +660,11 @@
           <Property Name="Publisher" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="BookComment" Relationship="Self.FK__BookComme__BookI__286302EC" FromRole="Books" ToRole="BookComment" />
           <NavigationProperty Name="OrderDetails" Relationship="Self.FK__OrderDeta__BookI__1BFD2C07" FromRole="Books" ToRole="OrderDetails" />
-          <Property Name="Price" Type="Double" Nullable="false" />
-          <Property Name="Amount" Type="Int32" Nullable="false" />
-          <Property Name="Category" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="Double" />
+          <Property Name="Amount" Type="Int32" />
+          <Property Name="Category" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CategoryId" Type="Int32" />
+          <NavigationProperty Name="Category1" Relationship="jiaoziModel.FK__Books__CategoryI__5441852A" FromRole="Books" ToRole="Category" />
         </EntityType>
         <EntityType Name="Carts">
           <Key>
@@ -711,6 +745,7 @@
           <Property Name="RemarkFlag" Type="Int32" />
           <NavigationProperty Name="RemarkComments" Relationship="Self.FK__RemarkCom__Remar__300424B4" FromRole="Remarks" ToRole="RemarkComments" />
           <NavigationProperty Name="Users" Relationship="Self.FK__Remarks__UserID__24927208" FromRole="Remarks" ToRole="Users" />
+          <Property Name="Remark_Time" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="Shuoshuo">
           <Key>
@@ -830,6 +865,9 @@
           <Property Name="BookAuthor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="IssueTime" Type="DateTime" Precision="3" />
           <Property Name="Publisher" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="Double" />
+          <Property Name="Amount" Type="Int32" />
+          <Property Name="Category" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK__Attention__Atten__4F7CD00D">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
@@ -1157,7 +1195,32 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="Video" EntitySet="Video" />
           </AssociationSet>
+          <EntitySet Name="Category" EntityType="jiaoziModel.Category" />
+          <AssociationSet Name="FK__Books__CategoryI__5441852A" Association="jiaoziModel.FK__Books__CategoryI__5441852A">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Books" EntitySet="Books" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Books" Relationship="jiaoziModel.FK__Books__CategoryI__5441852A" FromRole="Category" ToRole="Books" />
+        </EntityType>
+        <Association Name="FK__Books__CategoryI__5441852A">
+          <End Type="jiaoziModel.Category" Role="Category" Multiplicity="0..1" />
+          <End Type="jiaoziModel.Books" Role="Books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Books">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1210,6 +1273,7 @@
           <EntitySetMapping Name="Books">
             <EntityTypeMapping TypeName="jiaoziModel.Books">
               <MappingFragment StoreEntitySet="Books">
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
                 <ScalarProperty Name="Category" ColumnName="Category" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
@@ -1292,6 +1356,7 @@
           <EntitySetMapping Name="Remarks">
             <EntityTypeMapping TypeName="jiaoziModel.Remarks">
               <MappingFragment StoreEntitySet="Remarks">
+                <ScalarProperty Name="Remark_Time" ColumnName="Remark_Time" />
                 <ScalarProperty Name="RemarkID" ColumnName="RemarkID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
@@ -1399,12 +1464,23 @@
           <EntitySetMapping Name="salestop3">
             <EntityTypeMapping TypeName="jiaoziModel.salestop3">
               <MappingFragment StoreEntitySet="salestop3">
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="BookID" ColumnName="BookID" />
                 <ScalarProperty Name="BookImage" ColumnName="BookImage" />
                 <ScalarProperty Name="BookName" ColumnName="BookName" />
                 <ScalarProperty Name="BookAuthor" ColumnName="BookAuthor" />
                 <ScalarProperty Name="IssueTime" ColumnName="IssueTime" />
                 <ScalarProperty Name="Publisher" ColumnName="Publisher" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Category">
+            <EntityTypeMapping TypeName="jiaoziModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

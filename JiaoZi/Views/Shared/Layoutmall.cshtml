@@ -1,4 +1,4 @@
-﻿
+﻿@model JiaoZi.Models.Mallview
 
 <!DOCTYPE html>
 
@@ -6,7 +6,7 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
+
     <style>
         .main .logo {
             margin-left: 197px;
@@ -80,7 +80,40 @@
             margin-left: 30px;
             margin-top: -21px;
         }
+        /*.nv{
+            margin-left:1000px;
+            margin-top:10px;
+        }
+        .na{
+            width:300px;
+            height:30px;
+        }
+        .na li{
+            float:left;
+            margin-right:20px;
+        }*/
+        .na{
+            width:1759px;
+            height:40px;
+            background-color:dimgray;
+             text-align:center;
+        }
+        .na span{
+            width:70px;
+            height:40px;
+            line-height:40px;
+            display:inline-block;
+            margin-left:20px;
+        }
+        .na a {
+                text-decoration: none;
+                color: aliceblue;
+        }
+        .na a:hover{
+            color:darkred;
+        }
     </style>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 
 </head>
 <body>
@@ -124,8 +157,8 @@
                     <option value="澳门特别行政区">澳门特别行政区</option>
                 </select>
             </div>
-            <div>
-                <ul class="nav navbar-nav" style="float: right;">
+            <div class="nv">
+                <ul class="nav nav-pills ">
                     <li><a href="#" style="color:red">登录</a></li>
                     <li><a href="#">注册</a> </li>
                     <li><a href="#">我的订单<span class="caret" style="margin-top: -5px;"></span></a> </li>
@@ -166,6 +199,16 @@
             <img src="~/images/Mall/tx.jpg">
             <p style="text-align: center;margin-top: 2px; color:palevioletred"><span>Hi!您好</span></p>
         </div>
+    </div>
+    <div class="na">
+        @*传入name,进入相应视图*@
+        @foreach (var item in Model.Category)
+        {
+            <span>
+                    <a href="@Url.Action()">@item.CategoryName</a>
+            </span>
+        }
+
     </div>
     <div>
         @RenderBody()

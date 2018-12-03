@@ -12,24 +12,18 @@ namespace JiaoZi.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Remarks
+    public partial class Category
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Remarks()
+        public Category()
         {
-            this.RemarkComments = new HashSet<RemarkComments>();
+            this.Books = new HashSet<Books>();
         }
     
-        public int RemarkID { get; set; }
-        public int UserID { get; set; }
-        public string Image { get; set; }
-        public string Title { get; set; }
-        public string RemarkContent { get; set; }
-        public Nullable<int> RemarkFlag { get; set; }
-        public System.DateTime Remark_Time { get; set; }
+        public int CategoryId { get; set; }
+        public string CategoryName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RemarkComments> RemarkComments { get; set; }
-        public virtual Users Users { get; set; }
+        public virtual ICollection<Books> Books { get; set; }
     }
 }

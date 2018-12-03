@@ -39,13 +39,19 @@ namespace JiaoZi.Models
             return AmountBooks;
                            
         }
-        //各类书分类显示
-       public IEnumerable<Books> GetBooksBycategory(string category)
+        //获取图书的种类
+        public IEnumerable<Category> Category()
         {
-            var books = (from p in db.Books
-                        where p.Category == category
-                        select p);
-            return books.ToList();
+            var category = from p in db.Category                         
+                           select p;
+            return category;
+        }
+       public IEnumerable<Books> GetBooksByCategory(int id)
+        {
+            var categorybooks = from p in db.Books
+                                where p.CategoryId == id
+                                select p;
+            return categorybooks;
         }
         public IEnumerable<Books> GetBooksByPrice()
         {
