@@ -26,6 +26,7 @@ namespace JiaoZi.Models
         public string Title { get; set; }
         public string RemarkContent { get; set; }
         public Nullable<int> RemarkFlag { get; set; }
+        public System.DateTime Remark_Time { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RemarkComments> RemarkComments { get; set; }

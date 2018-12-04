@@ -42,9 +42,9 @@ namespace JiaoZi.Models
         //各类书分类显示
        public IEnumerable<Books> GetBooksBycategory(string category)
         {
-            var books = from p in db.Books
+            var books = (from p in db.Books
                         where p.Category == category
-                        select p;
+                        select p);
             return books.ToList();
         }
         public IEnumerable<Books> GetBooksByPrice()

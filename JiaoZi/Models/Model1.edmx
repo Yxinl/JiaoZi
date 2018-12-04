@@ -54,9 +54,9 @@
           <Property Name="BookAuthor" Type="varchar" MaxLength="50" />
           <Property Name="IssueTime" Type="datetime" />
           <Property Name="Publisher" Type="varchar" MaxLength="500" />
-          <Property Name="Price" Type="float" Nullable="false" />
-          <Property Name="Amount" Type="int" Nullable="false" />
-          <Property Name="Category" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Price" Type="float" />
+          <Property Name="Amount" Type="int" />
+          <Property Name="Category" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Carts">
           <Key>
@@ -129,6 +129,7 @@
           <Property Name="Title" Type="varchar" MaxLength="100" />
           <Property Name="RemarkContent" Type="varchar(max)" />
           <Property Name="RemarkFlag" Type="int" />
+          <Property Name="Remark_Time" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Shuoshuo">
           <Key>
@@ -218,6 +219,22 @@
           <Property Name="Subject" Type="varchar" MaxLength="100" />
         </EntityType>
         <!--生成过程中发现错误:
+警告 6002: 表/视图“jiaozi.dbo.Remark_User_Comments_Reply”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="Remark_User_Comments_Reply">
+          <Key>
+            <PropertyRef Name="Remark_time" />
+            <PropertyRef Name="RemarkID" />
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="Title" Type="varchar" MaxLength="100" />
+          <Property Name="Remark_time" Type="datetime" Nullable="false" />
+          <Property Name="RemarkID" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="100" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="pinglunshu" Type="int" />
+          <Property Name="huifushu" Type="int" />
+        </EntityType>
+        <!--生成过程中发现错误:
 警告 6002: 表/视图“jiaozi.dbo.salestop3”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="salestop3">
           <Key>
@@ -229,6 +246,9 @@
           <Property Name="BookAuthor" Type="varchar" MaxLength="50" />
           <Property Name="IssueTime" Type="datetime" />
           <Property Name="Publisher" Type="varchar" MaxLength="500" />
+          <Property Name="Price" Type="float" />
+          <Property Name="Amount" Type="int" />
+          <Property Name="Category" Type="varchar" MaxLength="100" />
         </EntityType>
         <Association Name="FK__Attention__Atten__4F7CD00D">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
@@ -479,6 +499,17 @@
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Video" EntityType="Self.Video" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VideoResource" EntityType="Self.VideoResource" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Remark_User_Comments_Reply" EntityType="Self.Remark_User_Comments_Reply" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Remark_User_Comments_Reply].[Title] AS [Title], 
+    [Remark_User_Comments_Reply].[Remark_time] AS [Remark_time], 
+    [Remark_User_Comments_Reply].[RemarkID] AS [RemarkID], 
+    [Remark_User_Comments_Reply].[UserName] AS [UserName], 
+    [Remark_User_Comments_Reply].[UserID] AS [UserID], 
+    [Remark_User_Comments_Reply].[pinglunshu] AS [pinglunshu], 
+    [Remark_User_Comments_Reply].[huifushu] AS [huifushu]
+    FROM [dbo].[Remark_User_Comments_Reply] AS [Remark_User_Comments_Reply]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="salestop3" EntityType="Self.salestop3" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [salestop3].[BookID] AS [BookID], 
@@ -486,7 +517,10 @@
     [salestop3].[BookName] AS [BookName], 
     [salestop3].[BookAuthor] AS [BookAuthor], 
     [salestop3].[IssueTime] AS [IssueTime], 
-    [salestop3].[Publisher] AS [Publisher]
+    [salestop3].[Publisher] AS [Publisher], 
+    [salestop3].[Price] AS [Price], 
+    [salestop3].[Amount] AS [Amount], 
+    [salestop3].[Category] AS [Category]
     FROM [dbo].[salestop3] AS [salestop3]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK__Attention__Atten__4F7CD00D" Association="Self.FK__Attention__Atten__4F7CD00D">
@@ -626,11 +660,11 @@
           <Property Name="BookAuthor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="IssueTime" Type="DateTime" Precision="3" />
           <Property Name="Publisher" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="Double" />
+          <Property Name="Amount" Type="Int32" />
+          <Property Name="Category" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="BookComment" Relationship="Self.FK__BookComme__BookI__286302EC" FromRole="Books" ToRole="BookComment" />
           <NavigationProperty Name="OrderDetails" Relationship="Self.FK__OrderDeta__BookI__1BFD2C07" FromRole="Books" ToRole="OrderDetails" />
-          <Property Name="Price" Type="Double" Nullable="false" />
-          <Property Name="Amount" Type="Int32" Nullable="false" />
-          <Property Name="Category" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Carts">
           <Key>
@@ -709,6 +743,7 @@
           <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="RemarkContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="RemarkFlag" Type="Int32" />
+          <Property Name="Remark_Time" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="RemarkComments" Relationship="Self.FK__RemarkCom__Remar__300424B4" FromRole="Remarks" ToRole="RemarkComments" />
           <NavigationProperty Name="Users" Relationship="Self.FK__Remarks__UserID__24927208" FromRole="Remarks" ToRole="Users" />
         </EntityType>
@@ -820,6 +855,20 @@
           <Property Name="Stage" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Subject" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="Remark_User_Comments_Reply">
+          <Key>
+            <PropertyRef Name="Remark_time" />
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="RemarkID" />
+          </Key>
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Remark_time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="pinglunshu" Type="Int32" />
+          <Property Name="huifushu" Type="Int32" />
+          <Property Name="RemarkID" Type="Int32" Nullable="false" />
+        </EntityType>
         <EntityType Name="salestop3">
           <Key>
             <PropertyRef Name="BookID" />
@@ -830,6 +879,9 @@
           <Property Name="BookAuthor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="IssueTime" Type="DateTime" Precision="3" />
           <Property Name="Publisher" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="Double" />
+          <Property Name="Amount" Type="Int32" />
+          <Property Name="Category" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK__Attention__Atten__4F7CD00D">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
@@ -1080,6 +1132,7 @@
           <EntitySet Name="Users" EntityType="Self.Users" />
           <EntitySet Name="Video" EntityType="Self.Video" />
           <EntitySet Name="VideoResource" EntityType="Self.VideoResource" />
+          <EntitySet Name="Remark_User_Comments_Reply" EntityType="Self.Remark_User_Comments_Reply" />
           <EntitySet Name="salestop3" EntityType="Self.salestop3" />
           <AssociationSet Name="FK__Attention__Atten__4F7CD00D" Association="Self.FK__Attention__Atten__4F7CD00D">
             <End Role="Users" EntitySet="Users" />
@@ -1210,15 +1263,15 @@
           <EntitySetMapping Name="Books">
             <EntityTypeMapping TypeName="jiaoziModel.Books">
               <MappingFragment StoreEntitySet="Books">
-                <ScalarProperty Name="Category" ColumnName="Category" />
-                <ScalarProperty Name="Amount" ColumnName="Amount" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="BookID" ColumnName="BookID" />
                 <ScalarProperty Name="BookImage" ColumnName="BookImage" />
                 <ScalarProperty Name="BookName" ColumnName="BookName" />
                 <ScalarProperty Name="BookAuthor" ColumnName="BookAuthor" />
                 <ScalarProperty Name="IssueTime" ColumnName="IssueTime" />
                 <ScalarProperty Name="Publisher" ColumnName="Publisher" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1298,6 +1351,7 @@
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="RemarkContent" ColumnName="RemarkContent" />
                 <ScalarProperty Name="RemarkFlag" ColumnName="RemarkFlag" />
+                <ScalarProperty Name="Remark_Time" ColumnName="Remark_Time" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1396,6 +1450,19 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Remark_User_Comments_Reply">
+            <EntityTypeMapping TypeName="jiaoziModel.Remark_User_Comments_Reply">
+              <MappingFragment StoreEntitySet="Remark_User_Comments_Reply">
+                <ScalarProperty Name="RemarkID" ColumnName="RemarkID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Remark_time" ColumnName="Remark_time" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="pinglunshu" ColumnName="pinglunshu" />
+                <ScalarProperty Name="huifushu" ColumnName="huifushu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="salestop3">
             <EntityTypeMapping TypeName="jiaoziModel.salestop3">
               <MappingFragment StoreEntitySet="salestop3">
@@ -1405,6 +1472,9 @@
                 <ScalarProperty Name="BookAuthor" ColumnName="BookAuthor" />
                 <ScalarProperty Name="IssueTime" ColumnName="IssueTime" />
                 <ScalarProperty Name="Publisher" ColumnName="Publisher" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

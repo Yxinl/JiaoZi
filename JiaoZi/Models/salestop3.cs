@@ -20,5 +20,8 @@ namespace JiaoZi.Models
         public string BookAuthor { get; set; }
         public Nullable<System.DateTime> IssueTime { get; set; }
         public string Publisher { get; set; }
+        public Nullable<double> Price { get; set; }
+        public Nullable<int> Amount { get; set; }
+        public string Category { get; set; }
     }
 }
