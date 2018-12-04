@@ -1,0 +1,69 @@
+﻿@model JiaoZi.Models.Kongjianban
+    <!--发说说-->
+<style>
+    #shuoshuoinput {
+   
+    max-width:50%;
+    }
+</style>
+<div class="row" style="background-color:azure">
+    <form class="form-horizontal col-md-12 " role="form">
+        <div class="form-group" style="width:100%;">
+            <label for="name">文本框</label>
+            <textarea  rows="4" class="form-control" placeholder="几个字" id="shuoshuoinput"></textarea>
+        </div>
+        <br />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox">是否同步到论坛
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="submit" class="btn btn-default">发表</button>
+            </div>
+        </div>
+    </form>
+</div>
+<!--说说历史-->
+
+<div>
+@foreach (var item in Model.UserAllShuo)
+{
+    <div class="row" style="height: 200px;background-color:antiquewhite">
+        <!-- 左-->
+        <div class="col-md-2" style="height:100%;">
+            <!-- 头像 -->
+            <div style="height:20%">
+                头像
+            </div>
+            <!-- 留白 -->
+            <div style="height:80%"></div>
+        </div>
+        <!--中-->
+        <div class="col-md-8" style="height:100%;">
+            <!-- 网名 -->
+            <div style="height:30%;width:100%;background-color:aqua;"></div>
+            <!-- 内容 -->
+            <div style="height:50%;width:100%;background-color:aquamarine;overflow-y:auto">
+                <h4>
+                    @item.Shuoshuo_Content
+                </h4>
+            </div>
+            <!-- 点赞、评论、时间 -->
+            <div style="height:20%;width:100%;background-color:bisque">
+                @item.Shuoshuo_Time
+            </div>
+        </div>
+        <!-- 右 -->
+        <div class="col-md-2" style="height:100%;">
+            <div style="height:20%"></div>
+            <div style="height:80%"></div>
+        </div>
+    </div>
+}
+</div>
