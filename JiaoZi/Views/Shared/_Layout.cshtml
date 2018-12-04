@@ -7,6 +7,10 @@
     <title>@ViewBag.Title - 教资服务网</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/shouye.css" rel="stylesheet" />
+    <link href="~/Content/ionic.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/ionic.bundle.min.js"></script>
     <style>
         #tx {
             width: 101px;
@@ -15,7 +19,7 @@
             margin-top: -49px;
             border: 1px solid #ffffff;
             margin-right: 120px;
-            border-radius: 10px
+            border-radius: 10px;
         }
 
             #tx li {
@@ -39,44 +43,50 @@
             bottom: 0;
             display: none;
         }
+
+        #bodydiv {
+            max-width: 1800px;
+            padding-left: 0px;
+            padding-right: 0px;
+        }
     </style>
 </head>
-<body>
-    <div class="navbar navbar-default navbar-fixed-top">
+<body style="background-color:#f1e9e1;height:800px;overflow-y:auto">
+    <div class="navbar navbar-inverse navbar-fixed-top" id="Mydaohang">
         <div class="container-fluid">
             <div style="width:50px;height:50px;float:left;margin-left:30px">
-                <img src="~/images/Css/Logo.jpg" style="width:45px;height:45px;" />
+                <img src="~/images/beijing/未标题-1.gif" style="width:45px;height:45px;" />
             </div>
             <div class="navbar-header" style="margin-left:240px;">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("首页", "Page", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("教资考试服务网", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("考试中心", "KSZX", "Default")</li>
-                    <li>@Html.ActionLink("资讯", "News", "Default")</li>
-                    <li>@Html.ActionLink("资源库", "Resource", "Default")</li>
-                    <li>@Html.ActionLink("论坛", "Lt", "Default")</li>
-                    <li>@Html.ActionLink("商城", "Shopping", "Default")</li>
+                    @*<li>@Html.ActionLink("考试中心", "KSZX", "Home")</li>*@
+                    <li>@Html.ActionLink("教资资讯", "Index", "News")</li>
+                    <li>@Html.ActionLink("个人空间", "Index", "Kongjian")</li>
+                    <li>@Html.ActionLink("备考资源库", "Index", "Resource")</li>
+                    <li>@Html.ActionLink("考试论坛", "Index", "Luntan")</li>
+                    <li>@Html.ActionLink("备考书店", "Index", "Mall")</li>
                 </ul>
             </div>
         </div>
         @Html.Partial("TX")
     </div>
-    <div class="container body-content">
+    @*class="container body-content "*@
+    <div id="bodydiv">
         @RenderBody()
-        <hr />
+        @*<hr />*@
         <div id="toTop"><img src="~/images/Css/totop.jpg" style="width:50px;height:50px;" title="回到顶部" /></div>
-        <footer>
-            <p>&copy; @DateTime.Now.Year - 我的 ASP.NET 应用程序</p>
-        </footer>
+        @*<footer>
+                <p>&copy; @DateTime.Now.Year - jiaozi</p>
+            </footer>*@
+
     </div>
 
     @Scripts.Render("~/bundles/jquery")

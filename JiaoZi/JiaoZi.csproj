@@ -156,6 +156,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KongjianController.cs" />
     <Compile Include="Controllers\LuntanController.cs" />
     <Compile Include="Controllers\MallController.cs" />
     <Compile Include="Controllers\UserInfoController.cs" />
@@ -181,18 +182,27 @@
     <Compile Include="Models\Carts.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\IJz\IBook.cs" />
     <Compile Include="Models\IJz\IMall.cs" />
-    <Compile Include="Models\IJz\IRemarkcomments.cs" />
+    <Compile Include="Models\IJz\INews.cs" />
+    <Compile Include="Models\IJz\IResource.cs" />
+    <Compile Include="Models\IJz\IShuoshuo.cs" />
+    <Compile Include="Models\IJz\IUser.cs" />
     <Compile Include="Models\IJz\IUserInfo.cs" />
     <Compile Include="Models\IJz\IRemarks.cs" />
     <Compile Include="Models\IJz\IRemarksbytime.cs" />
     <Compile Include="Models\IJz\IRemark_User_Comments_Reply.cs" />
     <Compile Include="Models\Jz\Mall.cs" />
-    <Compile Include="Models\Jz\RRemarkcomments.cs" />
+    <Compile Include="Models\Jz\RBook.cs" />
+    <Compile Include="Models\Jz\RNews.cs" />
     <Compile Include="Models\Jz\RRemarks.cs" />
     <Compile Include="Models\Jz\RRemarksbytime.cs" />
     <Compile Include="Models\Jz\RRemark_User_Comments_Reply.cs" />
+    <Compile Include="Models\Jz\RResource.cs" />
+    <Compile Include="Models\Jz\RShuoshuo.cs" />
+    <Compile Include="Models\Jz\RUser.cs" />
     <Compile Include="Models\Jz\UserInfo.cs" />
+    <Compile Include="Models\Kongjianban.cs" />
     <Compile Include="Models\Mallview.cs" />
     <Compile Include="Models\Model1.Context.cs">
       <AutoGen>True</AutoGen>
@@ -234,6 +244,7 @@
     <Compile Include="Models\salestop3.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\shouyeban.cs" />
     <Compile Include="Models\Shuoshuo.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -249,7 +260,6 @@
     <Compile Include="Models\TextResource.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\TieziViewModel.cs" />
     <Compile Include="Models\Users.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -267,9 +277,13 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\ionic.css" />
+    <Content Include="Content\ionic.min.css" />
     <Content Include="Content\Mall.css" />
+    <Content Include="Content\shouye.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\ionicons.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="images\Books\1.jpg" />
@@ -405,7 +419,19 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="fonts\ionicons.eot" />
+    <Content Include="fonts\ionicons.ttf" />
+    <Content Include="fonts\ionicons.woff" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\ionic-angular.js" />
+    <Content Include="Scripts\ionic-angular.min.js" />
+    <Content Include="Scripts\ionic.bundle.js" />
+    <Content Include="Scripts\ionic.bundle.min.js" />
+    <Content Include="Scripts\ionic.js" />
+    <Content Include="Scripts\ionic.min.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -439,6 +465,15 @@
     <Content Include="Views\Mall\Sear.cshtml" />
     <Content Include="Views\Luntan\Index.cshtml" />
     <Content Include="Views\Luntan\Index2.cshtml" />
+    <Content Include="Views\Home\Booksalestop3.cshtml" />
+    <Content Include="Views\Home\homezixun.cshtml" />
+    <Content Include="Views\Home\homeziyuan.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\newissuebook.cshtml" />
+    <Content Include="Views\Kongjian\File.cshtml" />
+    <Content Include="Views\Kongjian\Index.cshtml" />
+    <Content Include="Views\Kongjian\shuoshuo.cshtml" />
+    <Content Include="Views\Kongjian\UploadFile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
