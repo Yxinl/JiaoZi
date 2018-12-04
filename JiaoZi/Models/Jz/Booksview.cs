@@ -7,6 +7,6 @@ namespace JiaoZi.Models
 {
     public class Booksview
     {
-        public IEnumerable<Books> Search { get; set; }
+        public IEnumerable<Books> Books { get; set; }
     }
 }

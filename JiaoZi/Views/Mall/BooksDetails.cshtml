@@ -1,0 +1,34 @@
+﻿@*@model JiaoZi.Models.Books*@
+@using JiaoZi.Models
+@{ 
+    Layout = "~/Views/Shared/Layoutmall.cshtml";
+}
+<style>
+    .big {
+        width: 500px;
+        height: 300px;
+        border: 1px solid red;
+    }
+
+    .pic {
+        width: 200px;
+        height: 200px;
+        border: 1px solid #ccc;
+    }
+
+    .details {
+        width: 80px;
+        height: 40px;
+        border: 1px dashed yellow;
+    }
+</style>
+<div class="big">
+    <div class="pic">
+        <img src="~/@ViewData["details"]" />
+    </div>
+    <div class="details">
+        <p>@ViewData["details"].Price</p>
+        <p>@ViewBag["details"].BookName</p>
+    </div>
+</div>
+

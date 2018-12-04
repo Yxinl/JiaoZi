@@ -15,12 +15,10 @@ namespace JiaoZi.Models
             return books;
         }
         //获得单独一本书的详情
-        public IEnumerable<Books> GetBooksDetails(int id)
+        public Books GetBooksById(int? id)
         {
-            var bookdetail = from p in db.Books
-                             where p.BookID == id
-                             select p;
-            return bookdetail;
+            var books = db.Books.Find(id);
+            return books;
         }
         //根据书名或者作者名进行搜索
         public IEnumerable<Books> Search(string search)
@@ -46,6 +44,8 @@ namespace JiaoZi.Models
                            select p;
             return category;
         }
+
+        //根据id查每类的图书
        public IEnumerable<Books> GetBooksByCategory(int id)
         {
             var categorybooks = from p in db.Books
@@ -53,6 +53,8 @@ namespace JiaoZi.Models
                                 select p;
             return categorybooks;
         }
+
+        //根据价格查书
         public IEnumerable<Books> GetBooksByPrice()
         {
             var books = (from p in db.Books
@@ -60,6 +62,8 @@ namespace JiaoZi.Models
                          select p).Take(5);
             return books.ToList();
         }
+
+        //添加图书
         public void AddBooks(Books books)
         {
             db.Books.Add(books);

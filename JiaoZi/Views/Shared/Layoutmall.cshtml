@@ -1,4 +1,4 @@
-﻿@model JiaoZi.Models.Mallview
+﻿@*@model JiaoZi.Models.Mallview*@
 
 <!DOCTYPE html>
 
@@ -172,7 +172,6 @@
         </div>
         <div class="sousuo">
             <span class="glyphicon glyphicon-search" style="margin-left:9px;margin-top: 3px;"></span>
-            @*<input type="text" class="sinput" placeholder="请输入关键字">*@
             @using (Ajax.BeginForm("Sear", "Mall", new AjaxOptions()
             {
                 HttpMethod = "Post",
@@ -181,7 +180,6 @@
             }, new { @class = "sty" }))
             {
                 <input type="text" id="search" name="search" class="sinput" placeholder="请输入关键字">
-                @*@Html.TextBoxFor(m=>m.Search, new  { @class="sinput" ,placeholder="请输入关键字"})*@
                 <button value="搜索" class="bt">搜索</button>
             }
 
@@ -200,16 +198,17 @@
             <p style="text-align: center;margin-top: 2px; color:palevioletred"><span>Hi!您好</span></p>
         </div>
     </div>
-    <div class="na">
+    @*<div class="na">*@
         @*传入name,进入相应视图*@
-        @foreach (var item in Model.Category)
+        @*@foreach (var item in Model.Category)
         {
             <span>
                     <a href="@Url.Action()">@item.CategoryName</a>
             </span>
         }
 
-    </div>
+    </div>*@
+    @Html.Partial("nav")
     <div>
         @RenderBody()
     </div>

@@ -10,8 +10,7 @@
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
-   
-    @*<link href="~/Content/Mall.css" rel="stylesheet" />*@
+  
     <script>
         window.onload = function () {
             var liss = document.getElementById("navb").getElementsByTagName("li");
@@ -194,7 +193,7 @@
                         {
 
                             <div class="small">
-                                <a href="#">
+                                <a href="@Url.Action("BooksDetails","Mall" ,new { id=item.BookID} )" target="_blank">
                                     <div class="bookpic">
                                         <img src="@item.BookImage" />
                                     </div>
@@ -211,7 +210,7 @@
                         {
 
                             <div class="small">
-                                <a href="#">
+                                <a href="@Url.Action("BooksDetails","Mall" ,new { id=item.BookID} )" target="_blank">
                                     <div class="bookpic">
                                         <img src="@item.BookImage" />
                                     </div>
@@ -229,7 +228,7 @@
                         {
 
                             <div class="small">
-                                <a href="#">
+                                <a href="@Url.Action("BooksDetails","Mall" ,new { id=item.BookID} )" target="_blank">
                                     <div class="bookpic">
                                         <img src="@item.BookImage" />
                                     </div>
@@ -247,7 +246,7 @@
                         {
 
                             <div class="small">
-                                <a href="#">
+                                <a href="@Url.Action("BooksDetails","Mall" ,new { id=item.BookID} )" target="_blank">
                                     <div class="bookpic">
                                         <img src="@item.BookImage" />
                                     </div>
@@ -265,7 +264,7 @@
                         {
 
                             <div class="small">
-                                <a href="#">
+                                <a href="@Url.Action("BooksDetails","Mall" ,new { id=item.BookID} )" target="_blank">
                                     <div class="bookpic">
                                         <img src="@item.BookImage" />
                                     </div>
@@ -299,10 +298,6 @@
                 }
             </div>
         </div>
-        <div>
-
-        </div>
-
     </div>
 </body>
 </html>

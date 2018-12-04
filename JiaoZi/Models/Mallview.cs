@@ -13,7 +13,7 @@ namespace JiaoZi.Models
         public IEnumerable<Books> CateBooks2 { get; set; }
         public IEnumerable<Books> CateBooks3 { get; set; }
         public IEnumerable<Books> CateBooks4 { get; set; }
-
+        public Books Books { get; set; }
         public IEnumerable<Books> Search { get; set; }
         public IEnumerable<Books> Hotsale { get; set; }
         public IEnumerable<Books> Onsale { get; set; }

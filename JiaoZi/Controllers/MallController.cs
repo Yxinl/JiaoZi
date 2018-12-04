@@ -18,6 +18,8 @@ namespace JiaoZi.Controllers
         }
         // GET: Mall
 
+
+        //主页显示
         public ActionResult Index()
         {
 
@@ -35,7 +37,7 @@ namespace JiaoZi.Controllers
             return View(viewModel);
         }
         
-
+        //搜索图书
         [HttpPost]
         public ActionResult Sear()
         {
@@ -46,9 +48,18 @@ namespace JiaoZi.Controllers
                 return PartialView(Searchbooks);
             }
             else                                    //BUG
-                return Content("<script>alert('未找到相关书籍');history.go(-1);</script>");
+                return HttpNotFound();
         }
 
-       
+
+
+        //根据ID查某本图书
+        public ActionResult BooksDetails(int id)
+        {
+            var details = imall.GetBooksById(id);
+            ViewData["image"] = details.BookImage;
+            ViewData["details"] = details;
+            return View(details);
+        }
     }
 }
