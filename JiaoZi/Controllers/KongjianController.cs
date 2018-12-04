@@ -27,39 +27,24 @@ namespace JiaoZi.Controllers
             return View(kongjianban);
         }
 
-        //文档
+        //文件上传
         public ActionResult File()
         {
             return View();
         }
-        [HttpPost]
-        public ActionResult File(FormCollection form)
+        public ActionResult UploadFile()
         {
-            //上传文件
-            if (Request.Files.Count == 0)
-            {
-                //Request.Files.Count 文件数为0上传不成功
-                return View();
-            }
-            var file = Request.Files[0];
-            if (file.ContentLength == 0)
-            {
-                //文件大小大（以字节为单位）为0时，做一些操作
-                return View();
-            }
-            else
-            {
-                //文件大小不为0
-                file = Request.Files[0];
-                //保存成自己的文件全路径,newfile就是你上传后保存的文件,
-                //服务器上的UpLoadFile文件夹必须有读写权限
-                string target = Server.MapPath("/") + ("/Mock/Learning/");//取得目标文件夹的路径
-                string filename = file.FileName;//取得文件名字
-                string path = target + filename;//获取存储的目标地址
-                file.SaveAs(path);
-            }
             return View();
+        }
 
+        [HttpPost]
+        public ActionResult UploadFile(HttpPostedFileBase file)
+        {
+
+            var fileName = file.FileName;
+            var filePath = Server.MapPath(string.Format("~/{0}", "Images"));
+            file.SaveAs(Path.Combine(filePath, fileName));
+            return View();
         }
 
     }

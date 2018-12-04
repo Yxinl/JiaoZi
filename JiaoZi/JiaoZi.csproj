@@ -473,6 +473,7 @@
     <Content Include="Views\Kongjian\File.cshtml" />
     <Content Include="Views\Kongjian\Index.cshtml" />
     <Content Include="Views\Kongjian\shuoshuo.cshtml" />
+    <Content Include="Views\Kongjian\UploadFile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
