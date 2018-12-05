@@ -173,18 +173,16 @@
     <div class="content">
         <div class="center" id="center">
             <div class="navb" id="navb">
-             <ul>
-                @foreach(var item in Model.Category.Take(1))
-                {
-                    <li class="current">@item.CategoryName</li>
-                }
-                @foreach (var item in Model.Category.Skip(1).Take(4))
-                {
-
-                   <li> @item.CategoryName</li>
-    
-                }
-              </ul>
+                <ul>
+                    @foreach (var item in Model.Category.Take(1))
+                    {
+                        <li class="current">@item.CategoryName</li>
+                    }
+                    @foreach(var item in Model.Category.Skip(1).Take(4))
+                    {
+                        <li>@item.CategoryName</li>
+                    }
+                </ul>
             </div>
             <div class="navbox" id="navbox">
                 <ul>

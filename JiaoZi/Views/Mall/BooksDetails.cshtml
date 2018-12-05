@@ -1,7 +1,8 @@
-﻿@*@model JiaoZi.Models.Books*@
-@using JiaoZi.Models
-@{ 
+﻿@model JiaoZi.Models.Books
+@*@model JiaoZi.Models.Mallview*@
+@{
     Layout = "~/Views/Shared/Layoutmall.cshtml";
+    
 }
 <style>
     .big {
@@ -23,12 +24,21 @@
     }
 </style>
 <div class="big">
+        <div class="pic">
+            <img src="~/@Model.BookImage" />
+        </div>
+        <div class="details">
+            <p>@Model.Price</p>
+            <p>@Model.BookName</p>
+        </div>
+
+    </div>
+@*<div class="big">
     <div class="pic">
-        <img src="~/@ViewData["details"]" />
+        <img src="~/@Model.Booksview.Books.BookImage" />
+
     </div>
     <div class="details">
-        <p>@ViewData["details"].Price</p>
-        <p>@ViewBag["details"].BookName</p>
+        <p>@Model.Booksview.Books.BookName</p>
     </div>
-</div>
-
+</div>*@

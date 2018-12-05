@@ -190,7 +190,6 @@
     </Compile>
     <Compile Include="Models\IJz\IMall.cs" />
     <Compile Include="Models\IJz\IUserInfo.cs" />
-    <Compile Include="Models\Jz\Booksview.cs" />
     <Compile Include="Models\Jz\Mall.cs" />
     <Compile Include="Models\Jz\UserInfo.cs" />
     <Compile Include="Models\Mallview.cs" />
@@ -435,13 +434,12 @@
     <Content Include="Views\Shared\Layoutmall.cshtml" />
     <Content Include="Views\Mall\Sear.cshtml" />
     <Content Include="Views\Mall\BooksDetails.cshtml" />
-    <Content Include="Views\Mall\nav.cshtml" />
+    <Content Include="Views\Mall\Nav.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="images\News\" />
     <Folder Include="Video\" />
-    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

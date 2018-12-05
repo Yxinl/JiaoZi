@@ -40,8 +40,8 @@ namespace JiaoZi.Models
         //获取图书的种类
         public IEnumerable<Category> Category()
         {
-            var category = from p in db.Category                         
-                           select p;
+            var category = (from p in db.Category                         
+                           select p).ToList();
             return category;
         }
 

@@ -1,6 +1,4 @@
-﻿@*@model JiaoZi.Models.Mallview*@
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html>
 <head>
@@ -198,6 +196,7 @@
             <p style="text-align: center;margin-top: 2px; color:palevioletred"><span>Hi!您好</span></p>
         </div>
     </div>
+    @Html.Action("Nav","Mall")
     @*<div class="na">*@
         @*传入name,进入相应视图*@
         @*@foreach (var item in Model.Category)
@@ -205,10 +204,10 @@
             <span>
                     <a href="@Url.Action()">@item.CategoryName</a>
             </span>
-        }
+        }*@
 
-    </div>*@
-    @Html.Partial("nav")
+    @*</div>*@
+
     <div>
         @RenderBody()
     </div>
