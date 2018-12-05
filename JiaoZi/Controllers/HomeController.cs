@@ -36,7 +36,7 @@ namespace JiaoZi.Controllers
             //return View(zixun);
             var newtop0_7 = inew.NewsByTime(0, 6);
             shouyeban.newstops = newtop0_7;
-            return View(shouyeban);
+            return PartialView(shouyeban);
 
         }
         //首页新书上架
@@ -44,17 +44,17 @@ namespace JiaoZi.Controllers
         {
             var resource = iresource.ResourceByTime(0, 6);
             shouyeban.newtextresource = resource;
-            return View(shouyeban);
+            return PartialView(shouyeban);
         }
-        public ActionResult homenewbook()
-        {
-            return View();
-        }
+        //public ActionResult homenewbook()
+        //{
+        //    return View();
+        //}
         public ActionResult newissuebook()
         {
             var newissuebook = ibook.BookByTime(0, 3);
             shouyeban.Newissuebook = newissuebook;
-            return View(shouyeban);
+            return PartialView(shouyeban);
         }
         public ActionResult TX()
         {
@@ -64,8 +64,8 @@ namespace JiaoZi.Controllers
         {
             IBook sa = new RBook();
             if (sa.FindAllBookName() != null)
-                return View(sa.FindAllBookName());
-            return View();
+                return PartialView(sa.FindAllBookName());
+            return PartialView(shouyeban);
         }
     }
 }

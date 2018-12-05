@@ -1,5 +1,11 @@
 ﻿@model JiaoZi.Models.Kongjianban
     <!--发说说-->
+@{
+    Layout = null;
+}
+<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style>
     #shuoshuoinput {
    
@@ -56,7 +62,14 @@
             </div>
             <!-- 点赞、评论、时间 -->
             <div style="height:20%;width:100%;background-color:bisque">
-                @item.Shuoshuo_Time
+                @item.Shuoshuo_Time              
+                <!--折叠评论-->
+                <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo">
+                    评论
+                </button>
+                <div id="demo" class="collapse in">
+                  评论面板
+                </div>
             </div>
         </div>
         <!-- 右 -->
@@ -65,5 +78,16 @@
             <div style="height:80%"></div>
         </div>
     </div>
+    <!--评论-->
+    <div>
+        @foreach (var com in Model.ShuoCommentById)
+                {
+            @com.ShuoshuoCommentID
+            @com.Comment_Content
+        }
+    </div>
 }
+   
 </div>
+
+ 

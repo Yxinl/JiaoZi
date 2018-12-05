@@ -9,5 +9,6 @@ namespace JiaoZi.Models
     {
         //该用户所有的说说
         public IEnumerable<Shuoshuo> UserAllShuo { get; set; }
+        public IEnumerable<ShuoshuoComment> ShuoCommentById { get; set; }
     }
 }
