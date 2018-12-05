@@ -170,7 +170,7 @@
         </div>
         <div class="sousuo">
             <span class="glyphicon glyphicon-search" style="margin-left:9px;margin-top: 3px;"></span>
-            @using (Ajax.BeginForm("Sear", "Mall", new AjaxOptions()
+            @*@using (Ajax.BeginForm("Sear", "Mall", new AjaxOptions()
             {
                 HttpMethod = "Post",
                 InsertionMode = InsertionMode.Replace,
@@ -179,8 +179,12 @@
             {
                 <input type="text" id="search" name="search" class="sinput" placeholder="请输入关键字">
                 <button value="搜索" class="bt">搜索</button>
+            }*@
+            @using (Html.BeginForm("Sear", "Mall",FormMethod.Post,new { @class="sty"}))
+            {
+                 <input type="text" id="search" name="search" class="sinput" placeholder="请输入关键字">
+                 <button value="搜索" class="bt">搜索</button>
             }
-
         </div>
         <div class="lis">
             <ul>
@@ -196,7 +200,7 @@
             <p style="text-align: center;margin-top: 2px; color:palevioletred"><span>Hi!您好</span></p>
         </div>
     </div>
-    @Html.Action("Nav","Mall")
+    @Html.Action("Nav", "Mall")
     @*<div class="na">*@
         @*传入name,进入相应视图*@
         @*@foreach (var item in Model.Category)

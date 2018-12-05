@@ -5,25 +5,41 @@
     
 }
 <style>
-    .big {
-        width: 500px;
-        height: 300px;
-        border: 1px solid red;
+    *{
+        margin:0;
+        padding:0;
     }
+    .center {
+        width: 1005px;
+        height: 600px;
+        margin-left: 360px;
+        margin-top:20px;
+        border:1px dashed red;
+    }
+        /*.center .small {
+            width: 200px;
+            height: 280px;
+            float: left;
+            margin-left: 20px;
+        }
 
-    .pic {
+            .center .small .bookpic {
+                width: 200px;
+                height: 200px;
+                margin-top: 10px;
+            }
+
+    .bookpic img {
         width: 200px;
         height: 200px;
-        border: 1px solid #ccc;
     }
 
-    .details {
-        width: 80px;
-        height: 40px;
-        border: 1px dashed yellow;
-    }
+    .center .small .bookdetail {
+        width: 120px;
+        margin: 0 auto;
+    }*/
 </style>
-<div class="big">
+<div class="center" id="center">
         <div class="pic">
             <img src="~/@Model.BookImage" />
         </div>
@@ -32,13 +48,4 @@
             <p>@Model.BookName</p>
         </div>
 
-    </div>
-@*<div class="big">
-    <div class="pic">
-        <img src="~/@Model.Booksview.Books.BookImage" />
-
-    </div>
-    <div class="details">
-        <p>@Model.Booksview.Books.BookName</p>
-    </div>
-</div>*@
+</div>

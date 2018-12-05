@@ -1,6 +1,6 @@
 ﻿@model  IEnumerable<JiaoZi.Models.Books>
 @{
-       Layout = null;
+    Layout = "~/Views/Shared/Layoutmall.cshtml";
 }
 <style>
     a{
@@ -42,8 +42,7 @@
         width:50px;
         height:30px;
         border:1px solid #f00;
-        position:relative;
-        left:15px;
+        margin-left:310px;
         line-height:30px;  
         text-align:center;
         background-color:red;
@@ -59,7 +58,7 @@
             <div class="small">
                 <a href="#">
                     <div class="bookpic">
-                        <img src="@item.BookImage" />
+                        <img src="~/@item.BookImage" />
                     </div>
                     <div class="bookdetail">
                         <span>￥@item.Price</span>

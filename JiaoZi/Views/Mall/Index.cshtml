@@ -150,26 +150,32 @@
             margin-left: 122px;
         }
 
-        #demo {
-            width: 520px;
-            height: 300px;
-        }
+       
 
         .lbt {
-            width: 200px;
-            height: 180px;
-            margin-left: 430px;
-            margin-top: -355px;
+            width: 100%;
+            height:360px;
+            margin:0 auto;
+            overflow:hidden;
+            background-color:rgb(251,237,196);
         }
-
+        .lbt .pic{
+            width:820px;
+            margin:0 auto;
+        }
         .lbt img {
-                width: 520px;
-                height: 300px;
+                width: 820px;
             }
     </style>
 </head>
 <body>
-
+    <div class="lbt">
+        <div class="pic">
+            <img src="~/images/Css/lunbo1.jpg" />
+            <img src="~/images/Css/lunbo2.jpg" />
+            <img src="~/images/Css/lunbo3.jpg" />
+         </div>
+    </div>
     <div class="content">
         <div class="center" id="center">
             <div class="navb" id="navb">
@@ -284,7 +290,7 @@
                 @foreach (var item in Model.Hotsale)
                 {
                     <div class="md">
-                        <a href="#">
+                        <a href="@Url.Action("BooksDetails","Mall" ,new { id=item.BookID} )" target="_blank">
                             <div class="picture">
                                 <img src="@item.BookImage" />
                             </div>
