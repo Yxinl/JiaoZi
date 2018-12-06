@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="jiaoziModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="jiaoziModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Advice">
           <Key>
             <PropertyRef Name="AdviceID" />
@@ -229,7 +229,6 @@
           <Property Name="Title" Type="varchar" MaxLength="100" />
           <Property Name="Remark_time" Type="datetime" Nullable="false" />
           <Property Name="RemarkID" Type="int" Nullable="false" />
-          <Property Name="UserName" Type="varchar" MaxLength="100" />
           <Property Name="UserID" Type="int" Nullable="false" />
           <Property Name="pinglunshu" Type="int" />
           <Property Name="huifushu" Type="int" />
@@ -504,7 +503,6 @@
     [Remark_User_Comments_Reply].[Title] AS [Title], 
     [Remark_User_Comments_Reply].[Remark_time] AS [Remark_time], 
     [Remark_User_Comments_Reply].[RemarkID] AS [RemarkID], 
-    [Remark_User_Comments_Reply].[UserName] AS [UserName], 
     [Remark_User_Comments_Reply].[UserID] AS [UserID], 
     [Remark_User_Comments_Reply].[pinglunshu] AS [pinglunshu], 
     [Remark_User_Comments_Reply].[huifushu] AS [huifushu]
@@ -600,7 +598,8 @@
             <End Role="Video" EntitySet="Video" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="jiaoziModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -858,16 +857,15 @@
         <EntityType Name="Remark_User_Comments_Reply">
           <Key>
             <PropertyRef Name="Remark_time" />
-            <PropertyRef Name="UserID" />
             <PropertyRef Name="RemarkID" />
+            <PropertyRef Name="UserID" />
           </Key>
           <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Remark_time" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="RemarkID" Type="Int32" Nullable="false" />
           <Property Name="UserID" Type="Int32" Nullable="false" />
           <Property Name="pinglunshu" Type="Int32" />
           <Property Name="huifushu" Type="Int32" />
-          <Property Name="RemarkID" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="salestop3">
           <Key>
@@ -1453,10 +1451,9 @@
           <EntitySetMapping Name="Remark_User_Comments_Reply">
             <EntityTypeMapping TypeName="jiaoziModel.Remark_User_Comments_Reply">
               <MappingFragment StoreEntitySet="Remark_User_Comments_Reply">
-                <ScalarProperty Name="RemarkID" ColumnName="RemarkID" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Remark_time" ColumnName="Remark_time" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="RemarkID" ColumnName="RemarkID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="pinglunshu" ColumnName="pinglunshu" />
                 <ScalarProperty Name="huifushu" ColumnName="huifushu" />

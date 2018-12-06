@@ -16,10 +16,9 @@ namespace JiaoZi.Models
     {
         public string Title { get; set; }
         public System.DateTime Remark_time { get; set; }
-        public string UserName { get; set; }
+        public int RemarkID { get; set; }
         public int UserID { get; set; }
         public Nullable<int> pinglunshu { get; set; }
         public Nullable<int> huifushu { get; set; }
-        public int RemarkID { get; set; }
     }
 }

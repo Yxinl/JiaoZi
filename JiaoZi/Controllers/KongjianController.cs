@@ -12,21 +12,29 @@ namespace JiaoZi.Controllers
     {
         Models.jiaoziEntities db = new Models.jiaoziEntities();
         IShuoshuo shuo = new RShuoshuo();
+        IShuoshuocomment shuocomment = new RShuoshuocomment();
         Kongjianban kongjianban = new Kongjianban();
         // GET: Kongjian
         public ActionResult Index()
         {
             return View();
         }
-        //用户发表过的所有说说
+        public ActionResult shiyan()
+        {
+            return View();
+        }
+        //说说
         public ActionResult shuoshuo()
         {
+            //通过用户id找说说
             //id要改为用户id
             var usershuoshuo = shuo.AllShuoByID(1);
+            //通过说说id找说说评论
+            var shuoshuocomment = shuocomment.ShuoCommentById(1);
             kongjianban.UserAllShuo = usershuoshuo;
+            kongjianban.ShuoCommentById = shuoshuocomment;
             return View(kongjianban);
         }
-
         //文件上传
         public ActionResult File()
         {
