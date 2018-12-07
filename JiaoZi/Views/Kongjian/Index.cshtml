@@ -1,4 +1,4 @@
-﻿@*@{
+﻿@{
     ViewBag.Title = "Index";
 }
 <style>
@@ -11,44 +11,54 @@
 <script src="~/Scripts/bootstrap.min.js"></script>
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <h2>Index</h2>
+
 <!-- 头部 -->
-<div class="row" style="height: 400px;background-image: url('../../images/beijing/book.jpg');"id="kongjianbody">
-    <!-- 左 -->
-    <div class="col-md-2" style="height: 100%;"></div>
-    <!-- 中 -->
-    <div class="col-md-3" style="height: 100%;">
-        <!-- 中上 -->
-        <div style="height: 30%;width: 100%;"></div>
-        <!-- 中下资料头像 -->
-        <div style="height: 70%;width: 100%;background-color:aquamarine;">
-            <p>关注|粉丝</p>
+<div class="row" style="height: 200px;background-color:azure"id="kongjianbody">
+   <!--左-->
+    <div class="col-md-3" style="height:100%">
+        <!--左上头像-->
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-5">
+                <img src="~/images/Head/1.jpg" style="height:100px;width:100px;margin-top:-33px;border:10px groove azure"/>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+        <!--左下 关注 粉丝-->
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-5"> 
+            <img src="~/images/icon/icon/love.ico" style="height:10px;width:10px;"/>
+            关注
+            <img src="~/images/icon/icon/love.ico" style="height:10px;width:10px;" />
+            粉丝
+            </div>
+            <div class="col-md-3"></div>
         </div>
     </div>
-    <!-- 右 -->
-    <div class="col-md-7" style="height:70%;">
-        <!-- 右上 -->
-        <div style="height: 70%;width:100%;"></div>
-        <!-- 右下  导航-->
-        <div style="height: 30%;width:100%;">
-            <ul class="nav nav-tabs" id="tabNav">
-                <li class="active"><a href="#shuoshuo">说说</a></li>
-                <li><a href="#word">文档</a></li>
-                <li><a href="#video">视频</a></li>
-                <li><a href="#xiaoxi">消息</a></li>
-            </ul>
-            <br />
-        </div>
+    <!--右-->
+    <div class="col-md-9">
+
     </div>
 </div>
 
 <!-- 中部 -->
+<div style="height: 30%;width:100%;">
+    <ul class="nav nav-tabs" id="tabNav">
+        <li class="active"><a href="#shuoshuo1">说说</a></li>
+        <li><a href="#word">文档</a></li>
+        <li><a href="#video">视频</a></li>
+        <li><a href="#xiaoxi">消息</a></li>
+    </ul>
+    <br />
+</div>
 <div>
     <div class="tab-content">
-        <div class="tab-pane active" id="shuoshuo" style="height:1600px;">
-            @Html.Action("shuoshuo","Kongjian")
+        <div class="tab-pane active" id="shuoshuo1" style="height:1600px;">
+            @Html.Action("shuoshuo")
         </div>
         <div class="tab-pane" id="word">
-            @Html.Action("File","Kongjian")
+            @Html.Action("File")
             <p>文档✌</p>
         </div>
         <div class="tab-pane " id="video">
@@ -64,95 +74,5 @@
 			$(this).tab("show");
 		});
     </script>
-</div>*@
-@{
-    Layout = null;
-}
+</div>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>Bootstrap 实例 - 简单的可折叠组件</title>
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
-<body>
-
-
-    <button type="button" class="btn btn-primary" data-toggle="collapse"
-            data-target="#demo">
-        简单的可折叠组件
-    </button>
-
-    <div id="demo" class="collapse in">
-        Nihil anim keffiyeh helvetica, craft beer labore wes anderson
-        cred nesciunt sapiente ea proident. Ad vegan excepteur butcher
-        vice lomo.
-    </div>
-    <style>
-        #kongjianbody {
-            margin-top: 40px;
-        }
-    </style>
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-    <script src="~/Scripts/bootstrap.min.js"></script>
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <h2>Index</h2>
-    <!-- 头部 -->
-    <div class="row" style="height: 400px;background-image: url('../../images/beijing/book.jpg');" id="kongjianbody">
-        <!-- 左 -->
-        <div class="col-md-2" style="height: 100%;"></div>
-        <!-- 中 -->
-        <div class="col-md-3" style="height: 100%;">
-            <!-- 中上 -->
-            <div style="height: 30%;width: 100%;"></div>
-            <!-- 中下资料头像 -->
-            <div style="height: 70%;width: 100%;background-color:aquamarine;">
-                <p>关注|粉丝</p>
-            </div>
-        </div>
-        <!-- 右 -->
-        <div class="col-md-7" style="height:70%;">
-            <!-- 右上 -->
-            <div style="height: 70%;width:100%;"></div>
-            <!-- 右下  导航-->
-            <div style="height: 30%;width:100%;">
-                <ul class="nav nav-tabs" id="tabNav">
-                    <li class="active"><a href="#shuoshuo">说说</a></li>
-                    <li><a href="#word">文档</a></li>
-                    <li><a href="#video">视频</a></li>
-                    <li><a href="#xiaoxi">消息</a></li>
-                </ul>
-                <br />
-            </div>
-        </div>
-    </div>
-
-    <!-- 中部 -->
-    <div>
-        <div class="tab-content">
-            <div class="tab-pane active" id="shuoshuo" style="height:1600px;">
-                @Html.Action("shuoshuo", "Kongjian")
-            </div>
-            <div class="tab-pane" id="word">
-                @Html.Action("File", "Kongjian")
-                <p>文档✌</p>
-            </div>
-            <div class="tab-pane " id="video">
-                <p>视频✌</p>
-            </div>
-            <div class="tab-pane " id="xiaoxi">
-                <p>消息也</p>
-            </div>
-        </div>
-        <script>
-		$("#tabNav a").click(function(e){
-			e.preventDefault()
-			$(this).tab("show");
-		});
-        </script>
-        </div>
-</body>
-</html>

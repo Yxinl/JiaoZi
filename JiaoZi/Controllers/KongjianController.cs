@@ -27,13 +27,43 @@ namespace JiaoZi.Controllers
         public ActionResult shuoshuo()
         {
             //通过用户id找说说
-            //id要改为用户id
+            //var usershuoshuo = shuo.AllShuoByID(Convert.ToInt32(Session["User_id"]));
+            //便于测试
             var usershuoshuo = shuo.AllShuoByID(1);
             //通过说说id找说说评论
             var shuoshuocomment = shuocomment.ShuoCommentById(1);
             kongjianban.UserAllShuo = usershuoshuo;
             kongjianban.ShuoCommentById = shuoshuocomment;
             return View(kongjianban);
+        }
+        ////发表说说
+        //public ActionResult sendshuoshuo()
+        //{
+        //    return View();
+        //}
+        [HttpPost]
+        public ActionResult shuoshuo(Shuoshuo shuoshuo)
+        {
+            string shuoshuotextarea = Request["shuoshuoinput"];
+            try { 
+            if (ModelState.IsValid)
+            {
+                shuoshuo.Shuoshuo_Content = shuoshuotextarea;
+                shuoshuo.Shuoshuo_Time = DateTime.Now;
+                shuoshuo.Thumb_Num = 0;
+                //shuoshuo.UserID = Convert.ToInt32(Session["User_id"]);
+                //便于测试
+                shuoshuo.UserID = 1;
+                shuo.Add(shuoshuo);
+                db.SaveChanges();
+                    return View(kongjianban);
+            }
+            }
+            catch (Exception ex)
+            {
+                return Content(ex.Message);
+            }
+            return RedirectToAction("shuoshuo", "Kongjian");
         }
         //文件上传
         public ActionResult File()

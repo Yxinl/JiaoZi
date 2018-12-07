@@ -160,7 +160,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KongjianController.cs" />
     <Compile Include="Controllers\LuntanController.cs" />
-    <Compile Include="Controllers\MallController.cs" />
     <Compile Include="Controllers\UserInfoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -209,7 +208,6 @@
     <Compile Include="Models\Jz\RUser.cs" />
     <Compile Include="Models\Jz\UserInfo.cs" />
     <Compile Include="Models\Kongjianban.cs" />
-    <Compile Include="Models\Mallview.cs" />
     <Compile Include="Models\Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -402,8 +400,13 @@
     <Content Include="images\Css\Logo.jpg" />
     <Content Include="images\Css\totop.jpg" />
     <Content Include="images\Head\1.jpg" />
+    <Content Include="images\icon\icon\love.ico" />
+    <Content Include="images\icon\icon\shou.ico" />
+    <Content Include="images\icon\icon\teacher.ico" />
     <Content Include="images\Mall\logo.jpg" />
     <Content Include="images\Mall\tx.jpg" />
+    <Content Include="images\icon\1221605.gif" />
+    <Content Include="images\icon\ooopic_1544092560.ico" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>

@@ -12,5 +12,10 @@ namespace JiaoZi.Models
         {
             return db.Shuoshuo.Where(b => b.UserID == id);
         }
+        void IShuoshuo.Add(Shuoshuo shuoshuo)
+        {
+            db.Shuoshuo.Add(shuoshuo);
+            db.SaveChanges();     
+        }
     }
 }

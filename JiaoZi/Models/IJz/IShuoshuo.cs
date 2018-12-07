@@ -10,5 +10,7 @@ namespace JiaoZi.Models
     {
         //通过用户id查询所有说说
         IQueryable<Shuoshuo> AllShuoByID(int id);
+        //添加说说
+        void Add(Shuoshuo shuoshuo);
     }
 }
