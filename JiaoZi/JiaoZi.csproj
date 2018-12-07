@@ -260,6 +260,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.4.1.0.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Mall.css" />
@@ -370,10 +371,8 @@
     <Content Include="images\Books\97.jpg" />
     <Content Include="images\Books\98.jpg" />
     <Content Include="images\Books\99.jpg" />
+    <Content Include="images\Css\bjt.jpg" />
     <Content Include="images\Css\head.jpg" />
-    <Content Include="images\Css\lbt1.jpg" />
-    <Content Include="images\Css\lbt2.jpg" />
-    <Content Include="images\Css\lbt3.jpg" />
     <Content Include="images\Css\Logo.jpg" />
     <Content Include="images\Css\lunbo1.jpg" />
     <Content Include="images\Css\lunbo2.jpg" />
@@ -392,6 +391,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\bootstrap.4.1.0.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -410,6 +410,7 @@
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.3.2.1.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -417,6 +418,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\popper.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

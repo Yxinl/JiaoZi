@@ -6,6 +6,7 @@
     <title>@ViewBag.Title</title>
 
     <style>
+   
         .main .logo {
             margin-left: 197px;
         }
@@ -63,7 +64,7 @@
             width: 200px;
             height: 120px;
             margin-top: -140px;
-            margin-left: 1050px;
+            margin-left: 1120px;
         }
 
         .Tx img {
@@ -71,25 +72,13 @@
             height: 70px;
             border-radius: 50%;
             margin-left: 60px;
-            margin-top: 5px;
+            margin-top: 40px;
         }
 
         .sty {
             margin-left: 30px;
-            margin-top: -21px;
+            margin-top: -20px;
         }
-        /*.nv{
-            margin-left:1000px;
-            margin-top:10px;
-        }
-        .na{
-            width:300px;
-            height:30px;
-        }
-        .na li{
-            float:left;
-            margin-right:20px;
-        }*/
         .na{
             width:1759px;
             height:40px;
@@ -110,6 +99,18 @@
         .na a:hover{
             color:darkred;
         }
+        .car{
+            position:relative;
+            top:-41px;
+            left:200px;
+            display:inline-block;
+            width:100px;
+            height:30px;
+            line-height:30px;
+            text-align:center;
+            border:1px solid #ccc;
+        }
+ 
     </style>
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 
@@ -117,7 +118,7 @@
 <body>
     <nav class="navbar navbar-default">
         <div class="container-fluid" style="width: 1400px;">
-            <div class="navbar-header" style="margin-top: 15px;">
+            <div class="navbar-header" style="position:absolute">
                 <select>
                     <option value="北京">北京</option>
                     <option value="天津">天津</option>
@@ -164,22 +165,12 @@
             </div>
         </div>
     </nav>
-    <div class="main" style="margin-left:100px;">
+    <div class="main" style="margin-left:100px; height:130px;">
         <div class="logo">
             <img src="~/images/Mall/logo.jpg" style="width:120px;height:100px;">
         </div>
         <div class="sousuo">
-            <span class="glyphicon glyphicon-search" style="margin-left:9px;margin-top: 3px;"></span>
-            @*@using (Ajax.BeginForm("Sear", "Mall", new AjaxOptions()
-            {
-                HttpMethod = "Post",
-                InsertionMode = InsertionMode.Replace,
-                UpdateTargetId = "center"
-            }, new { @class = "sty" }))
-            {
-                <input type="text" id="search" name="search" class="sinput" placeholder="请输入关键字">
-                <button value="搜索" class="bt">搜索</button>
-            }*@
+            <span class="glyphicon glyphicon-search" style="margin-left:9px; margin-top: 3px;"></span>
             @using (Html.BeginForm("Sear", "Mall",FormMethod.Post,new { @class="sty"}))
             {
                  <input type="text" id="search" name="search" class="sinput" placeholder="请输入关键字">
@@ -195,23 +186,16 @@
                 <li><a href="#">心理学</a> </li>
             </ul>
         </div>
+        <span class="car">
+            <a href="#" style="color:red">我的购物车 </a>
+        </span>
+        <span class="badge" style="position:relative;left:190px;top:-60px;border-radius:50%;background-color:coral">50</span>    @*  此处的50需要进行更改  与数据库中的数据保持一致*@
         <div class="Tx">
             <img src="~/images/Mall/tx.jpg">
             <p style="text-align: center;margin-top: 2px; color:palevioletred"><span>Hi!您好</span></p>
         </div>
     </div>
     @Html.Action("Nav", "Mall")
-    @*<div class="na">*@
-        @*传入name,进入相应视图*@
-        @*@foreach (var item in Model.Category)
-        {
-            <span>
-                    <a href="@Url.Action()">@item.CategoryName</a>
-            </span>
-        }*@
-
-    @*</div>*@
-
     <div>
         @RenderBody()
     </div>
