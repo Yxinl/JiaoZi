@@ -95,7 +95,8 @@ namespace JiaoZi.Controllers
                 //data = "登录成功";
                 //return Content(data);                                                          //有问题
                 return Content("登录成功");
-                
+                //return RedirectToAction("Index", "Home");
+
             }
             else if (!a && b)
             {

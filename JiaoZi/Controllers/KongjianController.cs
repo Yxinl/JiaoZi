@@ -31,18 +31,19 @@ namespace JiaoZi.Controllers
             //便于测试
             var usershuoshuo = shuo.AllShuoByID(1);
             //通过说说id找说说评论
+            
             var shuoshuocomment = shuocomment.ShuoCommentById(1);
             kongjianban.UserAllShuo = usershuoshuo;
             kongjianban.ShuoCommentById = shuoshuocomment;
             return View(kongjianban);
         }
-        ////发表说说
-        //public ActionResult sendshuoshuo()
-        //{
-        //    return View();
-        //}
+        //发表说说
+        public ActionResult sendshuoshuo()
+        {
+            return View();
+        }
         [HttpPost]
-        public ActionResult shuoshuo(Shuoshuo shuoshuo)
+        public ActionResult sendshuoshuo(Shuoshuo shuoshuo)
         {
             string shuoshuotextarea = Request["shuoshuoinput"];
             try { 
@@ -56,14 +57,15 @@ namespace JiaoZi.Controllers
                 shuoshuo.UserID = 1;
                 shuo.Add(shuoshuo);
                 db.SaveChanges();
-                    return View(kongjianban);
-            }
+                return View(kongjianban);
+                   
+                }
             }
             catch (Exception ex)
             {
                 return Content(ex.Message);
             }
-            return RedirectToAction("shuoshuo", "Kongjian");
+            return RedirectToAction("shuoshuo");
         }
         //文件上传
         public ActionResult File()

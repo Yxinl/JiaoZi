@@ -1,0 +1,18 @@
+﻿@{ 
+    Layout = null;
+}
+<style>
+    .shuoshuoinput {
+        height:100px;
+        width:500px;
+        background-color:antiquewhite
+    }
+</style>
+@using (Html.BeginForm("sendshuoshuo", "Kongjian", FormMethod.Post))
+{
+    <div>
+        @*@Html.TextAreaFor(model => model.sendshuo.Shuoshuo_Content, new { name= "shuoshuoinput",placeholder = "发表说说"  })*@
+        @Html.TextArea("shuoshuoinput", new {@class="shuoshuoinput",placeholder = "输入文字" })
+        <input type="submit" value="fasong" />
+    </div>
+}

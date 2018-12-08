@@ -2,6 +2,7 @@
     <!--发说说-->
 @{
     Layout = null;
+
 }
 <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
@@ -11,64 +12,102 @@
    
     max-width:50%;
     }
-</style>
-@using (Html.BeginForm("shuoshuo", "Kongjian",FormMethod.Post))
-{
-    <div >
-       
-        @*@Html.TextAreaFor(model => model.sendshuo.Shuoshuo_Content, new { name= "shuoshuoinput",placeholder = "发表说说"  })*@
-        @Html.TextArea("shuoshuoinput",new { placeholder="输入文字"})
-        <input type="submit" value="fasong"/>
-    </div>
-}
-<!--说说历史-->
-
-<div>
-@foreach (var item in Model.UserAllShuo)
-{
-    <div class="row" style="height: 200px;background-color:antiquewhite">
-        <!-- 左-->
-        <div class="col-md-2" style="height:100%;">
-            <!-- 头像 -->
-            <div style="height:20%">
-                @Session["User_image"]
-            </div>
-            <!-- 留白 -->
-            <div style="height:80%"></div>
-        </div>
-        <!--中-->
-        <div class="col-md-8" style="height:100%;">
-            <!-- 网名 -->
-            <div style="height:30%;width:100%;background-color:aqua;"></div>
-            <!-- 内容 -->
-            <div style="height:50%;width:100%;background-color:aquamarine;overflow-y:auto">
-                <h4>
-                    @item.Shuoshuo_Content
-                </h4>
-            </div>
-            <!-- 点赞、评论、时间 -->
-            <div style="height:20%;width:100%;background-color:bisque">
-                @item.Shuoshuo_Time              
-              <p>dianzhan</p>
-                <p>评论</p>
-            </div>
-        </div>
-        <!-- 右 -->
-        <div class="col-md-2" style="height:100%;">
-            <div style="height:20%"></div>
-            <div style="height:80%"></div>
-        </div>
-    </div>
-    <!--评论-->
-    <div>
-        @foreach (var com in Model.ShuoCommentById)
-        {
-            @com.ShuoshuoCommentID
-            @com.Comment_Content
-        }
-    </div>
-}
+    #jiantou {
+        padding-right:20px;
+        text-align:left;
+    }
+    #shuocontent {
+        padding-left:0px;
+    }
    
+</style>
+<div class="row" >
+    <!--左-->
+    <div class="col-md-2"></div>
+    <!--中-->
+       <div class="col-md-8" style="background-color:white;">
+        <div>
+            @Html.Action("sendshuoshuo")
+        </div>
+        <!--说说动态-->
+               <div>
+                   @foreach (var item in Model.UserAllShuo)
+            {
+                       <div class="row" style="height: 200px;margin:50px ">
+                           <!-- 左-->
+                           <div class="col-md-2" style="height:100%;">
+                               <!-- 头像 -->
+                               <div style="height:20%;text-align:right">
+                                   <img src="~/images/Head/1.jpg" style="height:70px;width:70px;border:5px groove white" />
+                                   @*@Session["User_image"]*@
+                               </div>
+                               <!-- 留白 -->
+                               <div style="height:80%"></div>
+                           </div>
+                           <!--中-->
+                           <div class="col-md-8 row" style="height:100%;">
+                               <!--边框左-->
+                               <div class="col-md-1" style="height:100%;" id="jiantou">
+                                   <div style="height:100%">
+                                       <img src="~/images/icon/kongjian/shuoshuobeijin4.png" style="height:100%;" />
+                                   </div>
+                                   <!-- 留白 -->
+                                   <div style="height:80%"></div>
+                               </div>
+                               <!--中间右边-->
+                               <div class="col-md-10" id="shuocontent" style="height: 100%;">
+                                   <!--边框上-->
+                                   <div style="height: 15%; width: 100%;">
+                                       <img src="~/images/icon/kongjian/shuoshuobeijin41.png" style="height:100%;width:100%;text-align:center" />
+                                   </div>
+                                   <!-- 网名 -->
+                                   <div style="height:15%;width:100%;"></div>
+                                   <!-- 内容 -->
+                                   <div style="height:50%;width:100%;overflow-y:auto;">
+                                       <h4>
+                                           @item.Shuoshuo_Content
+                                       </h4>
+                                   </div>
+                                   <!-- 点赞、评论、时间 -->
+                                   <div style="width:100%;background-color:bisque">
+                                       <p> @item.Shuoshuo_Time dianzhan 评论</p>
+                                   </div>
+
+                               </div>
+                               <!--边框右-->
+                               <div class="col-md-1" style="height:100%;">
+                                   <div style="height:100%">
+                                       <img src="~/images/icon/kongjian/shuoshuobeijin4_03.gif" style="height:100%;" />
+                                   </div>
+                                   <!-- 留白 -->
+                                   <div style="height:80%"></div>
+                               </div>
+                           </div>
+
+                           <!-- 右 -->
+                           <div class="col-md-2" style="height:100%;">
+                               <div style="height:20%"></div>
+                               <div style="height:80%"></div>
+                           </div>
+                       </div>
+                      
+                   }
+               </div>
+           <!--评论-->
+           <div class="col-md-8" style="height:200px;">
+               @foreach (var com in Model.ShuoCommentById)
+               {
+
+                   @com.ShuoshuoCommentID
+                   @com.Comment_Content
+               }
+           </div>
+             
+           </div>
+
+    <!--右-->
+    <div class="col-md-2"></div>
 </div>
+
 
  
