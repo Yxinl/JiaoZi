@@ -229,6 +229,7 @@
           <Property Name="Title" Type="varchar" MaxLength="100" />
           <Property Name="Remark_time" Type="datetime" Nullable="false" />
           <Property Name="RemarkID" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="100" />
           <Property Name="UserID" Type="int" Nullable="false" />
           <Property Name="pinglunshu" Type="int" />
           <Property Name="huifushu" Type="int" />
@@ -503,6 +504,7 @@
     [Remark_User_Comments_Reply].[Title] AS [Title], 
     [Remark_User_Comments_Reply].[Remark_time] AS [Remark_time], 
     [Remark_User_Comments_Reply].[RemarkID] AS [RemarkID], 
+    [Remark_User_Comments_Reply].[UserName] AS [UserName], 
     [Remark_User_Comments_Reply].[UserID] AS [UserID], 
     [Remark_User_Comments_Reply].[pinglunshu] AS [pinglunshu], 
     [Remark_User_Comments_Reply].[huifushu] AS [huifushu]
@@ -863,6 +865,7 @@
           <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Remark_time" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="RemarkID" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="UserID" Type="Int32" Nullable="false" />
           <Property Name="pinglunshu" Type="Int32" />
           <Property Name="huifushu" Type="Int32" />
@@ -1454,6 +1457,7 @@
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Remark_time" ColumnName="Remark_time" />
                 <ScalarProperty Name="RemarkID" ColumnName="RemarkID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="pinglunshu" ColumnName="pinglunshu" />
                 <ScalarProperty Name="huifushu" ColumnName="huifushu" />

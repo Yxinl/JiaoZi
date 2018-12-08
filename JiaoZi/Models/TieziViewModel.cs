@@ -10,5 +10,7 @@ namespace JiaoZi.Models
         public IEnumerable<Remarks> Gettiezi { get; set; }
         public IEnumerable<RemarkComments> Getpinglun { get; set; }
         public IEnumerable<RemarkReply> Gethuifu { get; set; }
+        public IEnumerable<Users> GetIma_nam { get; set;}
+        public RemarkComments RemarkComments { get; set; }
     }
 }

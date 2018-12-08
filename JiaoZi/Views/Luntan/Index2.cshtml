@@ -1,17 +1,19 @@
 ﻿@model JiaoZi.Models.TieziViewModel
 
+
 @{
     ViewBag.Title = "Index2";
 }
 
-
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 
 <div class="jumbotron">
     <h1>教师资格证论坛</h1>
 </div>
 <a href="@Url.Action("Index","Luntan")">论坛首页</a>
-<html>
-<head>
+
+
     <style>
         #title {
             font-family: STXingkai;
@@ -25,15 +27,87 @@
             border-color: brown;
             background-color: crimson;
         }
+        .pinglunkuang{
+            width:500px;
+            margin-left:auto;
+            margin-right:auto;
+            font-family:Arial;
+        }
+       .huifu {
+              width: 100%;
+              height: 335px;
+              margin-top: 30px;
+                }
+            .huifu .huifu_1 {
+              box-sizing: content-box;
+              background-color: white;
+              border: 15px solid #fff;
+              height: 300px;
+              width: 680px;
+              overflow: visible;
+              position: relative;
+              margin: 40px auto 0;
+              box-shadow: 0 0 4px #cecccc;
+              -webkit-box-shadow: 0 0 4px #cecccc;
+              overflow: hidden;
+            }
+      .huifu .huifu_1 {
+            width:500px;
+            
+            background-color:white;
+        }
+      .Main{
+          background-color:white;
+      }
+      #TextBox1{
+            width:500px;
+            max-width: 500px;
+            background-color:lightgray;
+        }
+        .csspinglun{
+             display: block;
+              float: right;
+              height: 35px;
+              width: 100px;
+              background: #dd3b44;
+              border-radius: 3px;
+              color: white;
+              font-size: 15px;
+              outline: none;
+              margin-left: 20px;
+              margin-top: 20px;
+                    }
+  
+.queding {
+  margin-top: 10px;
+  width: 70px;
+  outline: none;
+  float: right;
+  font: 13px "微软雅黑", Arial, Helvetica, sans-serif;
+  color: #808080;
+  padding: 9px 20px 7px 20px;
+  cursor: pointer;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+.queding:hover {
+  color: #333;
+  background-color: #efefef;
+}
+.queding:active {
+  padding: 10px 20px 6px 20px;
+}
     </style>
-</head>
-<body>
-    <div style="height:100%;width:100%">
+
+<   <div style="height:100%;width:100%">
         <div style="margin:auto;z-index:-1" id="body">
             <div>
+                
 
                 @foreach (var item in Model.Gettiezi)
                 {
+                    
                     <div style="text-align:center;background-color:bisque">
                         <h1><span style="font-size:25px;padding-top:10px;">@Html.DisplayFor(modelItem => item.Title)</span></h1>
                        
@@ -45,14 +119,12 @@
                         <div class="nav nav-tabs">
                             <div style="height:auto;width:30px;padding-top:30px;float:left;" class="col-md-4"><img src="~/图/RemarksImage/@Html.DisplayFor(modelItem=>item.Image)" /></div>
                             <div style="float:left;padding-top:30px;font-size:large;padding-left:220px"><p>@Html.DisplayFor(modelItem => item.RemarkContent);</p></div>
-                            @*<footer>@Html.DisplayFor(modelItem=>item.Remark_Time)</footer>*@
+                       
                         </div>
                 }
-                @*<div style="float:right;font-size:50px;z-index:1;"><a href="#">评论</a></div>*@
+                
             </div>
-            @*<div><a href="#">评论</a>
-                </div>*@
-            @*<div style="float:right;font-size:50px;z-index:2;"><a href="#">评论</a></div>*@
+            
 
         </div>
         <div style="margin:auto;padding-left:800px;padding-top:50px"><a href="#"><img style="height:10px;width:20px;" src="~/图/图标/评论.png" />评论</a>&nbsp;<a href="#"><img style="width:20px;height:10px;padding-left:40px;" src="~/图/图标/点赞.png" />点赞</a></div>
@@ -65,15 +137,101 @@
 <div style="height:100%;width:100%">
     @foreach (var item in Model.Getpinglun)
     {
-        @*@item.Comment_Content*@
-        <div style="margin-top:100px;background-color:darkgrey;height:50px;width:700px">
-        <div style="padding-top:20px;margin-right:20px;font-size:medium;background-color:bisque;">@Html.DisplayFor(modelItem=>item.Comment_Content);</div>
-        <div style="padding-top:20px;margin-right:20px;font-size:medium;">@Html.DisplayFor(modelItem=>item.Comment_Time)</div>;
-         </div>
+        
+       <div style="margin-top:40px;margin-left:20px;background-color:bisque;width:50%;height:50px;line-height:30px;font-size:medium;"> @Html.DisplayFor(modelItem=>item.Comment_Content)
+    @Html.DisplayFor(modelItem => item.Comment_Time)</div>
+        <input value="评论" class=".csspinglun" type="submit" />
+        <input type="hidden" class="Hidden1" id="hfdpinglun" value="" />
+        }
+    </div>
+    @foreach(var item in Model.Gethuifu)
+    {
+        @item.Reply_Content;
+        @item.Reply_Time;
+        <input value="回复" class=".csshuifu" type="submit" />
     }
-</div>
-</body>
-</html>
+    <lable id="PLhidden" style="display: none;"></lable>
+    @*@foreach (var item in Model.Getpinglun)
+    {*@ 
+    @using (Ajax.BeginForm("Pinglun", "LunTan", new AjaxOptions { HttpMethod = "post", UpdateTargetId = "PLhidden",InsertionMode=InsertionMode.InsertAfter }))
+    {
+           
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="huifu">
+            <div class="huifu_1">
+             
+                @Html.DisplayFor(modelItem => modelItem.RemarkComments.RemarkCommentID, new { id = Session["Remarkid"], @class = "rereid" })
+                @Html.DisplayFor(modelItem => modelItem.RemarkComments.UserID, new { id = "", @class = "rereid" })
+                @Html.DisplayFor(modelItem => modelItem.RemarkComments.RemarkID, new { id = "", @class = "rereid" })
 
+                <div class="Main">
+                    @Html.TextAreaFor(modelItem => modelItem.RemarkComments.Comment_Content, htmlAttributes: new { @class = "ckeditor form-control Input_text con", id = "TextBox1", style = "width: 100%; height: 100px;" })
+                    @Html.ValidationMessageFor(modelItem => modelItem.RemarkComments.Comment_Content, "", new { @class = "text-danger" })
+                    <input value="确定" class="queding" type="submit" />
+
+
+                </div>
+            </div>
+        </div>
+
+
+    }
+  
+
+<script type="text/javascript">
+    $(function() {
+        $(".csspinglun").click(function() { //点击评论
+            //给rereply改变值
+            var b = "";
+            $(".Hidden1").val(null);
+            var re = $(".Hidden1").val();
+            //$(".rereid").val(re);
+            //alert($(".rereid").val());
+            //跳转到底部
+            var webheight = document.body.scrollHeight; //网页高度
+            $('body,html').animate({ scrollTop: webheight - 1150 }, 1000);
+            $('body,html').off("mousewheel", preventScroll); //去除scrollTop=0对滚动的限制
+        });
+        $(document).on('click', '.cssbtnReply', function() {
+            //给rereply改变值
+            var replyid = $(this).next().val();
+            $(".Hidden1").val(replyid);
+            var re = $(".Hidden1").val();
+            //$(".rereid").val(re);
+            //alert($(".rereid").val());
+            //跳转到底部
+            var webheight = document.body.scrollHeight; //网页高度
+            $('body,html').animate({ scrollTop: webheight - 1150 }, 1000);
+            $('body,html').off("mousewheel", preventScroll); //去除scrollTop=0对滚动的限制
+        });
+
+
+        $(".queding").click(function() { //提交评论
+
+            setTimeout(function() {
+                var plHidden = $("#PLhidden").text();
+                if (plHidden == "aa") {
+                    $.ajax({
+                        type: "post",
+                        url: "/LunTan/Index2",
+                        data: { postId: $(".RemarkID").val() },
+                        success: function(data) {
+                            //$("#getAllPostReply").html(data);
+                            //回到顶部
+                            $('body,html').animate({ scrollTop: 200 }, 1000);
+                            $('body,html').off("mousewheel", preventScroll); //去除scrollTop=0对滚动的限制
+                            //$(".plcg").show().delay(2000).hide(300);
+                        }
+                    });
+                } else {
+                }
+
+            }, 1000);
+
+        });
+    })
+
+</script>
 
 

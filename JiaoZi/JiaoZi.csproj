@@ -160,7 +160,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KongjianController.cs" />
     <Compile Include="Controllers\LuntanController.cs" />
-    <Compile Include="Controllers\MallController.cs" />
     <Compile Include="Controllers\UserInfoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -185,19 +184,23 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IJz\IBook.cs" />
+    <Compile Include="Models\IJz\IComments.cs" />
+    <Compile Include="Models\IJz\IFatie.cs" />
     <Compile Include="Models\IJz\IMall.cs" />
     <Compile Include="Models\IJz\INews.cs" />
     <Compile Include="Models\IJz\IRemarkcomments.cs" />
+    <Compile Include="Models\IJz\IRemarks.cs" />
+    <Compile Include="Models\IJz\IRemarksbytime.cs" />
+    <Compile Include="Models\IJz\IRemark_User_Comments_Reply.cs" />
     <Compile Include="Models\IJz\IResource.cs" />
     <Compile Include="Models\IJz\IShuoshuo.cs" />
     <Compile Include="Models\IJz\IShuoshuocomment.cs" />
     <Compile Include="Models\IJz\IUser.cs" />
     <Compile Include="Models\IJz\IUserInfo.cs" />
-    <Compile Include="Models\IJz\IRemarks.cs" />
-    <Compile Include="Models\IJz\IRemarksbytime.cs" />
-    <Compile Include="Models\IJz\IRemark_User_Comments_Reply.cs" />
     <Compile Include="Models\Jz\Mall.cs" />
     <Compile Include="Models\Jz\RBook.cs" />
+    <Compile Include="Models\Jz\RComments.cs" />
+    <Compile Include="Models\Jz\RFatie.cs" />
     <Compile Include="Models\Jz\RNews.cs" />
     <Compile Include="Models\Jz\RRemarkcomments.cs" />
     <Compile Include="Models\Jz\RRemarks.cs" />
@@ -209,7 +212,6 @@
     <Compile Include="Models\Jz\RUser.cs" />
     <Compile Include="Models\Jz\UserInfo.cs" />
     <Compile Include="Models\Kongjianban.cs" />
-    <Compile Include="Models\Mallview.cs" />
     <Compile Include="Models\Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -481,6 +483,7 @@
     <Content Include="Views\Kongjian\Index.cshtml" />
     <Content Include="Views\Kongjian\shuoshuo.cshtml" />
     <Content Include="Views\Kongjian\UploadFile.cshtml" />
+    <Content Include="Views\Luntan\fatie.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

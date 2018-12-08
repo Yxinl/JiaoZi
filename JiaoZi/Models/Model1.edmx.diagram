@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="fda26bd814de4333b928a9f5c0c5edc4" Name="Diagram1">
+      <Diagram DiagramId="5dfcaad492414871bb7d254b0ec8a821" Name="Diagram1">
         <EntityTypeShape EntityType="jiaoziModel.Advice" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="jiaoziModel.Attention" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
         <EntityTypeShape EntityType="jiaoziModel.BookComment" Width="1.5" PointX="6" PointY="12.625" IsExpanded="true" />
@@ -26,7 +26,7 @@
         <EntityTypeShape EntityType="jiaoziModel.Video" Width="1.5" PointX="3" PointY="26.75" IsExpanded="true" />
         <EntityTypeShape EntityType="jiaoziModel.VideoResource" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="jiaoziModel.Remark_User_Comments_Reply" Width="1.5" PointX="9.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="jiaoziModel.salestop3" Width="1.5" PointX="9.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="jiaoziModel.salestop3" Width="1.5" PointX="9.75" PointY="7.75" IsExpanded="true" />
         <AssociationConnector Association="jiaoziModel.FK__Attention__Atten__4F7CD00D" ManuallyRouted="false" />
         <AssociationConnector Association="jiaoziModel.FK__Attention__UserI__4E88ABD4" ManuallyRouted="false" />
         <AssociationConnector Association="jiaoziModel.FK__BookComme__BookI__286302EC" ManuallyRouted="false" />
