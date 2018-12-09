@@ -96,11 +96,11 @@ namespace JiaoZi.Controllers
         }
 
         //获取书本评论  待解决
-        public ActionResult CommentShow(int id)
-        {
-            var comments = imall.GetBookComment(id);
-            var books = db.Books.Where(x => x.BookID == id);
-
-        }
+        //public ActionResult CommentShow(int id)
+        //{
+        //    var comments = imall.GetBookComment(id);
+        //    var books = db.Books.Where(x => x.BookID == id);
+        //    return View();
+        //}
     }
 }

@@ -74,15 +74,15 @@ namespace JiaoZi.Models
         }
 
         //评论
-        public IEnumerable<BooksComment> GetBookComment(int id)
-        {
-            var comments = from q in db.Books
-                           join p in db.BookComment on
-                           q.BookID equals p.BookID
-                           select new {Q= q, P= p };
+        //public IQueryable<BooksComment> GetBookComment(int id)
+        //{
+        //    var comments = from q in db.Books
+        //                   join p in db.BookComment on
+        //                   q.BookID equals p.BookID
+        //                   select new {Q= q, P= p };
        
-            return Json<comments>;
-        }
+        //    return comments;
+        //}
 
         //添加图书
         public void AddBooks(Books books)
