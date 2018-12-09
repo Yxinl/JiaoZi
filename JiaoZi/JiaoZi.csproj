@@ -371,6 +371,7 @@
     <Content Include="images\Books\97.jpg" />
     <Content Include="images\Books\98.jpg" />
     <Content Include="images\Books\99.jpg" />
+    <Content Include="images\Css\bg.png" />
     <Content Include="images\Css\bjt.jpg" />
     <Content Include="images\Css\head.jpg" />
     <Content Include="images\Css\Logo.jpg" />
@@ -391,6 +392,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\animate.js" />
     <Content Include="Scripts\bootstrap.4.1.0.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -440,6 +442,8 @@
     <Content Include="Views\Mall\Sear.cshtml" />
     <Content Include="Views\Mall\BooksDetails.cshtml" />
     <Content Include="Views\Mall\Nav.cshtml" />
+    <Content Include="Views\Mall\BooksType.cshtml" />
+    <Content Include="Views\Shared\BooksTypeParticalView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

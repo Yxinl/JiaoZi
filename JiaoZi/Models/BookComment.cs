@@ -12,10 +12,10 @@ namespace JiaoZi.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class BookComment
+    public partial class BooksComment
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public BookComment()
+        public BooksComment()
         {
             this.BookReply = new HashSet<BookReply>();
         }

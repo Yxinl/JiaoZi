@@ -20,7 +20,7 @@ namespace JiaoZi.Models
         public Nullable<System.DateTime> Reply_Time { get; set; }
         public string Reply_Content { get; set; }
     
-        public virtual BookComment BookComment { get; set; }
+        public virtual BooksComment BookComment { get; set; }
         public virtual Users Users { get; set; }
     }
 }

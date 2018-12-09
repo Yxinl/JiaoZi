@@ -19,7 +19,7 @@ namespace JiaoZi.Models
         {
             this.Attention = new HashSet<Attention>();
             this.Attention1 = new HashSet<Attention>();
-            this.BookComment = new HashSet<BookComment>();
+            this.BookComment = new HashSet<BooksComment>();
             this.BookReply = new HashSet<BookReply>();
             this.Orders = new HashSet<Orders>();
             this.RemarkComments = new HashSet<RemarkComments>();
@@ -48,7 +48,7 @@ namespace JiaoZi.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Attention> Attention1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BookComment> BookComment { get; set; }
+        public virtual ICollection<BooksComment> BookComment { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BookReply> BookReply { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

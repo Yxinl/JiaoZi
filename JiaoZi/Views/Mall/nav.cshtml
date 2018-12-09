@@ -4,7 +4,8 @@
 
 <style>
     .na {
-        width: 1759px;
+        /*width: 1519px;*/
+        width:1383px;
         height: 40px;
         background-color: dimgray;
         text-align: center;
@@ -35,8 +36,9 @@
     @foreach (var item in Model)
     {
         <span>
-            <a href="@Url.Action()">@item.CategoryName</a>
+            <a href="@Url.Action("BooksType","Mall",new {CategoryName=@item.CategoryName.Trim()})">@item.CategoryName</a>
         </span>
+        
     }
 
 </div>

@@ -1,6 +1,6 @@
 ﻿@model JiaoZi.Models.Mallview
 @{
-    Layout ="~/Views/Shared/Layoutmall.cshtml";
+    Layout = "~/Views/Shared/Layoutmall.cshtml";
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -15,25 +15,7 @@
     <script src="~/Scripts/jquery.3.2.1.min.js"></script>
     <script src="~/Scripts/popper.min.js"></script>
     <script src="~/Scripts/bootstrap.4.1.0.min.js"></script>
-
     <script>
-        //span的鼠标经过效果
-        window.onload = function () {
-            var liss = document.getElementById("navb").getElementsByTagName("li");
-            var lis = document.getElementById("navbox").getElementsByTagName("li");
-            for (var i = 0; i < liss.length; i++) {
-                liss[i].index = i;
-                liss[i].onmouseover = function () {
-
-                    for (var j = 0; j < liss.length; j++) {
-                        liss[j].className = "";
-                        lis[j].className = "";
-                    }
-                    this.className = "current";
-                    lis[this.index].className = "show";
-                }
-            }
-        }
         //轮播图动画效果
         function animate(obj, target) {
             clearInterval(obj.timer);//先清除定时器
@@ -103,6 +85,23 @@
                 timer = setInterval(autoplay, 3000);
             }
 
+
+            //span经过效果
+            var liss = document.getElementById("navb").getElementsByTagName("li");
+            var lis = document.getElementById("navbox").getElementsByTagName("li");
+            for (var i = 0; i < liss.length; i++) {
+                liss[i].index = i;
+                liss[i].onmouseover = function () {
+
+                    for (var j = 0; j < liss.length; j++) {
+                        liss[j].className = "";
+                        lis[j].className = "";
+                    }
+                    this.className = "current";
+                    lis[this.index].className = "show";
+                }
+            }
+
         }
     </script>
     <style>
@@ -110,10 +109,12 @@
             margin: 0;
             padding: 0;
         }
+
         body {
             background-image: url('../../images/Css/bjt.jpg');
             background-size: 100% 100%;
         }
+
         a {
             color: black;
         }
@@ -208,7 +209,7 @@
             }
 
         .hotsale {
-            width: 200px;
+            width: 206px;
             height: 400px;
             border: 1px solid #ccc;
             margin-top: 100px;
@@ -232,12 +233,13 @@
             margin-left: 122px;
         }
 
-        .lunbotu{
-            width:100%;
-            height:361px;
-            background-color:moccasin;
-            margin-top:-100px;
+        .lunbotu {
+            width: 100%;
+            height: 361px;
+            background-color: moccasin;
+            margin-top: -100px;
         }
+
         #all {
             width: 800px;
             height: 360px;
@@ -272,7 +274,7 @@
             right: 10px;
             bottom: 10px;
             line-height: 20px;
-            list-style:none;
+            list-style: none;
             text-align: center;
         }
 
@@ -294,7 +296,44 @@
             width: 800px;
             height: 360px;
         }
-       
+        .newbooks {
+            width: 472px;
+            height:424px;
+            border: 1px solid #ccc;
+            padding: 10px 0 0 10px;
+            font-family: arial;
+            overflow: hidden;
+            margin-left:400px;
+            margin-top:-444px;
+        }
+        .newbooks li {
+            float: left;
+            margin: 0 10px 10px 0;
+            width: 220px;
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        .newbooks li div, .newbooks li p {
+            width: 178px;
+            height: 25px;
+            position: absolute;
+            font-size: 14px;
+            text-align: center;
+            line-height: 25px;
+            color: white;
+            left: 20px;
+            bottom: -36px;
+            _bottom: -36px;
+        }
+
+        .newbooks li div {
+            background-color: #000;
+        }
+
+            .newbooks li p {
+                background-color:brown;
+            }
     </style>
 </head>
 <body>
@@ -309,7 +348,7 @@
             </div>
         </div>
     </div>
-    <div class="content">
+    <div class="content" >
         <div class="center" id="center">
             <div class="navb" id="navb">
                 <ul>
@@ -330,7 +369,7 @@
                         {
 
                             <div class="small">
-                                <a href="@Url.Action("BooksDetails","Mall" ,new { id=item.BookID} )" target="_blank">
+                                <a href="@Url.Action("BooksDetails", "Mall", new { id = item.BookID })" target="_blank">
                                     <div class="bookpic">
                                         <img src="@item.BookImage" />
                                     </div>
@@ -347,7 +386,7 @@
                         {
 
                             <div class="small">
-                                <a href="@Url.Action("BooksDetails","Mall" ,new { id=item.BookID} )" target="_blank">
+                                <a href="@Url.Action("BooksDetails", "Mall", new { id = item.BookID })" target="_blank">
                                     <div class="bookpic">
                                         <img src="@item.BookImage" />
                                     </div>
@@ -365,7 +404,7 @@
                         {
 
                             <div class="small">
-                                <a href="@Url.Action("BooksDetails","Mall" ,new { id=item.BookID} )" target="_blank">
+                                <a href="@Url.Action("BooksDetails", "Mall", new { id = item.BookID })" target="_blank">
                                     <div class="bookpic">
                                         <img src="@item.BookImage" />
                                     </div>
@@ -383,7 +422,7 @@
                         {
 
                             <div class="small">
-                                <a href="@Url.Action("BooksDetails","Mall" ,new { id=item.BookID} )" target="_blank">
+                                <a href="@Url.Action("BooksDetails", "Mall", new { id = item.BookID })" target="_blank">
                                     <div class="bookpic">
                                         <img src="@item.BookImage" />
                                     </div>
@@ -401,7 +440,7 @@
                         {
 
                             <div class="small">
-                                <a href="@Url.Action("BooksDetails","Mall" ,new { id=item.BookID} )" target="_blank">
+                                <a href="@Url.Action("BooksDetails", "Mall", new { id = item.BookID })" target="_blank">
                                     <div class="bookpic">
                                         <img src="@item.BookImage" />
                                     </div>
@@ -417,24 +456,103 @@
                 </ul>
             </div>
         </div>
-        <div>
-            <span style="line-height: 30px;text-align: center; display:block;position:relative;top:101px;left:155px;width:66px;height:30px;border:1px solid #ff0000;background:red;"><a href="#" style="color:white">热销榜</a></span>
+        <div style="margin-top:-40px;">
+            @*热销榜*@
+            <span style="line-height: 45px;text-align: center; display:block;position:relative;top:101px;left:155px;width:100px;height:45px;border:1px solid #ff0000;background:red; font-size:20px;"><a href="#" style="color:white">热销榜</a></span>
             <div class="hotsale">
                 @foreach (var item in Model.Hotsale)
                 {
-                    <div class="md">
-                        <a href="@Url.Action("BooksDetails","Mall" ,new { id=item.BookID} )" target="_blank">
-                            <div class="picture">
-                                <img src="@item.BookImage" />
-                            </div>
-                            <div class="details">
-                                <p>@item.BookName</p>
-                            </div>
-                        </a>
+            <div class="md">
+                <a href="@Url.Action("BooksDetails", "Mall", new { id = item.BookID })" target="_blank">
+                    <div class="picture">
+                        <img src="@item.BookImage" />
                     </div>
-                }
+                    <div class="details">
+                        <p>@item.BookName</p>
+                    </div>
+                </a>
+            </div>
+}
+            </div>
+            <span style="line-height: 45px;text-align: center; display:block;position:relative;top:-444px;left:400px;width:100px;height:45px;border:1px solid #ff0000;background:red;font-size:20px;"><a href="#" style="color:white">新品上架</a></span>
+            @*新品上架*@
+            <div class="newbooks">
+                <ul>
+                    @foreach (var item in Model.NewBooks)
+                    {
+                        <li>
+                            <a href="@Url.Action("BooksDetails", "Mall", new { id = item.BookID })" target="_blank"><img src="~/@item.BookImage" /></a>
+                            <p>@item.BookName</p>
+                        </li>
+                    }
+                </ul>
+            </div>
+            @*促销榜*@
+            <span style="line-height: 45px;text-align: center; display:block;position:relative;top:-469px;left:906px;width:100px;height:45px;border:1px solid #ff0000;background:red;font-size:20px;"><a href="#" style="color:white">促销榜</a></span>
+            <div class="onsale" style="width:280px;height:400px;margin-left:890px;margin-top:-469px;">
+                @*折叠框实现促销榜*@
+                <div class="container"> 
+                    <div id="accordion">
+                        <div class="card">
+                            @foreach (var item in Model.Onsale.Take(7))
+                            {      
+                                <div class="card-header" >
+                                    <a class="card-link" data-toggle="collapse" href="#@item.BookID">
+                                        @item.BookName
+                                    </a>
+                                </div>
+                                <div id="@item.BookID" class="collapse" data-parent="#accordion">
+                                    <div class="card-body">
+                                        <a href="@Url.Action("BooksDetails", "Mall", new { id = item.BookID })" target="_blank"><img src="~/@item.BookImage" /></a>
+                                    </div>
+                                </div>                                
+                            }
+                        </div>
+                        @*<div class="card">
+                            <div class="card-header">
+                                <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo">
+                                    选项二
+                                </a>
+                            </div>
+                            <div id="collapseTwo" class="collapse" data-parent="#accordion">
+                                <div class="card-body">
+                                    #2 内容：菜鸟教程 -- 学的不仅是技术，更是梦想！！！
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <a class="collapsed card-link" data-toggle="collapse" href="#collapseThree">
+                                    选项三
+                                </a>
+                            </div>
+                            <div id="collapseThree" class="collapse" data-parent="#accordion">
+                                <div class="card-body">
+                                    #3 内容：菜鸟教程 -- 学的不仅是技术，更是梦想！！！
+                                </div>
+                            </div>
+                        </div>*@
+                    </div>
+                </div> 
             </div>
         </div>
     </div>
 </body>
 </html>
+<script type="text/javascript">
+    $(function () {
+        var div = $(".netbooks"), speed = 388, $p = $(".newbooks p");
+        $p.before(div);
+        $(".newbooks div").fadeTo(0, 0.5);
+        $p.each(function (index, ele) {
+            var y = index * 25;
+            $(ele).css("background-position", "5px -" + y + "px");
+        });
+
+        $(".newbooks li").hover(function () {
+            $(this).children("div,p").stop().animate({ "bottom": 0 }, speed);
+        }, function () {
+            $(this).children("div,p").stop().animate({ "bottom": -36 }, speed);
+        });
+    });
+</script>
