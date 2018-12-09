@@ -6,10 +6,16 @@
     {
         margin-top:40px;
     }
+
 </style>
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 <script src="~/Scripts/bootstrap.min.js"></script>
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<link href="~/Content/zui.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.js"></script>
+<script src="~/Scripts/zui.min.js"></script>
+<link href="~/Content/zui.uploader.min.css" rel="stylesheet" />
+<script src="~/Scripts/zui.uploader.min.js"></script>
 <h2>Index</h2>
 
 <!-- 头部 -->
@@ -38,24 +44,25 @@
     </div>
     <!--右-->
     <div class="col-md-9">
-
+        <!--导航-->
+        <div style="height: 30%;width:100%;">
+            <ul class="nav nav-tabs" id="tabNav">
+                <li class="active"><a href="#shuoshuo1">说说</a></li>
+                <li><a href="#word">文档</a></li>
+                <li><a href="#video">视频</a></li>
+                <li><a href="#xiaoxi">消息</a></li>
+            </ul>
+            <br />
+        </div>
     </div>
 </div>
 
 <!-- 中部 -->
-<div style="height: 30%;width:100%;">
-    <ul class="nav nav-tabs" id="tabNav">
-        <li class="active"><a href="#shuoshuo1">说说</a></li>
-        <li><a href="#word">文档</a></li>
-        <li><a href="#video">视频</a></li>
-        <li><a href="#xiaoxi">消息</a></li>
-    </ul>
-    <br />
-</div>
+
 <div>
     <div class="tab-content">
         <div class="tab-pane active" id="shuoshuo1" style="height:1600px;">
-            @Html.Action("shuoshuo")
+            @Html.Action("shuoshuo")           
         </div>
         <div class="tab-pane" id="word">
             @Html.Action("File")

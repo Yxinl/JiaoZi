@@ -190,6 +190,7 @@
     <Compile Include="Models\IJz\IResource.cs" />
     <Compile Include="Models\IJz\IShuoshuo.cs" />
     <Compile Include="Models\IJz\IShuoshuocomment.cs" />
+    <Compile Include="Models\IJz\IText.cs" />
     <Compile Include="Models\IJz\IUser.cs" />
     <Compile Include="Models\IJz\IUserInfo.cs" />
     <Compile Include="Models\IJz\IRemarks.cs" />
@@ -205,6 +206,7 @@
     <Compile Include="Models\Jz\RResource.cs" />
     <Compile Include="Models\Jz\RShuoshuo.cs" />
     <Compile Include="Models\Jz\RShuoshuocomment.cs" />
+    <Compile Include="Models\Jz\RText.cs" />
     <Compile Include="Models\Jz\RUser.cs" />
     <Compile Include="Models\Jz\UserInfo.cs" />
     <Compile Include="Models\Kongjianban.cs" />
@@ -286,6 +288,10 @@
     <Content Include="Content\ionic.min.css" />
     <Content Include="Content\Mall.css" />
     <Content Include="Content\shouye.css" />
+    <Content Include="Content\zui.min.css" />
+    <Content Include="fonts\zenicon.svg" />
+    <Content Include="Scripts\jquery.js" />
+    <Content Include="Scripts\zui.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\ionicons.svg" />
@@ -440,6 +446,9 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="fonts\zenicon.eot" />
+    <Content Include="fonts\zenicon.ttf" />
+    <Content Include="fonts\zenicon.woff" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\ionic-angular.js" />
     <Content Include="Scripts\ionic-angular.min.js" />
@@ -461,6 +470,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Content\zui.uploader.min.css" />
+    <Content Include="Scripts\zui.uploader.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -490,11 +501,11 @@
     <Content Include="Views\Kongjian\File.cshtml" />
     <Content Include="Views\Kongjian\Index.cshtml" />
     <Content Include="Views\Kongjian\shuoshuo.cshtml" />
-    <Content Include="Views\Kongjian\UploadFile.cshtml" />
     <Content Include="Views\Kongjian\sendshuoshuo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="images\Kongjian\text\" />
     <Folder Include="images\News\" />
     <Folder Include="Video\" />
     <Folder Include="ViewModels\" />
