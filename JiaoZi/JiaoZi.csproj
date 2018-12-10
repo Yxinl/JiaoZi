@@ -438,7 +438,6 @@
     <Content Include="Views\Mall\Index.cshtml" />
     <Content Include="Views\Shared\Layoutmall.cshtml" />
     <Content Include="Views\Mall\Sear.cshtml" />
-    <Content Include="Views\Mall\BooksDetails.cshtml" />
     <Content Include="Views\Mall\Nav.cshtml" />
   </ItemGroup>
   <ItemGroup>
