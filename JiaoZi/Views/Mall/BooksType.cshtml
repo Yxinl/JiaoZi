@@ -1,8 +1,5 @@
 ﻿@using PagedList.Mvc;
 @model PagedList.IPagedList<JiaoZi.Models.Books>
-@{
-    Layout = "~/Views/Shared/Layoutmall.cshtml";
-}
 <style>
     a {
         color: black;
@@ -71,15 +68,15 @@
     </div>
     <div class="page-list">
         @*<div class="pagecout">Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount</div>*@
-        @*@Html.PagedListPager(Model, page => Url.Action("BooksType", "Mall", new { page, currentFilter = ViewBag.CurrentFilter }),
+        @Html.PagedListPager(Model, page => Url.Action("BooksType", "Mall", new { page, currentFilter = ViewBag.CurrentFilter }),
             PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(
                   new AjaxOptions
                   {
                       HttpMethod = "GET",
                       InsertionMode = InsertionMode.Replace,
                       UpdateTargetId = "DD"
-                  }))*@
-        @Html.PagedListPager(Model, Page => Url.Action("BooksType", "Mall", new { Page , currentFilter = ViewBag.CurrentFilter }))
+                  }))
+        @*@Html.PagedListPager(Model, Page => Url.Action("BooksShow", "Mall", new { Page , currentFilter = ViewBag.CurrentFilter }))*@
     </div>
 </div>
 

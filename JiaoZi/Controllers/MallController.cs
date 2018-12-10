@@ -15,6 +15,7 @@ namespace JiaoZi.Controllers
         IMall imall;
         public MallController()
         {
+            
             imall = new Mall();
         }
         // GET: Mall
@@ -52,7 +53,7 @@ namespace JiaoZi.Controllers
             {
                 return PartialView(Searchbooks);
             }
-            else                                    //BUG
+            else                                 
                 return HttpNotFound();
         }
 
@@ -68,11 +69,11 @@ namespace JiaoZi.Controllers
         //根据ID查某本图书
         public ActionResult BooksDetails(int id)
         {
-            var details = imall.GetBooksById(id);
-            return View(details);
+            CommentReply a = new CommentReply(id);
+            return View(a);
         }
 
-        //并分页显示某类图书
+        //分页显示某类图书
         public ActionResult  BooksType(string CategoryName,string currentFilter, int ? page)
         {
             var books = imall.GetBooks();
@@ -92,15 +93,16 @@ namespace JiaoZi.Controllers
             }
             int pageSize = 8;
             int pageNumber = (page ?? 1);
-            return View(books.ToPagedList(pageNumber, pageSize));
+            return PartialView(books.ToPagedList(pageNumber, pageSize));
         }
 
-        //获取书本评论  待解决
-        //public ActionResult CommentShow(int id)
-        //{
-        //    var comments = imall.GetBookComment(id);
-        //    var books = db.Books.Where(x => x.BookID == id);
-        //    return View();
-        //}
+        //显示图书
+        public ActionResult BooksShow(string CategoryName)
+        {
+            var books = imall.GetBooks().Where(x => x.Category == CategoryName);
+            return View(books);
+        }
+
+        
     }
 }

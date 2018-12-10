@@ -27,7 +27,7 @@ namespace JiaoZi.Models
     
         public virtual DbSet<Advice> Advice { get; set; }
         public virtual DbSet<Attention> Attention { get; set; }
-        public virtual DbSet<BooksComment> BookComment { get; set; }
+        public virtual DbSet<BookComment> BookComment { get; set; }
         public virtual DbSet<BookReply> BookReply { get; set; }
         public virtual DbSet<Books> Books { get; set; }
         public virtual DbSet<Carts> Carts { get; set; }
@@ -47,17 +47,5 @@ namespace JiaoZi.Models
         public virtual DbSet<VideoResource> VideoResource { get; set; }
         public virtual DbSet<salestop3> salestop3 { get; set; }
         public virtual DbSet<Category> Category { get; set; }
-        //public virtual DbSet<Mv> Mvs { get; set; }
-        //public virtual DbSet<Booksview> Booksviews { get; set; }
     }
-
-    //public class EFDbContext:DbContext
-    //{
-    //    public EFDbContext() : base("EFDbContext")
-    //    {
-    //        Database.SetInitializer<EFDbContext>(null);
-    //    }
-    //    public DbSet<Mv> Mvs { get; set; }
-    //    public DbSet<Booksview> Booksviews { get; set; }
-    //}
 }

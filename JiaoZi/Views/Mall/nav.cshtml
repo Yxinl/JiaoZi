@@ -4,8 +4,8 @@
 
 <style>
     .na {
-        /*width: 1519px;*/
-        width:1383px;
+        width: 1759px;
+        /*width:1383px;*/
         height: 40px;
         background-color: dimgray;
         text-align: center;
@@ -33,10 +33,11 @@
 
 <div class="na"  >
     @*传入name,进入相应视图*@
+    <span style="background-color:red"><a href="@Url.Action("index","Mall")">首页</a></span>
     @foreach (var item in Model)
     {
         <span>
-            <a href="@Url.Action("BooksType","Mall",new {CategoryName=@item.CategoryName.Trim()})">@item.CategoryName</a>
+            <a href="@Url.Action("BooksShow","Mall",new {CategoryName=@item.CategoryName.Trim()})">@item.CategoryName</a>
         </span>
         
     }

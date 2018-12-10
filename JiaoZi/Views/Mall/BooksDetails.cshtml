@@ -1,0 +1,76 @@
+﻿@model JiaoZi.Models.CommentReply
+@*@model JiaoZi.Models.Mallview*@
+@{
+    Layout = "~/Views/Shared/Layoutmall.cshtml";
+
+}
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    ul{
+        list-style:none;
+    }
+    .center {
+        width: 1005px;
+        height: 600px;
+        margin-left: 360px;
+        margin-top: 20px;
+    }
+
+    .pic img {
+        width: 300px;
+        height: 300px;
+    }
+
+    .details {
+        width: 300px;
+        height: 300px;
+        margin-left: 300px;
+        margin-top: -300px;
+        border: 1px solid #ccc;
+    }
+
+    .comment {
+        width: 700px;
+        height: 60px;
+    }
+    .CommentReply{
+        width:900px;
+        margin:0 auto;
+    }
+    .CommentReply li{
+        margin-bottom:30px;
+    }
+</style>
+
+
+<div class="center" id="center">
+    <div class="pic">
+        <img src="~/@Model.b.BookImage" />
+        <div class="mask"></div>
+    </div>
+
+    <div class="details">
+        <p>￥@Model.b.Price</p>
+        <p>@Model.b.BookName</p>
+    </div>
+</div>
+<div class="CommentReply" id="CommentReply">
+    <span>全部评论</span>
+    <hr />
+    <ul>
+        @foreach (var i in Model.Bc)
+        {
+
+        <li>
+            <img src="~/@i.Users.HeadImage" class="img-circle" style="width:50px;" />
+            <span style="color:orangered">@i.Users.UserName</span>:
+            @i.Comment_Content
+            <span style="display:inline-block">@i.Comment_Time <input type="button" value="回复" /></span>
+        </li>
+           
+        }
+    </ul>
+</div>

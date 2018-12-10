@@ -17,7 +17,7 @@ namespace JiaoZi.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Books()
         {
-            this.BookComment = new HashSet<BooksComment>();
+            this.BookComment = new HashSet<BookComment>();
             this.OrderDetails = new HashSet<OrderDetails>();
         }
     
@@ -33,7 +33,7 @@ namespace JiaoZi.Models
         public Nullable<int> CategoryId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BooksComment> BookComment { get; set; }
+        public virtual ICollection<BookComment> BookComment { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderDetails> OrderDetails { get; set; }
         public virtual Category Category1 { get; set; }

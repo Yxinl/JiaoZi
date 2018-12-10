@@ -57,7 +57,7 @@
         @foreach (var item in Model.Take(10))
         {
             <div class="small">
-                <a href="#">
+                <a href="@Url.Action("BooksDetails", "Mall", new { id = item.BookID })" target="_blank">
                     <div class="bookpic">
                         <img src="~/@item.BookImage" />
                     </div>
