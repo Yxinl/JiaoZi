@@ -77,10 +77,11 @@
 
         .sty {
             margin-left: 30px;
-            margin-top: -20px;
+            margin-top: -16px;
         }
         .na{
-            width:1759px;
+            /*width:1759px;*/
+            width:1383px;
             height:40px;
             background-color:dimgray;
              text-align:center;
@@ -110,7 +111,14 @@
             text-align:center;
             border:1px solid #ccc;
         }
- 
+        #toTop {
+            position: fixed;
+            width: 50px;
+            height: 50px;
+            right: 0;
+            bottom: 0;
+            display: none;
+        }
     </style>
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 
@@ -156,7 +164,7 @@
                     <option value="澳门特别行政区">澳门特别行政区</option>
                 </select>
             </div>
-            <div class="nv">
+            <div class="nv" style="margin-left:800px;">
                 <ul class="nav nav-pills ">
                     <li><a href="#" style="color:red">登录</a></li>
                     <li><a href="#">注册</a> </li>
@@ -170,11 +178,11 @@
             <img src="~/images/Mall/logo.jpg" style="width:120px;height:100px;">
         </div>
         <div class="sousuo">
-            <span class="glyphicon glyphicon-search" style="margin-left:9px; margin-top: 3px;"></span>
-            @using (Html.BeginForm("Sear", "Mall",FormMethod.Post,new { @class="sty"}))
+            <span class="glyphicon glyphicon-search" style="margin-left:9px; margin-top: 3px;top:8px;"></span>
+            @using (Html.BeginForm("Sear", "Mall", FormMethod.Post, new { @class = "sty" }))
             {
-                 <input type="text" id="search" name="search" class="sinput" placeholder="请输入关键字">
-                 <button value="搜索" class="bt">搜索</button>
+                <input type="text" id="search" name="search" class="sinput" placeholder="请输入关键字">
+                <button value="搜索" class="bt">搜索</button>
             }
         </div>
         <div class="lis">
@@ -199,6 +207,7 @@
     <div>
         @RenderBody()
     </div>
+    <div id="toTop"><img src="~/images/Css/totop.jpg" style="width:50px;height:50px;" title="回到顶部" /></div>
 </body>
 </html>
 @section Scripts {
@@ -207,3 +216,16 @@
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script src="~/Scripts/bootstrap.min.js"></script>
 <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script>
+    $(window).scroll(function () {
+        var height = $(document).scrollTop();
+        if (height != 0) {
+            $("#toTop").show();
+        }
+        else
+            $("#toTop").hide();
+    })
+    $("#toTop").click(function () {
+        scrollTo(0, 0);
+    })
+</script>

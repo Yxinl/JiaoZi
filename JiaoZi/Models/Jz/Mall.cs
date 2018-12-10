@@ -54,14 +54,35 @@ namespace JiaoZi.Models
             return categorybooks;
         }
 
+
+        //根据时间查书
+        public IEnumerable<Books> GetBooksByTime()
+        {
+            var Books = (from p in db.Books
+                         orderby p.IssueTime descending
+                         select p).Take(4);
+            return Books;
+        }
+
         //根据价格查书
         public IEnumerable<Books> GetBooksByPrice()
         {
-            var books = (from p in db.Books
+            var books = from p in db.Books
                          orderby p.Price ascending
-                         select p).Take(5);
+                         select p;
             return books.ToList();
         }
+
+        //评论
+        //public IQueryable<BooksComment> GetBookComment(int id)
+        //{
+        //    var comments = from q in db.Books
+        //                   join p in db.BookComment on
+        //                   q.BookID equals p.BookID
+        //                   select new {Q= q, P= p };
+       
+        //    return comments;
+        //}
 
         //添加图书
         public void AddBooks(Books books)

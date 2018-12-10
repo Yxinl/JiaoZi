@@ -27,7 +27,7 @@ namespace JiaoZi.Models
     
         public virtual DbSet<Advice> Advice { get; set; }
         public virtual DbSet<Attention> Attention { get; set; }
-        public virtual DbSet<BookComment> BookComment { get; set; }
+        public virtual DbSet<BooksComment> BookComment { get; set; }
         public virtual DbSet<BookReply> BookReply { get; set; }
         public virtual DbSet<Books> Books { get; set; }
         public virtual DbSet<Carts> Carts { get; set; }
