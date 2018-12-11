@@ -69,7 +69,8 @@ namespace JiaoZi.Controllers
         //根据ID查某本图书
         public ActionResult BooksDetails(int id)
         {
-            CommentReply a = new CommentReply(id);
+            Session["BooksID"] = id;
+            BooksDetails a = new BooksDetails(id);
             return View(a);
         }
 
@@ -103,6 +104,27 @@ namespace JiaoZi.Controllers
             return View(books);
         }
 
-        
+        public ActionResult Comment(int BooksID)
+        {
+            BooksID = Convert.ToInt32(Session["BooksID"]);
+            var comment = db.BookComment.Where(x => x.BookID == BooksID);
+            return PartialView(comment);
+        }
+
+
+        //需重写
+        [HttpPost]
+        public ActionResult Comment(BookComment comment)
+        {
+            if(Session["User_id"]==null)
+            {
+                return Content("请登录后再评论");
+            }
+            else
+            {
+                imall.AddComment(comment);
+                return PartialView();
+            }
+        }
     }
 }

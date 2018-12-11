@@ -6,7 +6,11 @@
     <title>@ViewBag.Title</title>
 
     <style>
-   
+        .empty{
+            width:100%;
+            height:20px;
+            background-color:azure;
+        }
         .main .logo {
             margin-left: 197px;
         }
@@ -60,21 +64,14 @@
                 text-decoration: none;
             }
 
-        .main .Tx {
-            width: 200px;
-            height: 120px;
-            margin-top: -140px;
-            margin-left: 1120px;
+        .Tx {
+            width: 101px;
+            height: 50px;
+            margin-top: -65px;
+            margin-left: 1400px;
         }
 
-        .Tx img {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            margin-left: 60px;
-            margin-top: 40px;
-        }
-
+        
         .sty {
             margin-left: 30px;
             margin-top: -20px;
@@ -124,55 +121,56 @@
 
 </head>
 <body>
-    <nav class="navbar navbar-default">
-        <div class="container-fluid" style="width: 1400px;">
-            <div class="navbar-header" style="position:absolute">
-                <select>
-                    <option value="北京">北京</option>
-                    <option value="天津">天津</option>
-                    <option value="上海">上海</option>
-                    <option value="重庆">重庆</option>
-                    <option value="河北">河北</option>
-                    <option value="山西">山西</option>
-                    <option value="辽宁">辽宁</option>
-                    <option value="吉林">吉林</option>
-                    <option value="黑龙江">黑龙江</option>
-                    <option value="江苏">江苏</option>
-                    <option value="浙江">浙江</option>
-                    <option value="安徽">安徽</option>
-                    <option value="福建">福建</option>
-                    <option value="江西">江西</option>
-                    <option value="山东">山东</option>
-                    <option value="河南">河南</option>
-                    <option value="湖北">湖北</option>
-                    <option value="湖南">湖南</option>
-                    <option value="广东">广东</option>
-                    <option value="海南">海南</option>
-                    <option value="四川">四川</option>
-                    <option value="贵州">贵州</option>
-                    <option value="云南">云南</option>
-                    <option value="陕西">陕西</option>
-                    <option value="甘肃">甘肃</option>
-                    <option value="青海">青海</option>
-                    <option value="内蒙古自治区">内蒙古自治区</option>
-                    <option value="广西壮族自治区">广西壮族自治区</option>
-                    <option value="西藏自治区">西藏自治区</option>
-                    <option value="宁夏回族自治区">宁夏回族自治区</option>
-                    <option value="新疆维吾尔自治区">新疆维吾尔自治区</option>
-                    <option value="台湾">台湾</option>
-                    <option value="香港特别行政区">香港特别行政区</option>
-                    <option value="澳门特别行政区">澳门特别行政区</option>
-                </select>
+    @*<nav class="navbar navbar-default">
+            <div class="container-fluid" style="width: 1400px;">
+                <div class="navbar-header" style="position:absolute">
+                    <select>
+                        <option value="北京">北京</option>
+                        <option value="天津">天津</option>
+                        <option value="上海">上海</option>
+                        <option value="重庆">重庆</option>
+                        <option value="河北">河北</option>
+                        <option value="山西">山西</option>
+                        <option value="辽宁">辽宁</option>
+                        <option value="吉林">吉林</option>
+                        <option value="黑龙江">黑龙江</option>
+                        <option value="江苏">江苏</option>
+                        <option value="浙江">浙江</option>
+                        <option value="安徽">安徽</option>
+                        <option value="福建">福建</option>
+                        <option value="江西">江西</option>
+                        <option value="山东">山东</option>
+                        <option value="河南">河南</option>
+                        <option value="湖北">湖北</option>
+                        <option value="湖南">湖南</option>
+                        <option value="广东">广东</option>
+                        <option value="海南">海南</option>
+                        <option value="四川">四川</option>
+                        <option value="贵州">贵州</option>
+                        <option value="云南">云南</option>
+                        <option value="陕西">陕西</option>
+                        <option value="甘肃">甘肃</option>
+                        <option value="青海">青海</option>
+                        <option value="内蒙古自治区">内蒙古自治区</option>
+                        <option value="广西壮族自治区">广西壮族自治区</option>
+                        <option value="西藏自治区">西藏自治区</option>
+                        <option value="宁夏回族自治区">宁夏回族自治区</option>
+                        <option value="新疆维吾尔自治区">新疆维吾尔自治区</option>
+                        <option value="台湾">台湾</option>
+                        <option value="香港特别行政区">香港特别行政区</option>
+                        <option value="澳门特别行政区">澳门特别行政区</option>
+                    </select>
+                </div>
+                <div class="nv" style="margin-left:800px;">
+                    <ul class="nav nav-pills ">
+                        <li><a href="#" style="color:red">登录</a></li>
+                        <li><a href="#">注册</a> </li>
+                        <li><a href="#">我的订单<span class="caret" style="margin-top: -5px;"></span></a> </li>
+                    </ul>
+                </div>
             </div>
-            <div class="nv" style="margin-left:800px;">
-                <ul class="nav nav-pills ">
-                    <li><a href="#" style="color:red">登录</a></li>
-                    <li><a href="#">注册</a> </li>
-                    <li><a href="#">我的订单<span class="caret" style="margin-top: -5px;"></span></a> </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+        </nav>*@
+    <div class="empty"></div>
     <div class="main" style="margin-left:100px; height:130px;">
         <div class="logo">
             <img src="~/images/Mall/logo.jpg" style="width:120px;height:100px;">
@@ -198,10 +196,16 @@
             <a href="#" style="color:red">我的购物车 </a>
         </span>
         <span class="badge" style="position:relative;left:190px;top:-60px;border-radius:50%;background-color:coral">50</span>    @*  此处的50需要进行更改  与数据库中的数据保持一致*@
-        <div class="Tx">
-            <img src="~/images/Mall/tx.jpg">
-            <p style="text-align: center;margin-top: 2px; color:palevioletred"><span>Hi!您好</span></p>
-        </div>
+        @*<div class="Tx">*@
+            @*<img src="~/images/Mall/tx.jpg">
+                <p style="text-align: center;margin-top: 2px; color:palevioletred"><span>Hi!您好</span></p>*@
+            @*@Html.Partial("TX")
+        </div>*@
+    </div>
+    <div class="Tx">
+        @*<img src="~/images/Mall/tx.jpg">
+            <p style="text-align: center;margin-top: 2px; color:palevioletred"><span>Hi!您好</span></p>*@
+        @Html.Partial("TX")
     </div>
     @Html.Action("Nav", "Mall")
     <div>

@@ -73,21 +73,17 @@ namespace JiaoZi.Models
             return books.ToList();
         }
 
-        //评论
-        //public IQueryable<BooksComment> GetBookComment(int id)
-        //{
-        //    var comments = from q in db.Books
-        //                   join p in db.BookComment on
-        //                   q.BookID equals p.BookID
-        //                   select new {Q= q, P= p };
        
-        //    return comments;
-        //}
-
         //添加图书
         public void AddBooks(Books books)
         {
             db.Books.Add(books);
+            db.SaveChanges();
+        }
+
+        public void AddComment(BookComment comment)
+        {
+            db.BookComment.Add(comment);
             db.SaveChanges();
         }
     }

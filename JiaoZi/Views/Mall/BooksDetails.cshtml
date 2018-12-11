@@ -1,4 +1,4 @@
-﻿@model JiaoZi.Models.CommentReply
+﻿@model JiaoZi.Models.BooksDetails
 @*@model JiaoZi.Models.Mallview*@
 @{
     Layout = "~/Views/Shared/Layoutmall.cshtml";
@@ -29,7 +29,7 @@
         height: 300px;
         margin-left: 300px;
         margin-top: -300px;
-        border: 1px solid #ccc;
+
     }
 
     .comment {
@@ -57,20 +57,4 @@
         <p>@Model.b.BookName</p>
     </div>
 </div>
-<div class="CommentReply" id="CommentReply">
-    <span>全部评论</span>
-    <hr />
-    <ul>
-        @foreach (var i in Model.Bc)
-        {
-
-        <li>
-            <img src="~/@i.Users.HeadImage" class="img-circle" style="width:50px;" />
-            <span style="color:orangered">@i.Users.UserName</span>:
-            @i.Comment_Content
-            <span style="display:inline-block">@i.Comment_Time <input type="button" value="回复" /></span>
-        </li>
-           
-        }
-    </ul>
-</div>
+@Html.Partial("Comment")

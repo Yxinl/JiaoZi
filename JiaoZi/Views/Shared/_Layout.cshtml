@@ -64,7 +64,7 @@
                     <li>@Html.ActionLink("资讯", "News", "Default")</li>
                     <li>@Html.ActionLink("资源库", "Resource", "Default")</li>
                     <li>@Html.ActionLink("论坛", "Lt", "Default")</li>
-                    <li>@Html.ActionLink("商城", "Shopping", "Default")</li>
+                    <li>@Html.ActionLink("商城", "index", "Mall", new { id=Session["User_id"]}, new { target="blank"})</li>                @*//需调整*@
                 </ul>
             </div>
         </div>

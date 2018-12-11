@@ -15,6 +15,7 @@
         height:600px;
         /*margin:0 auto;*/
         margin-left:121px;
+        margin-top:20px;
         float:left;
         border:1px solid #ccc;
 
@@ -39,7 +40,7 @@
         width: 120px;
         margin: 0 auto;
     }
-    .first{
+    /*.first{
         width:50px;
         height:30px;
         border:1px solid #f00;
@@ -47,11 +48,11 @@
         line-height:30px;  
         text-align:center;
         background-color:red;
-    }
+    }*/
 </style>
-<div class="first">
+@*<div class="first">
     <a href="@Url.Action("index","Mall")" style="color:white;">首页</a>
-</div>
+</div>*@
 <div class="container" style="overflow:hidden">
     <div class="pic">
         @foreach (var item in Model.Take(10))

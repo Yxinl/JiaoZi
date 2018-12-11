@@ -23,12 +23,6 @@ namespace JiaoZi.Controllers
             return View();
         }
 
-        //登录注册
-        public ActionResult RegisteLogin()
-        {
-            return View();
-        }
-
         //获取验证码
         public ActionResult GetImg()
         {
@@ -59,10 +53,17 @@ namespace JiaoZi.Controllers
 
 
         // 登录
-        public ActionResult Login()
+        //public ActionResult Login()
+        //{
+        //    return View();
+        //}
+
+        //登录注册
+        public ActionResult RegisteLogin()
         {
             return View();
         }
+
 
         [HttpPost]
         public ActionResult Registe(string TrueName, string PasswordR, string Email)
@@ -79,30 +80,34 @@ namespace JiaoZi.Controllers
 
 
         [HttpPost]
-        public ActionResult Login(int? UserID, string PasswordL, string YZM)
+        public ActionResult RegisteLogin(int? UserID, string PasswordL, string YZM)
         {
-            //string data;
+            string data;
+            var url = Request.UrlReferrer;
             var a = iuser.Login(UserID, PasswordL);
             var b = CheckYZM(YZM);
             if (a && !b)
             {
-                return Content("<script>alert('验证码输入错误，请重试');history.go(-1);</script>");
+                data = "验证码输入错误，请重试";
+                return Content(data);
             }
             else if (a && b)
             {
+
                 Session["User_id"] = UserID;
                 Session["User_image"] = db.Users.Where(m => m.UserID == UserID).FirstOrDefault().HeadImage;
-                //data = "登录成功";
-                //return Content(data);                                                          //有问题
-                return Content("登录成功");
-                
+                data = "登录成功";
+                return View(data);
+
             }
             else if (!a && b)
             {
-                return Content("<script>alert('账号或密码输入错误，请重试');history.go(-1);</script>");
+                data = "账号或密码错误，请重试";
+                return Content(data);
             }
             else
-                return Content("<script>alert('请按照格式输入');history.go(-1);</script>");
+                data = "请按照格式输入";
+                return Content(data);
         }
 
 
