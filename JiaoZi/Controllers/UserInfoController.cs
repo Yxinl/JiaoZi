@@ -97,7 +97,7 @@ namespace JiaoZi.Controllers
                 Session["User_id"] = UserID;
                 Session["User_image"] = db.Users.Where(m => m.UserID == UserID).FirstOrDefault().HeadImage;
                 data = "登录成功";
-                return View(data);
+                return Content(data);
 
             }
             else if (!a && b)
@@ -140,14 +140,7 @@ namespace JiaoZi.Controllers
             Session["User_id"] = null;
             Session["User_image"] = null;
             Session.Remove("User_id");
-            //return PartialView();
-            return RedirectToAction("Page","Home");    //退出返回首页
-            //}
-
-            //catch (Exception ex)
-            //{
-            //    return Content("ex");
-            //}
+            return PartialView(Session["User_id"]);       
         }
     }
 }

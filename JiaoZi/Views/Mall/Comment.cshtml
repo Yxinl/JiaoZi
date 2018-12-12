@@ -1,9 +1,5 @@
 ﻿@model JiaoZi.Models.BooksDetails
 
-@*@using (Html.BeginForm("Comment","Mall",new ))
-{
-    @Html.TextAreaFor(x => x.Comment_Content);
-}*@
 <style>
     .CommentReply {
         width: 900px;
@@ -13,33 +9,32 @@
         .CommentReply li {
             margin-bottom: 30px;
         }
+        .pinglun{
+            margin-left:434px;
+            margin-bottom:40px;
+        }
 </style>
 <div class="pinglun">
-    @using (Ajax.BeginForm("Comment", "Mall", new { id=Model.b.BookID }, new AjaxOptions()
+    @using (Ajax.BeginForm("Comment", "Mall", new { BookID=Model.b.BookID }, new AjaxOptions()
         {
             HttpMethod = "Post",
+            OnSuccess="success",
             UpdateTargetId = "CommentReply",
             InsertionMode = InsertionMode.Replace
     }))
     {
-        <textarea name="Comment_content" style="resize:none;border-radius:4px;-webkit-border-radius:4px;-moz-border-radius:4px;height:68px;width:798px;display:block;border:1px solid #c03f3c;"></textarea>
-        <span><button>提交</button></span>
+        <textarea id="cc" name="Comment_Content" style="resize:none;border-radius:4px;-webkit-border-radius:4px;-moz-border-radius:4px;height:68px;width:798px;display:block;border:1px solid #c03f3c;"></textarea>
+        <span><button id="tijiao">提交</button></span>
     }
 </div>
-<div class="CommentReply" id="CommentReply">
-    <span>全部评论</span>
-    <hr />
-    <ul>
-        @foreach (var i in Model.Bc)
-        {
 
-        <li>
-            <img src="~/@i.Users.HeadImage" class="img-circle" style="width:50px;" />
-            <span style="color:orangered">@i.Users.UserName</span>:
-            @i.Comment_Content
-            <span style="display:inline-block;margin-left:700px;font-size:12px;">@i.Comment_Time <input type="button" value="回复" /></span>
-        </li>
-
-            }
-    </ul>
-</div>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script>
+    $("#tijiao").click(function () {
+        var text = $("#cc").val();
+        if (text == "") {
+            alert("评论不能为空");
+        }
+        
+    })
+</script>

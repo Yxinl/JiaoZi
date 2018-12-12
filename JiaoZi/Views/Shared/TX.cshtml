@@ -35,6 +35,9 @@
     {
         Confirm = "您是否要退出？",
         HttpMethod = "Post",
+        //UpdateTargetId = "tx",
+        //InsertionMode = InsertionMode.Replace,
+        OnComplete = "complete"
 
     }))
     {
@@ -61,4 +64,9 @@
     }
 </body>
 </html>
+<script>
+    function complete() {
+        window.location.reload();
+    }
+</script>
 

@@ -69,7 +69,7 @@ namespace JiaoZi.Controllers
         //根据ID查某本图书
         public ActionResult BooksDetails(int id)
         {
-            Session["BooksID"] = id;
+            Session["BookID"] = id;
             BooksDetails a = new BooksDetails(id);
             return View(a);
         }
@@ -104,10 +104,10 @@ namespace JiaoZi.Controllers
             return View(books);
         }
 
-        public ActionResult Comment(int BooksID)
+        public ActionResult Comment(int BookID)
         {
-            BooksID = Convert.ToInt32(Session["BooksID"]);
-            var comment = db.BookComment.Where(x => x.BookID == BooksID);
+            BookID = Convert.ToInt32(Session["BookID"]);
+            var comment = db.BookComment.Where(x => x.BookID == BookID);
             return PartialView(comment);
         }
 
@@ -116,15 +116,46 @@ namespace JiaoZi.Controllers
         [HttpPost]
         public ActionResult Comment(BookComment comment)
         {
-            if(Session["User_id"]==null)
+            #region
+            int BookID = Convert.ToInt32(Session["BookID"]);
+            BooksDetails a = new BooksDetails(BookID);
+            int UserID;
+            var UserComment = a.Bc;
+            ViewBag.Comment = UserComment;
+            if (Session["User_id"] != null)
             {
-                return Content("请登录后再评论");
+                UserID = Convert.ToInt32(Session["User_id"]);
+                string textarea = Request["Comment_Content"];
+                if (ModelState.IsValid)
+                {
+                    if (textarea != "")
+                    {
+                        comment.UserID = UserID;
+                        comment.BookID = BookID;
+                        comment.Comment_Content = textarea;
+                        comment.Comment_Time = System.DateTime.Now;
+                        imall.AddComment(comment);
+                        UserComment = a.Bc;
+                        ViewBag.Comment = UserComment;
+                        Session["tishi"] = "评论成功";
+                        return PartialView(ViewBag.Comment as IEnumerable<BooksDetails>);
+                    }
+                    else
+                    {
+                        Session["tishi"] = "评论不能为空";
+                        return PartialView(ViewBag.Comment as IEnumerable<BooksDetails>);
+                    }
+
+                }
+                return PartialView(ViewBag.Comment as IEnumerable<BooksDetails>);
+
             }
             else
             {
-                imall.AddComment(comment);
-                return PartialView();
+                return PartialView(ViewBag.Comment as IEnumerable<BooksDetails>);
             }
+            #endregion
+            //var BookID=Session[""]
         }
     }
 }
