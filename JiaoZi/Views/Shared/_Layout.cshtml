@@ -64,7 +64,7 @@
                     <li>@Html.ActionLink("资讯", "News", "Default")</li>
                     <li>@Html.ActionLink("资源库", "Resource", "Default")</li>
                     <li>@Html.ActionLink("论坛", "Lt", "Default")</li>
-                    <li>@Html.ActionLink("商城", "index", "Mall", new { id=Session["User_id"]}, new { target="blank"})</li>                @*//需调整*@
+                    <li>@Html.ActionLink("商城", "index", "Mall", new { id = Session["User_id"] }, new { target = "blank" })</li>                @*//需调整*@
                 </ul>
             </div>
         </div>
@@ -82,16 +82,12 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 </body>
 </html>
 
 <script>
-    $(function () {
-        $("#tx").mouseover(function () {
-            $(".ll").css("display", "block");
-
-        })
-    })
+  
     $(window).scroll(function () {
         var height = $(document).scrollTop();
         if (height != 0) {

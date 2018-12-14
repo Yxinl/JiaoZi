@@ -72,7 +72,7 @@ namespace JiaoZi.Controllers
             if (c)
             {
                 var id = db.Users.Where(m => m.Email == Email).FirstOrDefault().UserID;
-                return Content("<script>alert('注册成功！请记住您的ID：" + id + "');window.location.href='../Default/RL';</script>");
+                return Content("<script>alert('注册成功！请记住您的ID：" + id + "');window.location.href='../Default/RegisteLogin';</script>");
             }
             return Content("<script>alert('您的邮箱已被注册！请重试');history.go(-1);</script>");
         }
@@ -140,7 +140,8 @@ namespace JiaoZi.Controllers
             Session["User_id"] = null;
             Session["User_image"] = null;
             Session.Remove("User_id");
-            return PartialView(Session["User_id"]);       
+            return PartialView();
+            //return RedirectToAction("page", "Home");
         }
     }
 }

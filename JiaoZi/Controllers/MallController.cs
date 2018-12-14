@@ -1,4 +1,5 @@
-﻿using JiaoZi.Models;
+﻿using JiaoZi.Attributes;
+using JiaoZi.Models;
 using PagedList;
 using System;
 using System.Collections.Generic;
@@ -114,6 +115,7 @@ namespace JiaoZi.Controllers
 
         //需重写
         [HttpPost]
+        [Login]
         public ActionResult Comment(BookComment comment)
         {
             #region
@@ -152,7 +154,7 @@ namespace JiaoZi.Controllers
             }
             else
             {
-                return PartialView(ViewBag.Comment as IEnumerable<BooksDetails>);
+                return Content("<script>alert('请先登录');;window.location.href='../Default/RegisteLogin';</script>");
             }
             #endregion
             //var BookID=Session[""]
