@@ -17,7 +17,7 @@ namespace JiaoZi.Models
         public IEnumerable<Books> Hotsale { get; set; }
         public IEnumerable<Books> Onsale { get; set; }
         public IEnumerable<Books> NewBooks { get; set; }
-        
+        public IEnumerable<OrderDetails> OrderDetails { get; set; }
     }
 
 

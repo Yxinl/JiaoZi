@@ -96,6 +96,7 @@ namespace JiaoZi.Controllers
 
                 Session["User_id"] = UserID;
                 Session["User_image"] = db.Users.Where(m => m.UserID == UserID).FirstOrDefault().HeadImage;
+                Session["User_Name"] = db.Users.Where(m => m.UserID == UserID).FirstOrDefault().UserName;
                 data = "登录成功";
                 return Content(data);
 

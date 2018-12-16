@@ -1,0 +1,14 @@
+﻿@model IEnumerable<JiaoZi.Models.BookReply>
+
+
+@foreach(var i in Model)
+{
+   <div class="replybox">
+       <dl class="replylist">
+           <dd class="replycontent">
+               <a class="replyhead">@i.BookComment.Users.UserName</a>回复 <a class="replyhead">@i.BookComment.Users.UserName</a>
+               <div class="content">@i.Reply_Content</div>
+           </dd>
+       </dl>
+   </div>
+}

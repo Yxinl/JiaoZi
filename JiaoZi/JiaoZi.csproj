@@ -455,6 +455,8 @@
     <Content Include="Views\Mall\BooksDetails.cshtml" />
     <Content Include="Views\Mall\BooksShow.cshtml" />
     <Content Include="Views\Mall\Comment.cshtml" />
+    <Content Include="Views\Mall\Reply.cshtml" />
+    <Content Include="Views\Mall\OrderDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

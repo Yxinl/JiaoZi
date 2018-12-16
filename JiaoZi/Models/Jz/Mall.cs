@@ -86,5 +86,14 @@ namespace JiaoZi.Models
             db.BookComment.Add(comment);
             db.SaveChanges();
         }
+
+
+        public IEnumerable<OrderDetails> OrderDetails(int id)
+        {
+            var order = from p in db.OrderDetails
+                        where p.Orders.UserID == id
+                        select p;
+            return order.ToList();
+        }
     }
 }

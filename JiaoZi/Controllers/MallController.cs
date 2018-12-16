@@ -67,6 +67,28 @@ namespace JiaoZi.Controllers
             return PartialView(CatagoryName);
         }
 
+
+        public ActionResult Num(int? UserID)
+        {
+            UserID = Convert.ToInt32(Session["User_id"]);
+            var OrderID = db.Orders.Where(o => o.UserID == UserID);
+            int sum = 0;
+            if (UserID != null)
+            {
+                foreach (var i in OrderID)
+                {
+                    var orderDetails = db.OrderDetails.Where(o => o.OrderID == i.OrderID);
+                    foreach (var q in orderDetails)
+                    {
+                        sum += Convert.ToInt32(q.Number);
+                    }
+                }
+                return Content(sum.ToString());
+            }
+            else
+            return Content(0.ToString());
+        }
+
         //根据ID查某本图书
         public ActionResult BooksDetails(int id)
         {
@@ -158,6 +180,24 @@ namespace JiaoZi.Controllers
             }
             #endregion
             //var BookID=Session[""]
+        }
+
+        //回复    
+        //public ActionResult Reply(int? BookID)
+        //{
+        //    BookID = Convert.ToInt32(Session["BookID"]);
+        //    var BookCommentID = db.BookComment.Where(o => o.BookID == BookID).FirstOrDefault().BookCommentID;
+        //    var ReplyComment = db.BookReply.Where(o => o.BookCommentID == BookCommentID).ToList();
+        //    ViewBag.ReplyComment = ReplyComment;
+        //    return PartialView(ReplyComment);
+        //}
+
+        //显示用户所选商品
+        [Login]
+        public ActionResult OrderDetails(int id)
+        {
+            var Orders = imall.OrderDetails(id);
+            return View(Orders);
         }
     }
 }
