@@ -10,7 +10,8 @@ namespace JiaoZi.Models
         protected jiaoziEntities db = new jiaoziEntities();
         IQueryable<Shuoshuo> IShuoshuo.AllShuoByID(int id)
         {
-            return db.Shuoshuo.Where(b => b.UserID == id);
+            //return db.Shuoshuo.Where(b => b.UserID == id);
+            return db.Shuoshuo.OrderByDescending(o => o.Shuoshuo_Time).Where(b => b.UserID == id);
         }
         void IShuoshuo.Add(Shuoshuo shuoshuo)
         {

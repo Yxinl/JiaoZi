@@ -15,7 +15,7 @@ namespace JiaoZi.Models
         }
         IQueryable<Text> IText.UserUploadText(int id)
         {
-            return db.Text.Where(t => t.UserID == id);
+            return db.Text.OrderByDescending(o=>o.Text_Time).Where(t => t.UserID == id);
         }
     }
 }

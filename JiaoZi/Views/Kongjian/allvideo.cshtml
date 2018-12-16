@@ -1,0 +1,29 @@
+﻿@model IEnumerable<JiaoZi.Models.Video>
+@{
+    Layout = null;
+
+}
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/zui.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.js"></script>
+<script src="~/Scripts/zui.min.js"></script>
+<link href="~/Content/zui.uploader.min.css" rel="stylesheet" />
+<script src="~/Scripts/zui.uploader.min.js"></script>
+<div class="cards cards-condensed">
+
+    @foreach (var item in Model)
+     {
+        <div class="col-md-4 col-sm-6 col-lg-3" style="height:300px;">
+            <a class="card" href="###">
+                <div>
+                    <video controls="controls" style="width:100%;">
+                        <source src="@Html.DisplayFor(modelItem=>item.VideoPath)" />
+                    </video>
+                </div>
+                <div class="caption">@item.Videoname</div>
+                <div class="card-heading"><strong>@item.downloadcount</strong></div>
+                <div class="card-content text-muted">@item.Video_Time</div>
+            </a>
+        </div>
+    }
+    </div>

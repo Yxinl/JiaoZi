@@ -10,5 +10,7 @@ namespace JiaoZi.Models
     {
         //通过说说id找全部评论
         IQueryable<ShuoshuoComment> ShuoCommentById(int shuoid);
+        //添加说说评论
+        void addshuocomment(ShuoshuoComment shuoshuocomment);
     }
 }

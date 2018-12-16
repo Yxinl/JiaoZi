@@ -1,7 +1,7 @@
 ﻿@model JiaoZi.Models.Kongjianban
 @{
     ViewBag.Title = "文件";
-    Layout = null;
+    Layout = "~/Views/Shared/Layoutkongjian.cshtml";
 }
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 <link href="~/Content/zui.min.css" rel="stylesheet" />
@@ -40,18 +40,7 @@
                 </div>    
             </div>
             <div>
-                @*//存在问题
-                <div class="list-group">
-                @foreach (var item in Model.userupload)
-                {
-                    <a href="#" class="list-group-item">
-                        @Html.DisplayFor(modelItem => item.Text_path)
-                        @item.Text_Time
-                        @item.TextID
-                    </a>
-                }
-            </div>*@
-
+               @Html.Action("allfill")
             </div>
         </div>
    <!--下载-->

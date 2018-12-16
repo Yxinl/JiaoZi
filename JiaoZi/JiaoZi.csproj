@@ -196,6 +196,7 @@
     <Compile Include="Models\IJz\IRemarks.cs" />
     <Compile Include="Models\IJz\IRemarksbytime.cs" />
     <Compile Include="Models\IJz\IRemark_User_Comments_Reply.cs" />
+    <Compile Include="Models\IJz\IVideo.cs" />
     <Compile Include="Models\Jz\Mall.cs" />
     <Compile Include="Models\Jz\RBook.cs" />
     <Compile Include="Models\Jz\RNews.cs" />
@@ -208,6 +209,7 @@
     <Compile Include="Models\Jz\RShuoshuocomment.cs" />
     <Compile Include="Models\Jz\RText.cs" />
     <Compile Include="Models\Jz\RUser.cs" />
+    <Compile Include="Models\Jz\RVideo.cs" />
     <Compile Include="Models\Jz\UserInfo.cs" />
     <Compile Include="Models\Kongjianban.cs" />
     <Compile Include="Models\Model1.Context.cs">
@@ -290,6 +292,21 @@
     <Content Include="Content\shouye.css" />
     <Content Include="Content\zui.min.css" />
     <Content Include="fonts\zenicon.svg" />
+    <Content Include="images\User_HeadImage\1.jpg" />
+    <Content Include="images\User_HeadImage\2.jpg" />
+    <Content Include="images\User_HeadImage\3.jpg" />
+    <Content Include="images\User_HeadImage\4.jpg" />
+    <Content Include="images\User_HeadImage\5.jpg" />
+    <Content Include="Models\Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\jquery.js" />
     <Content Include="Scripts\zui.min.js" />
     <Content Include="favicon.ico" />
@@ -420,16 +437,6 @@
     <Content Include="images\Mall\tx.jpg" />
     <Content Include="images\icon\1221605.gif" />
     <Content Include="images\icon\ooopic_1544092560.ico" />
-    <Content Include="Models\Model1.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\Model1.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -439,6 +446,9 @@
     <Content Include="fonts\ionicons.eot" />
     <Content Include="fonts\ionicons.ttf" />
     <Content Include="fonts\ionicons.woff" />
+    <Content Include="fonts\zenicon.eot" />
+    <Content Include="fonts\zenicon.ttf" />
+    <Content Include="fonts\zenicon.woff" />
     <EntityDeploy Include="Models\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
@@ -446,9 +456,6 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
-    <Content Include="fonts\zenicon.eot" />
-    <Content Include="fonts\zenicon.ttf" />
-    <Content Include="fonts\zenicon.woff" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\ionic-angular.js" />
     <Content Include="Scripts\ionic-angular.min.js" />
@@ -472,7 +479,9 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Content\zui.uploader.min.css" />
     <Content Include="Scripts\zui.uploader.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -501,15 +510,20 @@
     <Content Include="Views\Kongjian\File.cshtml" />
     <Content Include="Views\Kongjian\Index.cshtml" />
     <Content Include="Views\Kongjian\shuoshuo.cshtml" />
-    <Content Include="Views\Kongjian\sendshuoshuo.cshtml" />
+    <Content Include="Views\Kongjian\video.cshtml" />
+    <Content Include="Views\Kongjian\allshuoshuo.cshtml" />
+    <Content Include="Views\Kongjian\allfill.cshtml" />
+    <Content Include="Views\Kongjian\allvideo.cshtml" />
+    <Content Include="Views\Shared\Layoutkongjian.cshtml" />
+    <Content Include="Views\Kongjian\shuoshuocomment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="images\Kongjian\text\" />
     <Folder Include="images\News\" />
+    <Folder Include="kindeditor\" />
     <Folder Include="Video\" />
     <Folder Include="ViewModels\" />
-    <Folder Include="图\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

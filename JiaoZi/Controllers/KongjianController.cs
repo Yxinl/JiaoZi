@@ -14,37 +14,23 @@ namespace JiaoZi.Controllers
         IShuoshuo shuo = new RShuoshuo();
         IText itext = new RText();
         IShuoshuocomment shuocomment = new RShuoshuocomment();
+        IVideo ivideo = new RVideo();
         Kongjianban kongjianban = new Kongjianban();
         // GET: Kongjian
         public ActionResult Index()
-        {
+        {  
             return View();
         }
-        public ActionResult shiyan()
-        {
-            return View();
-        }
-        //说说
+        /// <summary>
+        /// 说说
+        /// </summary>
+        /// <returns></returns>
         public ActionResult shuoshuo()
-        {
-            //通过用户id找说说
-            //var usershuoshuo = shuo.AllShuoByID(Convert.ToInt32(Session["User_id"]));
-            //便于测试
-            var usershuoshuo = shuo.AllShuoByID(1);
-            //通过说说id找说说评论
-
-            var shuoshuocomment = shuocomment.ShuoCommentById(1);
-            kongjianban.UserAllShuo = usershuoshuo;
-            kongjianban.ShuoCommentById = shuoshuocomment;
-            return PartialView(kongjianban);
-        }
-        //发表说说
-        public ActionResult sendshuoshuo()
         {
             return View();
         }
         [HttpPost]
-        public ActionResult sendshuoshuo(Shuoshuo shuoshuo)
+        public ActionResult shuoshuo(Shuoshuo shuoshuo)
         {
             string shuoshuotextarea = Request["shuoshuoinput"];
             try
@@ -69,35 +55,79 @@ namespace JiaoZi.Controllers
             }
             return RedirectToAction("shuoshuo");
         }
-       
-        public ActionResult File()
+        //列出所有的说说
+        public ActionResult allshuoshuo()
         {
-            var useruploadfile = itext.UserUploadText(1);
-            kongjianban.userupload = useruploadfile;
+            //通过用户id找说说
+            //var usershuoshuo = shuo.AllShuoByID(Convert.ToInt32(Session["User_id"]));
+            //便于测试
+            var usershuoshuo = shuo.AllShuoByID(1);
+            //通过说说id找说说评论
+           
+            kongjianban.UserAllShuo = usershuoshuo;
+           
             return PartialView(kongjianban);
         }
-
+        //说说评论分部视图
+        public ActionResult shuoshuocomment(int shuoshuoid)
+        {
+            var shuoshuocomment1 = shuocomment.ShuoCommentById(shuoshuoid);
+            kongjianban.ShuoCommentById = shuoshuocomment1;
+            return PartialView(kongjianban);
+        }
+        //[HttpPost]
+        //public ActionResult shuoshuocomment(int shuoshuoid)
+        //{
+        //    string commentcontent = Request["commentcontent"];
+        //    ShuoshuoComment comment = new ShuoshuoComment();
+        //    try
+        //    {
+        //        if (ModelState.IsValid)
+        //        {
+        //            comment.Comment_Content = commentcontent;
+        //            comment.Comment_Time = DateTime.Now;
+        //            //session代替
+        //            comment.UserID = 1;
+        //            comment.ShuoshuoID = shuoshuoid;
+        //            shuocomment.addshuocomment(comment);
+        //            db.SaveChanges();
+        //            return PartialView(comment);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Content(ex.Message);
+        //    }
+        //    return RedirectToAction("shuoshuocomment");
+        //}
         /// <summary>
-        /// 上传文件到项目
+        /// 文件
         /// </summary>
-        /// <param name="file"></param>
         /// <returns></returns>
+        [HttpGet]
+        public ActionResult File()
+        {
+            return View();
+        }
+        //上传文件
         [HttpPost]
         public ActionResult File(HttpPostedFileBase file, Text text)
         {
             //存入项目
             var fileName = file.FileName;
+            //string fileName =file.FileName.Replace(Convert.ToChar(DateTime.Now), Convert.ToChar(file.FileName));
             var filePath = Server.MapPath(string.Format("~/{0}", "images/Kongjian/text"));
-            var newfilePath = Path.Combine(filePath, fileName);
+            var newfilePath = Path.Combine(filePath,fileName);
             file.SaveAs(newfilePath);
             //保存至数据库
             try
             {
                 if (ModelState.IsValid)
                 {
+                   
                     text.Text_path = newfilePath;
                     text.Text_Time = DateTime.Now;
-                    //后期改成 file.UserID = Convert.ToInt32(Session["User_id"]);
+                    //后期改成 text.UserID = Convert.ToInt32(Session["User_id"]);
                     text.UserID = 1;
                     itext.addtext(text);
                     db.SaveChanges();
@@ -108,35 +138,60 @@ namespace JiaoZi.Controllers
             {
                 return Content(ex.Message);
             }
-            //存在问题，后期需要改成显示上传成功，跳转回原页面
-            return RedirectToAction("Index");
+            return View();
+        }
+        //查找所有文件
+        public ActionResult allfill()
+        {
+            var useruploadfile = itext.UserUploadText(1);
+            kongjianban.userupload = useruploadfile;
+            return PartialView(kongjianban);
         }
         /// <summary>
-        /// 上传至数据库
+        /// 视频
         /// </summary>
-        /// <param name="file"></param>
         /// <returns></returns>
-        //[HttpPost]
-        //public ActionResult addFile(Text text)
-        //{
-        //    try
-        //    {
-        //        if (ModelState.IsValid)
-        //        {
-        //            text.Text_path = Convert.ToString(Session["filename"]);
-        //            text.Text_Time = DateTime.Now;
-        //            //后期改成 file.UserID = Convert.ToInt32(Session["User_id"]);
-        //            text.UserID = 1;
-        //            itext.addtext(text);
-        //            db.SaveChanges();
-        //            return PartialView(kongjianban);
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return Content(ex.Message);
-        //    }
-        //    return RedirectToAction("Index");
-        //}
+        public ActionResult video()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult video(HttpPostedFileBase file,Video video)
+        {
+            //存入项目
+            var videoName = file.FileName;
+            //string fileName =file.FileName.Replace(Convert.ToChar(DateTime.Now), Convert.ToChar(file.FileName));
+            var videoPath = Server.MapPath(string.Format("~/{0}", "Video/"));
+            var newvideoPath = Path.Combine(videoPath, videoName);
+            file.SaveAs(newvideoPath);
+            //保存至数据库
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    //video名字获取传入存在问题，自动变成blob,视频上传自动分块
+                    video.VideoPath = newvideoPath;
+                    video.Video_Time = DateTime.Now;
+                    //后期改成 video.UserID = Convert.ToInt32(Session["User_id"]);
+                    video.UserID = 1;
+                    video.downloadcount = 0;
+                    ivideo.addvideo(video);
+                    db.SaveChanges();
+                    //return PartialView(kongjianban);
+                }
+            }
+            catch (Exception ex)
+            {
+                return Content(ex.Message);
+            }
+            return View();
+        }
+        public ActionResult allvideo()
+        {
+            //后期用 Convert.ToInt32(Session["User_id"])替换数字1
+            var uservideo = ivideo.AllVideoByUserId(1);
+            return PartialView(uservideo);
+        }
     }
+    
 }
