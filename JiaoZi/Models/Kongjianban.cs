@@ -15,5 +15,7 @@ namespace JiaoZi.Models
         public Shuoshuo sendshuo { get; set; }
         //用户上传过的所有文件
         public IEnumerable<Text> userupload{ get; set; }
+        //评论
+        public ShuoshuoComment comment { get; set; }
     }
 }

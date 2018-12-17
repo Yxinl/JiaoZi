@@ -71,35 +71,36 @@ namespace JiaoZi.Controllers
         //说说评论分部视图
         public ActionResult shuoshuocomment(int shuoshuoid)
         {
+            Session["shuoshuoid1"] = shuoshuoid;
             var shuoshuocomment1 = shuocomment.ShuoCommentById(shuoshuoid);
             kongjianban.ShuoCommentById = shuoshuocomment1;
             return PartialView(kongjianban);
         }
-        //[HttpPost]
-        //public ActionResult shuoshuocomment(int shuoshuoid)
-        //{
-        //    string commentcontent = Request["commentcontent"];
-        //    ShuoshuoComment comment = new ShuoshuoComment();
-        //    try
-        //    {
-        //        if (ModelState.IsValid)
-        //        {
-        //            comment.Comment_Content = commentcontent;
-        //            comment.Comment_Time = DateTime.Now;
-        //            //session代替
-        //            comment.UserID = 1;
-        //            comment.ShuoshuoID = shuoshuoid;
-        //            shuocomment.addshuocomment(comment);
-        //            db.SaveChanges();
-        //            return PartialView(comment);
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return Content(ex.Message);
-        //    }
-        //    return RedirectToAction("shuoshuocomment");
-        //}
+        [HttpPost]
+        public ActionResult shuoshuocomment()
+        {
+            string commentcontent = Request["commentcontent"];
+            ShuoshuoComment comment = new ShuoshuoComment();
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    comment.Comment_Content = commentcontent;
+                    comment.Comment_Time = DateTime.Now;
+                    //session代替
+                    comment.UserID = 1;
+                    comment.ShuoshuoID = Convert.ToInt32(Session["shuoshuoid1"]);
+                    shuocomment.addshuocomment(comment);
+                    db.SaveChanges();
+                    return PartialView(kongjianban);
+                }
+            }
+            catch (Exception ex)
+            {
+                return Content(ex.Message);
+            }
+            return RedirectToAction("shuoshuocomment");
+        }
         /// <summary>
         /// 文件
         /// </summary>
