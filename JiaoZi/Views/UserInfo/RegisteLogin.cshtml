@@ -33,7 +33,7 @@
     </ul>
     <div id="myTabContent" class="tab-content">
         <div class="tab-pane fade in active" id="home">
-            @using (Ajax.BeginForm("Login", "UserInfo", new AjaxOptions()
+            @using (Ajax.BeginForm("RegisteLogin", "UserInfo", new AjaxOptions()
             {
                 HttpMethod = "Post",
                 OnSuccess = "Success",
@@ -100,18 +100,24 @@
     @Scripts.Render("~/bundles/jqueryval")
 }
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
-<script src="~/Scripts/bootstrap.min.js"></script>
-<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+@*<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>*@
 <script type="text/javascript">
     $(function () {
         $("#GG").click(function () {
             $("#GM").attr("src", "/UserInfo/GetImg?t=" + Math.random());
         });
     })
-    function Success(data) {
-        alert(data);
+    function Success(e) {
+        alert(e);
     }
     function Complete() {
-        window.window.location.href = history.go(-1);
+        //if (data = "登录成功") {
+        //    window.window.location.href = document.referrer;
+        //}
+        //else {
+        //    window.window.location.href = history.go(-1);
+        //}
+        window.window.location.href = document.referrer;
     };
 </script>

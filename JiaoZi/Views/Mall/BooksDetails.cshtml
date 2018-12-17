@@ -1,51 +1,108 @@
-﻿@model JiaoZi.Models.Books
+﻿@model JiaoZi.Models.BooksDetails
 @*@model JiaoZi.Models.Mallview*@
 @{
     Layout = "~/Views/Shared/Layoutmall.cshtml";
-    
+
 }
 <style>
-    *{
-        margin:0;
-        padding:0;
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    ul{
+        list-style:none;
     }
     .center {
         width: 1005px;
         height: 600px;
         margin-left: 360px;
-        margin-top:20px;
-        border:1px dashed red;
-    }
-        /*.center .small {
-            width: 200px;
-            height: 280px;
-            float: left;
-            margin-left: 20px;
-        }
-
-            .center .small .bookpic {
-                width: 200px;
-                height: 200px;
-                margin-top: 10px;
-            }
-
-    .bookpic img {
-        width: 200px;
-        height: 200px;
+        margin-top: 20px;
     }
 
-    .center .small .bookdetail {
-        width: 120px;
-        margin: 0 auto;
-    }*/
+    .pic img {
+        width: 300px;
+        height: 300px;
+    }
+
+    .details {
+        width: 300px;
+        height: 300px;
+        margin-left: 330px;
+        margin-top: -300px;
+
+    }
+    .comment {
+        width: 700px;
+        height: 60px;
+    }
+    .CommentReply{
+        width:900px;
+        margin:0 auto;
+    }
+    .CommentReply li{
+        margin-bottom:30px;
+    }
+    .pinglun {
+        margin-left: 434px;
+        margin-bottom: 40px;
+    }
+ 
+    
 </style>
-<div class="center" id="center">
-        <div class="pic">
-            <img src="~/@Model.BookImage" />
-        </div>
-        <div class="details">
-            <p>@Model.Price</p>
-            <p>@Model.BookName</p>
-        </div>
 
+
+<div class="center" id="center">
+    <div class="pic">
+        <img src="~/@Model.b.BookImage" />
+        <div class="mask"></div>
+    </div>
+
+    <div class="details">
+        <h3>@Model.b.BookName</h3>
+        <div style="width:100%;height:40px;background-color:lavenderblush;">
+            <span style=" color:darkgoldenrod;font-size:18px;height:40px;line-height:40px;display:inline-block;" >价格：</span>
+            <span style="font-size:24px; color:red">￥@Model.b.Price</span>
+        </div>
+        <h4 style="color:dimgray">江浙沪顺丰包邮</h4>
+        <div style="height:40px;width:100%;margin-top:20px;">
+            <span>数量：</span>
+            <input type="number" min="0",max="@Model.b.Amount"  style="width:80px;"/>   
+            <div style="margin-top:10px;">
+                <span>库存：</span>
+                <span>@Model.b.Amount</span>
+            </div>
+            <div class="Anniu" style="margin-top:10px;">
+                <button style="background-color:red; color:white;" class="btn btn-default" id="jrgwc">加入购物车</button>
+                <button style="background-color:red; color:white;" class="btn btn-default" id="buy">直接购买</button>
+            </div>
+        </div>
+    </div>
 </div>
+<div class="pinglun">
+    @using (Ajax.BeginForm("Comment", "Mall", new AjaxOptions()
+    {
+        Confirm = "你是否要评论",
+        HttpMethod = "Post",
+        UpdateTargetId = "CommentReply",
+        InsertionMode = InsertionMode.Replace,
+        OnComplete="complete"
+    }))
+    {
+        <textarea id="cc" name="Comment_Content" style="resize:none;border-radius:4px;-webkit-border-radius:4px;-moz-border-radius:4px;height:68px;width:798px;display:block;border:1px solid #c03f3c;"></textarea>
+        <span><button id="tijiao">提交</button></span>
+    }
+</div>
+<div class="CommentReply" id="CommentReply">
+    @Html.Partial("Comment")
+    <div class="Reply">  
+        @*@Html.Action("Reply", "Mall")*@
+    </div>
+  
+</div>
+
+<script>
+    function complete() {
+        window.location.reload();
+    }
+
+</script>
