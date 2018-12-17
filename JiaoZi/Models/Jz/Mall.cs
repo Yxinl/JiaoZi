@@ -5,22 +5,20 @@ using System.Web;
 
 namespace JiaoZi.Models
 {
-    public class Mall:IMall
+    public class Mall : IMall
     {
         jiaoziEntities db = new jiaoziEntities();
         //获取全部图书
-       public IEnumerable<Books> GetBooks()
+        public IEnumerable<Books> GetBooks()
         {
             var books = db.Books.ToList();
             return books;
         }
         //获得单独一本书的详情
-        public IEnumerable<Books> GetBooksDetails(int id)
+        public Books GetBooksById(int? id)
         {
-            var bookdetail = from p in db.Books
-                             where p.BookID == id
-                             select p;
-            return bookdetail;
+            var books = db.Books.Find(id);
+            return books;
         }
         //根据书名或者作者名进行搜索
         public IEnumerable<Books> Search(string search)
@@ -37,16 +35,26 @@ namespace JiaoZi.Models
                                orderby p.Amount ascending
                                select p).Take(3);
             return AmountBooks;
-                           
+
         }
-        //各类书分类显示
-       public IEnumerable<Books> GetBooksBycategory(string category)
+        //获取图书的种类
+        public IEnumerable<Category> Category()
         {
-            var books = (from p in db.Books
-                        where p.Category == category
-                        select p);
-            return books.ToList();
+            var category = (from p in db.Category
+                            select p).ToList();
+            return category;
         }
+
+        //根据id查每类的图书
+        public IEnumerable<Books> GetBooksByCategory(int id)
+        {
+            var categorybooks = from p in db.Books
+                                where p.CategoryId == id
+                                select p;
+            return categorybooks;
+        }
+
+        //根据价格查书
         public IEnumerable<Books> GetBooksByPrice()
         {
             var books = (from p in db.Books
@@ -54,6 +62,8 @@ namespace JiaoZi.Models
                          select p).Take(5);
             return books.ToList();
         }
+
+        //添加图书
         public void AddBooks(Books books)
         {
             db.Books.Add(books);

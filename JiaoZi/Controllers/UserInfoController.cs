@@ -137,7 +137,7 @@ namespace JiaoZi.Controllers
             Session["User_image"] = null;
             Session.Remove("User_id");
             //return PartialView();
-            return RedirectToAction("Page","Home");    //退出返回首页
+            return RedirectToAction("Index","Home");    //退出返回首页
             //}
 
             //catch (Exception ex)

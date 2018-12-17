@@ -31,6 +31,7 @@ namespace JiaoZi.Models
         public virtual DbSet<BookReply> BookReply { get; set; }
         public virtual DbSet<Books> Books { get; set; }
         public virtual DbSet<Carts> Carts { get; set; }
+        public virtual DbSet<Category> Category { get; set; }
         public virtual DbSet<News> News { get; set; }
         public virtual DbSet<OrderDetails> OrderDetails { get; set; }
         public virtual DbSet<Orders> Orders { get; set; }
