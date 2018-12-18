@@ -76,8 +76,34 @@ namespace JiaoZi.Controllers
             kongjianban.ShuoCommentById = shuoshuocomment1;
             return PartialView(kongjianban);
         }
+        //[HttpPost]
+        //public ActionResult shuoshuocomment()
+        //{
+        //    string commentcontent = Request["commentcontent"];
+        //    ShuoshuoComment comment = new ShuoshuoComment();
+        //    try
+        //    {
+        //        if (ModelState.IsValid)
+        //        {
+        //            comment.Comment_Content = commentcontent;
+        //            comment.Comment_Time = DateTime.Now;
+        //            //session代替
+        //            comment.UserID = 1;
+        //            comment.ShuoshuoID = Convert.ToInt32(Session["shuoshuoid1"]);
+        //            shuocomment.addshuocomment(comment);
+        //            db.SaveChanges();
+        //            return PartialView(kongjianban);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Content(ex.Message);
+        //    }
+        //    return RedirectToAction("shuoshuocomment");
+        //}
+        //评论
         [HttpPost]
-        public ActionResult shuoshuocomment()
+        public ActionResult postshuoshuocomment()
         {
             string commentcontent = Request["commentcontent"];
             ShuoshuoComment comment = new ShuoshuoComment();

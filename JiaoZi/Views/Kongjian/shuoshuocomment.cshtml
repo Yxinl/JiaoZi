@@ -76,7 +76,7 @@
         </div>
     </div>
 </div>*@
-@foreach (var item in Model.ShuoCommentById)
+@*@foreach (var item in Model.ShuoCommentById)
 {  <div class="comment">
        <a href="###" class="avatar">
            <img alt="头像" src="~/images/User_HeadImage/@item.Users.HeadImage" style="height:50px;width:50px;"/>
@@ -97,4 +97,20 @@
                 @Html.TextArea("commentcontent", new { placeholder = "输入文字" })
                 <input type="submit" value="确定" />
             </div>
+        }*@
+@foreach (var item in Model.ShuoCommentById)
+{  <div class="comment">
+       <a href="###" class="avatar">
+           <img alt="头像" src="~/images/User_HeadImage/@item.Users.HeadImage" style="height:50px;width:50px;"/>
+       </a>
+       <div class="content">
+           <div class="pull-right text-muted">@item.Comment_Time</div>
+           <div><a href="###"><strong>@item.Users.UserName</strong></a></div>
+           <div class="text">@item.Comment_Content</div>
+           <div class="actions">
+            <a href="##">@Html.Action("postshuoshuocomment")</a>
+           </div>
+       </div>
+    </div>
         }
+    
