@@ -5,7 +5,7 @@
     @foreach (var i in Model)
     {
         m++;
-        <div class="row"><span>@m</span>号订单如下</div>
+        <div class="row"><span>@m</span>号订单:</div>
         <div class="detail">
             @Html.Action("OrderDetails", "Mall")
         </div>

@@ -1,7 +1,5 @@
 ﻿@model IEnumerable<JiaoZi.Models.OrderDetails>
-@{ 
 
-}
 
 <table class="table">
     <tr>
@@ -9,46 +7,52 @@
             勾选
         </th>
         <th style="padding-left:40px;">
-           图片
+            图片
         </th>
         <th>
-           数量
+            数量
         </th>
         <th>
-          单价
+            单价
         </th>
         <th>
-           小计
+            小计
         </th>
         <th></th>
     </tr>
 
-  
-@foreach (var item in Model)
-{
-    var sum = item.Number * item.UnitPrice;
-    <tr>
-        <td>
-            @Html.CheckBox(item.OrderID.ToString())
-        </td>
-        <td>
-          <img src="~/@item.Books.BookImage"  style="height:110px;"/>
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Number)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UnitPrice)
-        </td>
-        <td>
-          @sum
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.OrderDetailsID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.OrderDetailsID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.OrderDetailsID })
-        </td>
-    </tr>
-}
 
+    @foreach (var item in Model)
+    {
+        var sum = item.Number * item.UnitPrice;
+        <tr>
+            <td>
+                @Html.CheckBox("check")
+            </td>
+            <td>
+                <img src="~/@item.Books.BookImage" style="height:110px;" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Number)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnitPrice)
+            </td>
+            <td class="sum">
+                @sum
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.OrderDetailsID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.OrderDetailsID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.OrderDetailsID })
+            </td>
+        </tr>
+    }
 </table>
+<div>
+    <span>总价：</span><input type="text" id="total">
+</div>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script>
+   
+</script>
