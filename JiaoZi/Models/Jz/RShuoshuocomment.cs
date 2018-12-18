@@ -13,10 +13,5 @@ namespace JiaoZi.Models
         {
             return db.ShuoshuoComment.Where(b => b.ShuoshuoID == shuoid);
         }
-        void IShuoshuocomment.addshuocomment(ShuoshuoComment shuoshuocomment)
-        {
-            db.ShuoshuoComment.Add(shuoshuocomment);
-            db.SaveChanges();
-        }
     }
 }

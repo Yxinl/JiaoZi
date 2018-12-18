@@ -19,8 +19,5 @@ namespace JiaoZi.Models
         public int UserID { get; set; }
         public string Reply_Content { get; set; }
         public Nullable<System.DateTime> Reply_Time { get; set; }
-    
-        public virtual RemarkComments RemarkComments { get; set; }
-        public virtual Users Users { get; set; }
     }
 }

@@ -5,20 +5,22 @@ using System.Web;
 
 namespace JiaoZi.Models
 {
-    public class Mall : IMall
+    public class Mall:IMall
     {
         jiaoziEntities db = new jiaoziEntities();
         //获取全部图书
-        public IEnumerable<Books> GetBooks()
+       public IEnumerable<Books> GetBooks()
         {
             var books = db.Books.ToList();
             return books;
         }
         //获得单独一本书的详情
-        public Books GetBooksById(int? id)
+        public IEnumerable<Books> GetBooksDetails(int id)
         {
-            var books = db.Books.Find(id);
-            return books;
+            var bookdetail = from p in db.Books
+                             where p.BookID == id
+                             select p;
+            return bookdetail;
         }
         //根据书名或者作者名进行搜索
         public IEnumerable<Books> Search(string search)
@@ -35,65 +37,27 @@ namespace JiaoZi.Models
                                orderby p.Amount ascending
                                select p).Take(3);
             return AmountBooks;
-
+                           
         }
-        //获取图书的种类
-        public IEnumerable<Category> Category()
+        //各类书分类显示
+       public IEnumerable<Books> GetBooksBycategory(string category)
         {
-            var category = (from p in db.Category
-                            select p).ToList();
-            return category;
-        }
-
-        //根据id查每类的图书
-        public IEnumerable<Books> GetBooksByCategory(int id)
-        {
-            var categorybooks = from p in db.Books
-                                where p.CategoryId == id
-                                select p;
-            return categorybooks;
-        }
-
-
-        //根据时间查书
-        public IEnumerable<Books> GetBooksByTime()
-        {
-            var Books = (from p in db.Books
-                         orderby p.IssueTime descending
-                         select p).Take(4);
-            return Books;
-        }
-
-        //根据价格查书
-        public IEnumerable<Books> GetBooksByPrice()
-        {
-            var books = from p in db.Books
-                        orderby p.Price ascending
-                        select p;
+            var books = (from p in db.Books
+                        where p.Category == category
+                        select p);
             return books.ToList();
         }
-
-
-        //添加图书
+        public IEnumerable<Books> GetBooksByPrice()
+        {
+            var books = (from p in db.Books
+                         orderby p.Price ascending
+                         select p).Take(5);
+            return books.ToList();
+        }
         public void AddBooks(Books books)
         {
             db.Books.Add(books);
             db.SaveChanges();
-        }
-
-        public void AddComment(BookComment comment)
-        {
-            db.BookComment.Add(comment);
-            db.SaveChanges();
-        }
-
-
-        public IEnumerable<OrderDetails> OrderDetails(int id)
-        {
-            var order = from p in db.OrderDetails
-                        where p.Orders.UserID == id
-                        select p;
-            return order.ToList();
         }
     }
 }

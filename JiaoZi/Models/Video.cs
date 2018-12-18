@@ -15,11 +15,9 @@ namespace JiaoZi.Models
     public partial class Video
     {
         public int VideoID { get; set; }
-        public string VideoPath { get; set; }
-        public Nullable<int> downloadcount { get; set; }
+        public string Video1 { get; set; }
         public Nullable<System.DateTime> Video_Time { get; set; }
         public int UserID { get; set; }
-        public string Videoname { get; set; }
     
         public virtual Users Users { get; set; }
     }

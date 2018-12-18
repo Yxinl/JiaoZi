@@ -1,0 +1,42 @@
+﻿@model JiaoZi.Models.Remarks
+@{
+    ViewBag.Title = "fatie";
+}
+
+<h2>fatie</h2>
+<html>
+<head>
+    <style>
+        .whole-body{
+            height:700px;
+            width:700px;
+            margin-top:200px;
+            margin-left:279px;
+            background-color:lightgrey;
+        }
+    </style>
+</head>
+<body>
+    @using (Html.BeginForm("fatie", "Luntan", FormMethod.Post))
+    {
+    <div class="whole-body">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6" style="background-color:white;margin-top:30px;height:40px;text-align:center;font-size:large">@Html.TextBoxFor(u => u.Title)</div>
+            <div class="col-md-3"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-6" style="background-color:white;margin-top:40px;height:40px;font-size:large">@Html.TextAreaFor(u => u.RemarkContent)</div>
+            <div class="col-md-2"></div>
+        </div>
+        @*@Html.TextBoxFor(u=>u.Remark_Time=System.DateTime.Now())*@
+        <a>@System.DateTime.Now</a>
+     
+        <input type="submit" value="评论" class="btn btn-default" />
+        </div>
+    }
+
+</body>
+</html>
+

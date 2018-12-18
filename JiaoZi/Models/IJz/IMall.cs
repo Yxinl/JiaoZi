@@ -9,15 +9,11 @@ namespace JiaoZi.Models
     interface IMall
     {
         IEnumerable<Books> GetBooks();
-        Books GetBooksById(int? id);
+        IEnumerable<Books> GetBooksDetails(int id);
         IEnumerable<Books> Search(string search);
         IEnumerable<Books> GetBooksByAmount();
-        IEnumerable<Category> Category();
+        IEnumerable<Books> GetBooksBycategory(string category);
         IEnumerable<Books> GetBooksByPrice();
-        IEnumerable<Books> GetBooksByTime();
         void AddBooks(Books books);
-        IEnumerable<Books> GetBooksByCategory(int id);
-        void AddComment(BookComment comment);
-        IEnumerable<OrderDetails> OrderDetails(int id);
     }
 }

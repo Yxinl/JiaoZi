@@ -95,8 +95,7 @@ namespace JiaoZi.Controllers
                 //data = "登录成功";
                 //return Content(data);                                                          //有问题
                 return Content("登录成功");
-                //return RedirectToAction("Index", "Home");
-
+                
             }
             else if (!a && b)
             {
@@ -137,7 +136,7 @@ namespace JiaoZi.Controllers
             Session["User_image"] = null;
             Session.Remove("User_id");
             //return PartialView();
-            return RedirectToAction("Index","Home");    //退出返回首页
+            return RedirectToAction("Page","Home");    //退出返回首页
             //}
 
             //catch (Exception ex)

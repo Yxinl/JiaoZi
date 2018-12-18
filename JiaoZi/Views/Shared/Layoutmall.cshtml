@@ -1,21 +1,13 @@
-﻿<!DOCTYPE html>
+﻿
+
+<!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
-
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
     <style>
-        .empty {
-            width: 100%;
-            height: 20px;
-            background-color: azure;
-        }
-
-        a:hover {
-            text-decoration: none;
-        }
-
         .main .logo {
             margin-left: 197px;
         }
@@ -69,81 +61,97 @@
                 text-decoration: none;
             }
 
-        .Tx {
-            width: 101px;
-            height: 50px;
-            margin-top: -65px;
-            margin-left: 1400px;
+        .main .Tx {
+            width: 200px;
+            height: 120px;
+            margin-top: -140px;
+            margin-left: 1050px;
         }
 
+        .Tx img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            margin-left: 60px;
+            margin-top: 5px;
+        }
 
         .sty {
             margin-left: 30px;
-            margin-top: -20px;
-        }
-
-        .na {
-            /*width:1759px;*/
-            width: 1383px;
-            height: 40px;
-            background-color: dimgray;
-            text-align: center;
-        }
-
-            .na span {
-                width: 70px;
-                height: 40px;
-                line-height: 40px;
-                display: inline-block;
-                margin-left: 20px;
-            }
-
-            .na a {
-                text-decoration: none;
-                color: aliceblue;
-            }
-
-                .na a:hover {
-                    color: darkred;
-                }
-
-        .car {
-            position: relative;
-            top: -41px;
-            left: 200px;
-            display: inline-block;
-            width: 100px;
-            height: 30px;
-            line-height: 30px;
-            text-align: center;
-            border: 1px solid #ccc;
-        }
-
-        #toTop {
-            position: fixed;
-            width: 50px;
-            height: 50px;
-            right: 0;
-            bottom: 0;
-            display: none;
+            margin-top: -21px;
         }
     </style>
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 
 </head>
 <body>
-    <div class="empty"></div>
-    <div class="main" style="margin-left:100px; height:130px;">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid" style="width: 1400px;">
+            <div class="navbar-header" style="margin-top: 15px;">
+                <select>
+                    <option value="北京">北京</option>
+                    <option value="天津">天津</option>
+                    <option value="上海">上海</option>
+                    <option value="重庆">重庆</option>
+                    <option value="河北">河北</option>
+                    <option value="山西">山西</option>
+                    <option value="辽宁">辽宁</option>
+                    <option value="吉林">吉林</option>
+                    <option value="黑龙江">黑龙江</option>
+                    <option value="江苏">江苏</option>
+                    <option value="浙江">浙江</option>
+                    <option value="安徽">安徽</option>
+                    <option value="福建">福建</option>
+                    <option value="江西">江西</option>
+                    <option value="山东">山东</option>
+                    <option value="河南">河南</option>
+                    <option value="湖北">湖北</option>
+                    <option value="湖南">湖南</option>
+                    <option value="广东">广东</option>
+                    <option value="海南">海南</option>
+                    <option value="四川">四川</option>
+                    <option value="贵州">贵州</option>
+                    <option value="云南">云南</option>
+                    <option value="陕西">陕西</option>
+                    <option value="甘肃">甘肃</option>
+                    <option value="青海">青海</option>
+                    <option value="内蒙古自治区">内蒙古自治区</option>
+                    <option value="广西壮族自治区">广西壮族自治区</option>
+                    <option value="西藏自治区">西藏自治区</option>
+                    <option value="宁夏回族自治区">宁夏回族自治区</option>
+                    <option value="新疆维吾尔自治区">新疆维吾尔自治区</option>
+                    <option value="台湾">台湾</option>
+                    <option value="香港特别行政区">香港特别行政区</option>
+                    <option value="澳门特别行政区">澳门特别行政区</option>
+                </select>
+            </div>
+            <div>
+                <ul class="nav navbar-nav" style="float: right;">
+                    <li><a href="#" style="color:red">登录</a></li>
+                    <li><a href="#">注册</a> </li>
+                    <li><a href="#">我的订单<span class="caret" style="margin-top: -5px;"></span></a> </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="main" style="margin-left:100px;">
         <div class="logo">
             <img src="~/images/Mall/logo.jpg" style="width:120px;height:100px;">
         </div>
         <div class="sousuo">
-            <span class="glyphicon glyphicon-search" style="margin-left:9px; margin-top: 3px;top:8px;"></span>
-            @using (Html.BeginForm("Sear", "Mall", FormMethod.Post, new { @class = "sty" }))
+            <span class="glyphicon glyphicon-search" style="margin-left:9px;margin-top: 3px;"></span>
+            @*<input type="text" class="sinput" placeholder="请输入关键字">*@
+            @using (Ajax.BeginForm("Sear", "Mall", new AjaxOptions()
+            {
+                HttpMethod = "Post",
+                InsertionMode = InsertionMode.Replace,
+                UpdateTargetId = "center"
+            }, new { @class = "sty" }))
             {
                 <input type="text" id="search" name="search" class="sinput" placeholder="请输入关键字">
+                @*@Html.TextBoxFor(m=>m.Search, new  { @class="sinput" ,placeholder="请输入关键字"})*@
                 <button value="搜索" class="bt">搜索</button>
             }
+
         </div>
         <div class="lis">
             <ul>
@@ -154,22 +162,14 @@
                 <li><a href="#">心理学</a> </li>
             </ul>
         </div>
-        <span class="car">
-            <a href="@Url.Action("OrderDetails","Mall",new { id=Session["User_id"]})" style="color:red">我的购物车 </a>
-        </span>
-        <span class="badge" style="position:relative;left:190px;top:-60px;border-radius:50%;background-color:coral" id="Amount">@Html.Action("Num", "Mall")</span>    @*  此处的50需要进行更改  与数据库中的数据保持一致*@
-
+        <div class="Tx">
+            <img src="~/images/Mall/tx.jpg">
+            <p style="text-align: center;margin-top: 2px; color:palevioletred"><span>Hi!您好</span></p>
+        </div>
     </div>
-    <div class="Tx">
-        @*<img src="~/images/Mall/tx.jpg">
-            <p style="text-align: center;margin-top: 2px; color:palevioletred"><span>Hi!您好</span></p>*@
-        @Html.Partial("TX")
-    </div>
-    @Html.Action("Nav", "Mall")
     <div>
         @RenderBody()
     </div>
-    <div id="toTop"><img src="~/images/Css/totop.jpg" style="width:50px;height:50px;" title="回到顶部" /></div>
 </body>
 </html>
 @section Scripts {
@@ -178,16 +178,3 @@
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script src="~/Scripts/bootstrap.min.js"></script>
 <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
-<script>
-    $(window).scroll(function () {
-        var height = $(document).scrollTop();
-        if (height != 0) {
-            $("#toTop").show();
-        }
-        else
-            $("#toTop").hide();
-    })
-    $("#toTop").click(function () {
-        scrollTo(0, 0);
-    })
-</script>
