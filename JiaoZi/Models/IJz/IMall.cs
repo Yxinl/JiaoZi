@@ -18,6 +18,7 @@ namespace JiaoZi.Models
         void AddBooks(Books books);
         IEnumerable<Books> GetBooksByCategory(int id);
         void AddComment(BookComment comment);
+        IEnumerable<Orders> Orders(int? id);
         IEnumerable<OrderDetails> OrderDetails(int id);
     }
 }

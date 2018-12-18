@@ -1,0 +1,13 @@
+﻿@model IEnumerable<JiaoZi.Models.Orders>
+
+<div class="container" style="margin:40px auto">
+    @{ int m = 0;}
+    @foreach (var i in Model)
+    {
+        m++;
+        <div class="row"><span>@m</span>号订单如下</div>
+        <div class="detail">
+            @Html.Action("OrderDetails", "Mall")
+        </div>
+    }
+</div>

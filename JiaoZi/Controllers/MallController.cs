@@ -192,12 +192,22 @@ namespace JiaoZi.Controllers
         //    return PartialView(ReplyComment);
         //}
 
+
+        //显示订单
+        [Login]
+        public ActionResult Order(int? id)
+        {
+            var orders = imall.Orders(id);
+            return View(orders);
+        }
+
+
         //显示用户所选商品
         [Login]
         public ActionResult OrderDetails(int id)
         {
-            var Orders = imall.OrderDetails(id);
-            return View(Orders);
+            var Ordersdetails = imall.OrderDetails(id);
+            return PartialView(Ordersdetails);
         }
     }
 }

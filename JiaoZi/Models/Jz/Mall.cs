@@ -87,6 +87,13 @@ namespace JiaoZi.Models
             db.SaveChanges();
         }
 
+        public IEnumerable<Orders> Orders(int? id)
+        {
+            var Orders = from p in db.Orders
+                         where p.UserID == id
+                         select p;
+            return Orders.ToList();
+        }
 
         public IEnumerable<OrderDetails> OrderDetails(int id)
         {

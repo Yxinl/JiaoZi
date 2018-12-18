@@ -219,6 +219,7 @@
     <Compile Include="Models\Orders.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\OrdersDetail.cs" />
     <Compile Include="Models\RegisteLogin.cs" />
     <Compile Include="Models\RemarkComments.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -457,6 +458,7 @@
     <Content Include="Views\Mall\Comment.cshtml" />
     <Content Include="Views\Mall\Reply.cshtml" />
     <Content Include="Views\Mall\OrderDetails.cshtml" />
+    <Content Include="Views\Mall\Order.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
