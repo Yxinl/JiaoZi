@@ -1,0 +1,79 @@
+﻿ <!--说说动态-->
+@model JiaoZi.Models.Kongjianban
+<div>
+    @foreach (var item in Model.UserAllShuo)
+    {
+        <div class="row" style="margin:50px;height:auto ">
+            <!-- 左-->
+            <div class="col-md-2" style="height:400px;">
+                <!-- 头像 -->
+                <div style="height:20%;text-align:right">
+                    <img src="~/images/Head/1.jpg" style="height:70px;width:70px;border:5px groove white" />
+                    @*@Session["User_image"]*@
+                </div>
+                <!-- 留白 -->
+                <div style="height:80%"></div>
+            </div>
+            <!--中-->
+            <div class="col-md-8 row" style="height:auto;">
+                <!--边框左-->
+                <div class="col-md-1" style="height:100%;" id="jiantou">
+                    <div style="height:100%">
+
+                    </div>
+                    <!-- 留白 -->
+                    <div style="height:80%"></div>
+                </div>
+                <!--中间右边-->
+                <div class="col-md-10" id="shuocontent">
+                    <!--边框上-->
+                    <div style="height: 15%; width: 100%;">
+                    </div>
+                    <!-- 网名 -->
+                    <div style="height:15%;width:100%;"></div>
+                    <!-- 内容 -->
+                    <div style="height:200px;width:100%;overflow-y:auto;">
+                        <h4>
+                            @item.Users.UserName
+                            @item.Shuoshuo_Content
+                        </h4>
+                    </div>
+                    <!-- 点赞、评论、时间 -->
+                    <div style="width:100%">
+                        <p> @item.Shuoshuo_Time dianzhan 评论</p>
+                        @*@Html.Action("shuoshuocomment", new { shuoshuoid = @item.ShuoshuoID })*@
+                        @{Html.RenderAction("shuoshuocomment", "Kongjian", new { shuoshuoid = @item.ShuoshuoID});
+                        }
+                    </div>
+
+                </div>
+                <!--边框右-->
+                <div class="col-md-1" style="height:100%;">
+                    <div style="height:100%">
+
+                    </div>
+                    <!-- 留白 -->
+                    <div style="height:80%"></div>
+                </div>
+            </div>
+
+            <!-- 右 -->
+            <div class="col-md-2" style="height:400px;">
+                <div style="height:20%"></div>
+                <div style="height:80%"></div>
+            </div>
+        </div>
+
+
+    }
+</div>
+<!--评论-->
+@*<div class="col-md-8" style="height:200px;">
+    @foreach (var com in Model.ShuoCommentById)
+    {
+
+        @com.ShuoshuoCommentID
+        @com.Comment_Content
+    }
+</div>*@
+
