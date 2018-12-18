@@ -1,0 +1,76 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Layoutkongjian</title>
+</head>
+<body>
+    <style>
+        #kongjianbody {
+            margin-top: 40px;
+        }
+    </style>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <link href="~/Content/zui.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery.js"></script>
+    <script src="~/Scripts/zui.min.js"></script>
+    <link href="~/Content/zui.uploader.min.css" rel="stylesheet" />
+    <script src="~/Scripts/zui.uploader.min.js"></script>
+    <h2>Index</h2>
+
+    <!-- 头部 -->
+    <div class="row" style="height: 200px;background-color:azure" id="kongjianbody">
+        <!--左-->
+        <div class="col-md-3" style="height:100%">
+            <!--左上头像-->
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-5">
+                    <img src="~/images/Head/1.jpg" style="height:100px;width:100px;margin-top:-33px;border:10px groove azure" />
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+            <!--左下 关注 粉丝-->
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-5">
+                    <img src="~/images/icon/icon/love.ico" style="height:10px;width:10px;" />
+                    关注
+                    <img src="~/images/icon/icon/love.ico" style="height:10px;width:10px;" />
+                    粉丝
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+        </div>
+        <!--右-->
+        <div class="col-md-9">
+            <!--导航-->
+            <div style="height: 30%;width:100%;">
+                <ul class="nav nav-tabs" id="tabNav">         
+                    <li><a href="#shuoshuo1">动态</a></li>
+                    <li>@Html.ActionLink("文件", "File", "Kongjian")</li>
+                    <li>@Html.ActionLink("视频", "video", "Kongjian")</li>
+                    <li>@Html.ActionLink("说说", "shuoshuo", "Kongjian")</li>
+                </ul>
+                <br />
+            </div>
+        </div>
+    </div>
+    <div>
+        @RenderBody() 
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
