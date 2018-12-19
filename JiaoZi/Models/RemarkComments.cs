@@ -14,6 +14,12 @@ namespace JiaoZi.Models
     
     public partial class RemarkComments
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public RemarkComments()
+        {
+            this.RemarkReply = new HashSet<RemarkReply>();
+        }
+    
         public int RemarkCommentID { get; set; }
         public Nullable<System.DateTime> Comment_Time { get; set; }
         public string Comment_Content { get; set; }
@@ -22,5 +28,7 @@ namespace JiaoZi.Models
     
         public virtual Remarks Remarks { get; set; }
         public virtual Users Users { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RemarkReply> RemarkReply { get; set; }
     }
 }

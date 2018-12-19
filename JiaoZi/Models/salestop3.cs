@@ -23,5 +23,6 @@ namespace JiaoZi.Models
         public Nullable<double> Price { get; set; }
         public Nullable<int> Amount { get; set; }
         public string Category { get; set; }
+        public Nullable<int> CategoryId { get; set; }
     }
 }

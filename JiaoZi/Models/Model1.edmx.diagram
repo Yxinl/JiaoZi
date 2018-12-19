@@ -47,6 +47,8 @@
         <AssociationConnector Association="jiaoziModel.FK__Video__UserID__403A8C7D" ManuallyRouted="false" />
         <EntityTypeShape EntityType="jiaoziModel.Category" Width="1.5" PointX="0.75" PointY="2.375" />
         <AssociationConnector Association="jiaoziModel.FK__Books__CategoryI__5441852A" />
+        <AssociationConnector Association="jiaoziModel.FK__RemarkRep__Remar__44FF419A" />
+        <AssociationConnector Association="jiaoziModel.FK__RemarkRep__UserI__45F365D3" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -29,6 +29,7 @@ namespace JiaoZi.Models
             this.ShuoshuoComment_Reply = new HashSet<ShuoshuoComment_Reply>();
             this.Text = new HashSet<Text>();
             this.Video = new HashSet<Video>();
+            this.RemarkReply = new HashSet<RemarkReply>();
         }
     
         public int UserID { get; set; }
@@ -67,5 +68,7 @@ namespace JiaoZi.Models
         public virtual ICollection<Text> Text { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Video> Video { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RemarkReply> RemarkReply { get; set; }
     }
 }

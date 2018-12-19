@@ -206,6 +206,7 @@ namespace JiaoZi.Controllers
         [Login]
         public ActionResult OrderDetails(int id)
         {
+            //id = Convert.ToInt32(Session["User_id"]);
             var Ordersdetails = imall.OrderDetails(id);
             return PartialView(Ordersdetails);
         }
