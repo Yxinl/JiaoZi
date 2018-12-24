@@ -4,7 +4,7 @@
 <table class="table">
     <tr>
         <th>
-            勾选
+            <input type="checkbox" name="all" />全选
         </th>
         <th style="padding-left:40px;">
             图片
@@ -59,7 +59,20 @@
         var total = $("#total");
         var sum = 0;
         var checks = $(":checkbox");
-        for (var i = 0; i < checks.length; i++) {
+        var al = $("#all");
+        al.click(function () {
+            if ($(this).is(":checked")) {
+                for (var i = 1; i < checks.length; i++) {
+                    $(checks[i]).attr("checked", true);
+                }
+            }
+            else {
+                for (var i = 1; i < checks.length; i++) {
+                    $(checks[i]).attr("checked", false);
+                }
+            }
+        })
+        for (var i = 1; i < checks.length; i++) {
             checks[i].onclick = function () {
                 if (this.checked) {
                     sum = parseFloat(sum) + parseFloat(this.value);
