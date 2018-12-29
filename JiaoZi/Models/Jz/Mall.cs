@@ -95,7 +95,7 @@ namespace JiaoZi.Models
             return Orders.ToList();
         }
 
-        public IEnumerable<OrderDetails> OrderDetails(int id)
+        public IEnumerable<OrderDetails> OrderDetails(int? id)
         {
 
             var order = from q in db.OrderDetails

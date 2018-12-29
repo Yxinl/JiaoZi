@@ -205,11 +205,11 @@ namespace JiaoZi.Controllers
 
         //显示用户所选商品
         [Login]
-        public ActionResult OrderDetails(int id)
+        public ActionResult OrderDetails(int? id)
         {
             //id = Convert.ToInt32(Session["User_id"]);
             var Ordersdetails = imall.OrderDetails(id);
-            return PartialView(Ordersdetails);
+            return View(Ordersdetails);
         }
 
 
