@@ -59,16 +59,13 @@
           <Property Name="Category" Type="varchar" MaxLength="100" />
           <Property Name="CategoryId" Type="int" />
         </EntityType>
-        <EntityType Name="Carts">
+        <EntityType Name="Cars">
           <Key>
             <PropertyRef Name="CartID" />
           </Key>
           <Property Name="CartID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserID" Type="int" Nullable="false" />
-          <Property Name="BookID" Type="int" Nullable="false" />
-          <Property Name="UnitPrice" Type="float" />
-          <Property Name="Number" Type="int" />
-          <Property Name="CartFlag" Type="bit" Nullable="false" />
+          <Property Name="OrderID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -92,11 +89,9 @@
             <PropertyRef Name="OrderDetailsID" />
           </Key>
           <Property Name="OrderDetailsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="OrderID" Type="int" Nullable="false" />
           <Property Name="BookID" Type="int" Nullable="false" />
-          <Property Name="UnitPrice" Type="float" />
-          <Property Name="Number" Type="int" />
-          <Property Name="Location" Type="varchar(max)" />
+          <Property Name="Count" Type="int" />
+          <Property Name="UserID" Type="int" />
         </EntityType>
         <EntityType Name="Orders">
           <Key>
@@ -104,8 +99,11 @@
           </Key>
           <Property Name="OrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserID" Type="int" Nullable="false" />
-          <Property Name="OrderTime" Type="datetime" />
-          <Property Name="Amount" Type="float" />
+          <Property Name="OrderDetailsID" Type="int" Nullable="false" />
+          <Property Name="Tel" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Time" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="RemarkComments">
           <Key>
@@ -329,42 +327,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrderDeta__BookI__403A8C7D">
-          <End Role="Books" Type="Self.Books" Multiplicity="1" />
-          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Books">
-              <PropertyRef Name="BookID" />
-            </Principal>
-            <Dependent Role="OrderDetails">
-              <PropertyRef Name="BookID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__OrderDeta__Order__412EB0B6">
-          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
-          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Orders">
-              <PropertyRef Name="OrderID" />
-            </Principal>
-            <Dependent Role="OrderDetails">
-              <PropertyRef Name="OrderID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Orders__UserID__4222D4EF">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
-          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="UserID" />
-            </Principal>
-            <Dependent Role="Orders">
-              <PropertyRef Name="UserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__RemarkCom__Remar__4316F928">
           <End Role="Remarks" Type="Self.Remarks" Multiplicity="1" />
           <End Role="RemarkComments" Type="Self.RemarkComments" Multiplicity="*" />
@@ -509,13 +471,61 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_OrderDetails_Books">
+          <End Role="Books" Type="Self.Books" Multiplicity="1" />
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Books">
+              <PropertyRef Name="BookID" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="BookID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetails_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_OrderDetails">
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderDetails">
+              <PropertyRef Name="OrderDetailsID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="OrderDetailsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="jiaoziModelStoreContainer">
           <EntitySet Name="Advice" EntityType="Self.Advice" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Attention" EntityType="Self.Attention" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BookComment" EntityType="Self.BookComment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BookReply" EntityType="Self.BookReply" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Books" EntityType="Self.Books" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Carts" EntityType="Self.Carts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cars" EntityType="Self.Cars" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
@@ -573,18 +583,6 @@
             <End Role="Category" EntitySet="Category" />
             <End Role="Books" EntitySet="Books" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrderDeta__BookI__403A8C7D" Association="Self.FK__OrderDeta__BookI__403A8C7D">
-            <End Role="Books" EntitySet="Books" />
-            <End Role="OrderDetails" EntitySet="OrderDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK__OrderDeta__Order__412EB0B6" Association="Self.FK__OrderDeta__Order__412EB0B6">
-            <End Role="Orders" EntitySet="Orders" />
-            <End Role="OrderDetails" EntitySet="OrderDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Orders__UserID__4222D4EF" Association="Self.FK__Orders__UserID__4222D4EF">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Orders" EntitySet="Orders" />
-          </AssociationSet>
           <AssociationSet Name="FK__RemarkCom__Remar__4316F928" Association="Self.FK__RemarkCom__Remar__4316F928">
             <End Role="Remarks" EntitySet="Remarks" />
             <End Role="RemarkComments" EntitySet="RemarkComments" />
@@ -632,6 +630,22 @@
           <AssociationSet Name="FK__Video__UserID__4D94879B" Association="Self.FK__Video__UserID__4D94879B">
             <End Role="Users" EntitySet="Users" />
             <End Role="Video" EntitySet="Video" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetails_Books" Association="Self.FK_OrderDetails_Books">
+            <End Role="Books" EntitySet="Books" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetails_Users" Association="Self.FK_OrderDetails_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_OrderDetails" Association="Self.FK_Orders_OrderDetails">
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Users" Association="Self.FK_Orders_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -695,23 +709,12 @@
           <Property Name="IssueTime" Type="DateTime" Precision="3" />
           <Property Name="Publisher" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="BookComment" Relationship="Self.FK__BookComme__BookI__286302EC" FromRole="Books" ToRole="BookComment" />
-          <NavigationProperty Name="OrderDetails" Relationship="Self.FK__OrderDeta__BookI__1BFD2C07" FromRole="Books" ToRole="OrderDetails" />
           <Property Name="Price" Type="Double" />
           <Property Name="Amount" Type="Int32" />
           <Property Name="Category" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="CategoryId" Type="Int32" />
           <NavigationProperty Name="Category1" Relationship="jiaoziModel.FK__Books__CategoryI__5441852A" FromRole="Books" ToRole="Category" />
-        </EntityType>
-        <EntityType Name="Carts">
-          <Key>
-            <PropertyRef Name="CartID" />
-          </Key>
-          <Property Name="CartID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserID" Type="Int32" Nullable="false" />
-          <Property Name="BookID" Type="Int32" Nullable="false" />
-          <Property Name="UnitPrice" Type="Double" />
-          <Property Name="Number" Type="Int32" />
-          <Property Name="CartFlag" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="OrderDetails" Relationship="jiaoziModel.FK_OrderDetails_Books" FromRole="Books" ToRole="OrderDetails" />
         </EntityType>
         <EntityType Name="News">
           <Key>
@@ -722,30 +725,6 @@
           <Property Name="News_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="News_Time" Type="DateTime" Precision="3" />
-        </EntityType>
-        <EntityType Name="OrderDetails">
-          <Key>
-            <PropertyRef Name="OrderDetailsID" />
-          </Key>
-          <Property Name="OrderDetailsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="OrderID" Type="Int32" Nullable="false" />
-          <Property Name="BookID" Type="Int32" Nullable="false" />
-          <Property Name="UnitPrice" Type="Double" />
-          <Property Name="Number" Type="Int32" />
-          <Property Name="Location" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Books" Relationship="Self.FK__OrderDeta__BookI__1BFD2C07" FromRole="OrderDetails" ToRole="Books" />
-          <NavigationProperty Name="Orders" Relationship="Self.FK__OrderDeta__Order__1B0907CE" FromRole="OrderDetails" ToRole="Orders" />
-        </EntityType>
-        <EntityType Name="Orders">
-          <Key>
-            <PropertyRef Name="OrderID" />
-          </Key>
-          <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserID" Type="Int32" Nullable="false" />
-          <Property Name="OrderTime" Type="DateTime" Precision="3" />
-          <Property Name="Amount" Type="Double" />
-          <NavigationProperty Name="OrderDetails" Relationship="Self.FK__OrderDeta__Order__1B0907CE" FromRole="Orders" ToRole="OrderDetails" />
-          <NavigationProperty Name="Users" Relationship="Self.FK__Orders__UserID__164452B1" FromRole="Orders" ToRole="Users" />
         </EntityType>
         <EntityType Name="RemarkComments">
           <Key>
@@ -864,7 +843,6 @@
           <NavigationProperty Name="Attention1" Relationship="Self.FK__Attention__UserI__4E88ABD4" FromRole="Users" ToRole="Attention" />
           <NavigationProperty Name="BookComment" Relationship="Self.FK__BookComme__UserI__276EDEB3" FromRole="Users" ToRole="BookComment" />
           <NavigationProperty Name="BookReply" Relationship="Self.FK__BookReply__UserI__2C3393D0" FromRole="Users" ToRole="BookReply" />
-          <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__UserID__164452B1" FromRole="Users" ToRole="Orders" />
           <NavigationProperty Name="RemarkComments" Relationship="Self.FK__RemarkCom__UserI__2F10007B" FromRole="Users" ToRole="RemarkComments" />
           <NavigationProperty Name="Remarks" Relationship="Self.FK__Remarks__UserID__24927208" FromRole="Users" ToRole="Remarks" />
           <NavigationProperty Name="Shuoshuo" Relationship="Self.FK__Shuoshuo__UserID__3D5E1FD2" FromRole="Users" ToRole="Shuoshuo" />
@@ -873,6 +851,8 @@
           <NavigationProperty Name="Text" Relationship="Self.FK__Text__UserID__4316F928" FromRole="Users" ToRole="Text" />
           <NavigationProperty Name="Video" Relationship="Self.FK__Video__UserID__403A8C7D" FromRole="Users" ToRole="Video" />
           <NavigationProperty Name="RemarkReply" Relationship="jiaoziModel.FK__RemarkRep__UserI__45F365D3" FromRole="Users" ToRole="RemarkReply" />
+          <NavigationProperty Name="Orders" Relationship="jiaoziModel.FK_Orders_Users" FromRole="Users" ToRole="Orders" />
+          <NavigationProperty Name="OrderDetails" Relationship="jiaoziModel.FK_OrderDetails_Users" FromRole="Users" ToRole="OrderDetails" />
         </EntityType>
         <EntityType Name="Video">
           <Key>
@@ -980,42 +960,6 @@
               <PropertyRef Name="UserID" />
             </Principal>
             <Dependent Role="BookReply">
-              <PropertyRef Name="UserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__OrderDeta__BookI__1BFD2C07">
-          <End Role="Books" Type="Self.Books" Multiplicity="1" />
-          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Books">
-              <PropertyRef Name="BookID" />
-            </Principal>
-            <Dependent Role="OrderDetails">
-              <PropertyRef Name="BookID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__OrderDeta__Order__1B0907CE">
-          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
-          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Orders">
-              <PropertyRef Name="OrderID" />
-            </Principal>
-            <Dependent Role="OrderDetails">
-              <PropertyRef Name="OrderID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Orders__UserID__164452B1">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
-          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="UserID" />
-            </Principal>
-            <Dependent Role="Orders">
               <PropertyRef Name="UserID" />
             </Dependent>
           </ReferentialConstraint>
@@ -1146,10 +1090,7 @@
           <EntitySet Name="BookComment" EntityType="Self.BookComment" />
           <EntitySet Name="BookReply" EntityType="Self.BookReply" />
           <EntitySet Name="Books" EntityType="Self.Books" />
-          <EntitySet Name="Carts" EntityType="Self.Carts" />
           <EntitySet Name="News" EntityType="Self.News" />
-          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" />
-          <EntitySet Name="Orders" EntityType="Self.Orders" />
           <EntitySet Name="RemarkComments" EntityType="Self.RemarkComments" />
           <EntitySet Name="RemarkReply" EntityType="Self.RemarkReply" />
           <EntitySet Name="Remarks" EntityType="Self.Remarks" />
@@ -1185,18 +1126,6 @@
           <AssociationSet Name="FK__BookReply__UserI__2C3393D0" Association="Self.FK__BookReply__UserI__2C3393D0">
             <End Role="Users" EntitySet="Users" />
             <End Role="BookReply" EntitySet="BookReply" />
-          </AssociationSet>
-          <AssociationSet Name="FK__OrderDeta__BookI__1BFD2C07" Association="Self.FK__OrderDeta__BookI__1BFD2C07">
-            <End Role="Books" EntitySet="Books" />
-            <End Role="OrderDetails" EntitySet="OrderDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK__OrderDeta__Order__1B0907CE" Association="Self.FK__OrderDeta__Order__1B0907CE">
-            <End Role="Orders" EntitySet="Orders" />
-            <End Role="OrderDetails" EntitySet="OrderDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Orders__UserID__164452B1" Association="Self.FK__Orders__UserID__164452B1">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
           <AssociationSet Name="FK__RemarkCom__Remar__300424B4" Association="Self.FK__RemarkCom__Remar__300424B4">
             <End Role="Remarks" EntitySet="Remarks" />
@@ -1251,6 +1180,25 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="RemarkReply" EntitySet="RemarkReply" />
           </AssociationSet>
+          <EntitySet Name="Cars" EntityType="jiaoziModel.Cars" />
+          <EntitySet Name="OrderDetails" EntityType="jiaoziModel.OrderDetails" />
+          <EntitySet Name="Orders" EntityType="jiaoziModel.Orders" />
+          <AssociationSet Name="FK_OrderDetails_Books" Association="jiaoziModel.FK_OrderDetails_Books">
+            <End Role="Books" EntitySet="Books" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_OrderDetails" Association="jiaoziModel.FK_Orders_OrderDetails">
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Users" Association="jiaoziModel.FK_Orders_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetails_Users" Association="jiaoziModel.FK_OrderDetails_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Category">
           <Key>
@@ -1292,6 +1240,88 @@
               <PropertyRef Name="UserID" />
             </Principal>
             <Dependent Role="RemarkReply">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Cars">
+          <Key>
+            <PropertyRef Name="CartID" />
+          </Key>
+          <Property Name="CartID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="OrderID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderDetails">
+          <Key>
+            <PropertyRef Name="OrderDetailsID" />
+          </Key>
+          <Property Name="OrderDetailsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BookID" Type="Int32" Nullable="false" />
+          <Property Name="Count" Type="Int32" />
+          <NavigationProperty Name="Books" Relationship="jiaoziModel.FK_OrderDetails_Books" FromRole="OrderDetails" ToRole="Books" />
+          <NavigationProperty Name="Orders" Relationship="jiaoziModel.FK_Orders_OrderDetails" FromRole="OrderDetails" ToRole="Orders" />
+          <Property Name="UserID" Type="Int32" />
+          <NavigationProperty Name="Users" Relationship="jiaoziModel.FK_OrderDetails_Users" FromRole="OrderDetails" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="OrderDetailsID" Type="Int32" Nullable="false" />
+          <Property Name="Tel" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Time" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="OrderDetails" Relationship="jiaoziModel.FK_Orders_OrderDetails" FromRole="Orders" ToRole="OrderDetails" />
+          <NavigationProperty Name="Users" Relationship="jiaoziModel.FK_Orders_Users" FromRole="Orders" ToRole="Users" />
+        </EntityType>
+        <Association Name="FK_OrderDetails_Books">
+          <End Type="jiaoziModel.Books" Role="Books" Multiplicity="1" />
+          <End Type="jiaoziModel.OrderDetails" Role="OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Books">
+              <PropertyRef Name="BookID" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="BookID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_OrderDetails">
+          <End Type="jiaoziModel.OrderDetails" Role="OrderDetails" Multiplicity="1" />
+          <End Type="jiaoziModel.Orders" Role="Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderDetails">
+              <PropertyRef Name="OrderDetailsID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="OrderDetailsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Users">
+          <End Type="jiaoziModel.Users" Role="Users" Multiplicity="1" />
+          <End Type="jiaoziModel.Orders" Role="Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetails_Users">
+          <End Type="jiaoziModel.Users" Role="Users" Multiplicity="0..1" />
+          <End Type="jiaoziModel.OrderDetails" Role="OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="OrderDetails">
               <PropertyRef Name="UserID" />
             </Dependent>
           </ReferentialConstraint>
@@ -1361,18 +1391,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Carts">
-            <EntityTypeMapping TypeName="jiaoziModel.Carts">
-              <MappingFragment StoreEntitySet="Carts">
-                <ScalarProperty Name="CartID" ColumnName="CartID" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="BookID" ColumnName="BookID" />
-                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
-                <ScalarProperty Name="Number" ColumnName="Number" />
-                <ScalarProperty Name="CartFlag" ColumnName="CartFlag" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="News">
             <EntityTypeMapping TypeName="jiaoziModel.News">
               <MappingFragment StoreEntitySet="News">
@@ -1381,28 +1399,6 @@
                 <ScalarProperty Name="News_Content" ColumnName="News_Content" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="News_Time" ColumnName="News_Time" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="OrderDetails">
-            <EntityTypeMapping TypeName="jiaoziModel.OrderDetails">
-              <MappingFragment StoreEntitySet="OrderDetails">
-                <ScalarProperty Name="OrderDetailsID" ColumnName="OrderDetailsID" />
-                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
-                <ScalarProperty Name="BookID" ColumnName="BookID" />
-                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
-                <ScalarProperty Name="Number" ColumnName="Number" />
-                <ScalarProperty Name="Location" ColumnName="Location" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Orders">
-            <EntityTypeMapping TypeName="jiaoziModel.Orders">
-              <MappingFragment StoreEntitySet="Orders">
-                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="OrderTime" ColumnName="OrderTime" />
-                <ScalarProperty Name="Amount" ColumnName="Amount" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1559,6 +1555,38 @@
               <MappingFragment StoreEntitySet="Category">
                 <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
                 <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cars">
+            <EntityTypeMapping TypeName="jiaoziModel.Cars">
+              <MappingFragment StoreEntitySet="Cars">
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="CartID" ColumnName="CartID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderDetails">
+            <EntityTypeMapping TypeName="jiaoziModel.OrderDetails">
+              <MappingFragment StoreEntitySet="OrderDetails">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="BookID" ColumnName="BookID" />
+                <ScalarProperty Name="OrderDetailsID" ColumnName="OrderDetailsID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="jiaoziModel.Orders">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Tel" ColumnName="Tel" />
+                <ScalarProperty Name="OrderDetailsID" ColumnName="OrderDetailsID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

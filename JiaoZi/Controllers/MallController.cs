@@ -68,6 +68,7 @@ namespace JiaoZi.Controllers
         }
 
 
+        //获取数目
         public ActionResult Num(int? UserID)
         {
             UserID = Convert.ToInt32(Session["User_id"]);
@@ -77,10 +78,10 @@ namespace JiaoZi.Controllers
             {
                 foreach (var i in OrderID)
                 {
-                    var orderDetails = db.OrderDetails.Where(o => o.OrderID == i.OrderID);
+                    var orderDetails = db.OrderDetails.Where(o=>o.OrderDetailsID==i.OrderDetailsID);
                     foreach (var q in orderDetails)
                     {
-                        sum += Convert.ToInt32(q.Number);
+                        sum += Convert.ToInt32(q.Count);
                     }
                 }
                 return Content(sum.ToString());
@@ -209,6 +210,14 @@ namespace JiaoZi.Controllers
             //id = Convert.ToInt32(Session["User_id"]);
             var Ordersdetails = imall.OrderDetails(id);
             return PartialView(Ordersdetails);
+        }
+
+
+
+        //加入购物车
+        public ActionResult TakeIn()
+        {
+            return View();
         }
     }
 }

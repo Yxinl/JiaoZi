@@ -97,9 +97,10 @@ namespace JiaoZi.Models
 
         public IEnumerable<OrderDetails> OrderDetails(int id)
         {
-            var order = from p in db.OrderDetails
-                        where p.Orders.UserID == id
-                        select p;
+
+            var order = from q in db.OrderDetails
+                        where q.UserID==id
+                         select q;
             return order.ToList();
         }
     }

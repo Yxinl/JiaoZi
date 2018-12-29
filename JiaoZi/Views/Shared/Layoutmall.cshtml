@@ -119,6 +119,66 @@
             bottom: 0;
             display: none;
         }
+        .footer-dl {
+            width: 1758px;
+            height: 65px;
+            border-top: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+        }
+
+            .footer-dl dl {
+                float: left;
+                width: 210px;
+                margin-top: 5px;
+                margin-right: 75px;
+            }
+
+                .footer-dl dl dt {
+                    float: left;
+                    width: 48px;
+                    height: 48px;
+                    margin-right: 8px;
+                }
+
+                .footer-dl dl dd {
+                    float: left;
+                    height: 48px;
+                    width: 140px;
+                }
+
+                    .footer-dl dl dd p:first-child {
+                        color: red;
+                    }
+
+        footer table {
+            margin: 0 auto;
+            width: 1140px;
+        }
+
+        footer th, td {
+            display: inline-block;
+            width: 84px;
+            margin-right: 200px;
+        }
+
+        .footer-foot p {
+            text-align: center;
+        }
+
+        .footer-foot i {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background: url(images/gwab-icon.png);
+        }
+
+        .footer-foot p:last-child a {
+            display: inline-block;
+            width: 100px;
+            height: 25px;
+        }
     </style>
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 
@@ -161,7 +221,109 @@
     <div>
         @RenderBody()
     </div>
-    <div id="toTop"><img src="~/images/Css/totop.jpg" style="width:50px;height:50px;" title="回到顶部" /></div>
+    <footer>
+        <div id="toTop"><img src="~/images/Css/totop.jpg" style="width:50px;height:50px;" title="回到顶部" /></div>
+        <div style="width:1580px;height: 60px;background-color: azure;margin-top:90px;">
+            <div style="height:60px; width:500px;margin: 0 auto">
+                <div style="height: 1px;width: 140px;margin-left: 70px;margin-top: 30px;border: 1px solid #ccc ;background-color:#ccc; display: inline-block;"></div>
+                <span>  END </span>
+                <div style="width: 140px;height: 1px;border: 1px solid #ccc; background-color:#ccc;display: inline-block;"></div>
+            </div>
+        </div>
+        <div class="footer-dl">
+            <div style="width:1140px;height: 65px;margin:0 auto;">
+                <dl>
+                    <dt>
+                        <img src="~/images/Css/zheng.jpg">
+                    </dt>
+                    <dd>
+                        <p>正品保障</p>
+                        <p>正品保障、提供发票</p>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        <img src="~/images/Css/shandian.jpg">
+                    </dt>
+                    <dd>
+                        <p>急速物流</p>
+                        <p>如约送货、送货入户</p>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        <img src="~/images/Css/dianzan.jpg">
+                    </dt>
+                    <dd>
+                        <p>售后无忧</p>
+                        <p>30天包退、365天包换</p>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        <img src="~/images/Css/wenhao.jpg">
+                    </dt>
+                    <dd>
+                        <p>帮助中心</p>
+                        <p>您的购物指南</p>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+        <div style="width:1758px;">
+            <table>
+                <tr>
+                    <th>购物指南</th>
+                    <th>支付方式</th>
+                    <th>物流配送</th>
+                    <th>售后服务</th>
+                </tr>
+                <tr>
+                    <td>导航演示</td>
+                    <td>阿里支付</td>
+                    <td>免运费政策</td>
+                    <td>退换货政策</td>
+                </tr>
+                <tr>
+                    <td>免费注册</td>
+                    <td>网银支付</td>
+                    <td>物流配送服务</td>
+                    <td>贵就赔</td>
+                </tr>
+                <tr>
+                    <td>常见问题</td>
+                    <td>快捷支付</td>
+                    <td>签收验货</td>
+                    <td>订单修改</td>
+                </tr>
+                <tr>
+                    <td>品牌大全</td>
+                    <td>货到付款</td>
+                    <td>物流查询</td>
+                    <td>我的发票</td>
+                </tr>
+            </table>
+        </div>
+        <div class="footer-foot" style="margin-top:10px;">
+            <p><a href="#">Copyright&copy; 江西师范大学软件学院</a><span>|</span><span style="display:inline-block;width:20px;height:20px;background:url(../images/Css/gwab-icon.png)"></span><span>公安备号：0791-8316800</span></p>
+            <p><span>版权所有:江西师范大学软件学院曾雅琳工作室</span><span>|</span><span>联系电话：13311133333</span></p>
+            <p>
+                <a>
+                    <img src="~/images/Css/chengxin.png">
+                </a>
+                <a>
+                    <img src="~/images/Css/dianxin.jpg">
+                </a>
+                <a>
+                    <img src="~/images/Css/dianzi.png">
+                </a>
+                <a>
+                    <img src="~/images/Css/unicom.png">
+                </a>
+            </p>
+        </div>
+    </footer>
+    
 </body>
 </html>
 @section Scripts {

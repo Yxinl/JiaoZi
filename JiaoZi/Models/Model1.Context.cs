@@ -30,10 +30,7 @@ namespace JiaoZi.Models
         public virtual DbSet<BookComment> BookComment { get; set; }
         public virtual DbSet<BookReply> BookReply { get; set; }
         public virtual DbSet<Books> Books { get; set; }
-        public virtual DbSet<Carts> Carts { get; set; }
         public virtual DbSet<News> News { get; set; }
-        public virtual DbSet<OrderDetails> OrderDetails { get; set; }
-        public virtual DbSet<Orders> Orders { get; set; }
         public virtual DbSet<RemarkComments> RemarkComments { get; set; }
         public virtual DbSet<RemarkReply> RemarkReply { get; set; }
         public virtual DbSet<Remarks> Remarks { get; set; }
@@ -47,5 +44,8 @@ namespace JiaoZi.Models
         public virtual DbSet<VideoResource> VideoResource { get; set; }
         public virtual DbSet<salestop3> salestop3 { get; set; }
         public virtual DbSet<Category> Category { get; set; }
+        public virtual DbSet<Cars> Cars { get; set; }
+        public virtual DbSet<OrderDetails> OrderDetails { get; set; }
+        public virtual DbSet<Orders> Orders { get; set; }
     }
 }

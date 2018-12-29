@@ -12,13 +12,10 @@ namespace JiaoZi.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Carts
+    public partial class Cars
     {
         public int CartID { get; set; }
         public int UserID { get; set; }
-        public int BookID { get; set; }
-        public Nullable<double> UnitPrice { get; set; }
-        public Nullable<int> Number { get; set; }
-        public bool CartFlag { get; set; }
+        public int OrderID { get; set; }
     }
 }

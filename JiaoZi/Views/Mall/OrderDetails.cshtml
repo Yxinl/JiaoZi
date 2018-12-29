@@ -4,7 +4,7 @@
 <table class="table">
     <tr>
         <th>
-            <input type="checkbox" name="all" />全选
+            <input type="checkbox" id="all" />全选
         </th>
         <th style="padding-left:40px;">
             图片
@@ -24,7 +24,7 @@
 
     @foreach (var item in Model)
     {
-        var sum = item.Number * item.UnitPrice;
+        var sum = item.Books.Price * item.Count;
         <tr>
             <td>
                <input type="checkbox" name="check" value="@sum" />
@@ -33,10 +33,10 @@
                 <img src="~/@item.Books.BookImage" style="height:110px;" />
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Number)
+                @Html.DisplayFor(modelItem => item.Count)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.UnitPrice)
+                @Html.DisplayFor(modelItem => item.Books.Price)
             </td>
             <td class="sum">
                 @sum
@@ -63,12 +63,20 @@
         al.click(function () {
             if ($(this).is(":checked")) {
                 for (var i = 1; i < checks.length; i++) {
-                    $(checks[i]).attr("checked", true);
+                    if (!$(checks[i]).is(":checked")) {
+                        $(checks[i]).prop("checked", true);
+                        sum = parseFloat(sum) + parseFloat($(checks[i]).val());
+                        total.attr("value", sum);
+                    }
                 }
             }
             else {
                 for (var i = 1; i < checks.length; i++) {
-                    $(checks[i]).attr("checked", false);
+                    if ($(checks[i]).is(":checked")) {
+                        $(checks[i]).prop("checked", false);
+                        sum = parseFloat(sum) - parseFloat($(checks[i]).val());
+                        total.attr("value", sum);
+                    }
                 }
             }
         })
@@ -76,13 +84,14 @@
             checks[i].onclick = function () {
                 if (this.checked) {
                     sum = parseFloat(sum) + parseFloat(this.value);
-                    total.attr("value", sum);                
+                    total.attr("value", sum);
                 }
                 else {
                     sum = parseFloat(sum) - parseFloat(this.value);
-                    total.attr("value", sum);                
+                    total.attr("value", sum);
                 }
             }
         };
     }) 
+
 </script>

@@ -183,7 +183,7 @@
     <Compile Include="Models\Books.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Carts.cs">
+    <Compile Include="Models\Cars.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Category.cs">
@@ -376,12 +376,21 @@
     <Content Include="images\Books\99.jpg" />
     <Content Include="images\Css\bg.png" />
     <Content Include="images\Css\bjt.jpg" />
+    <Content Include="images\Css\chengxin.png" />
+    <Content Include="images\Css\dianxin.jpg" />
+    <Content Include="images\Css\dianzan.jpg" />
+    <Content Include="images\Css\dianzi.png" />
+    <Content Include="images\Css\gwab-icon.png" />
     <Content Include="images\Css\head.jpg" />
     <Content Include="images\Css\Logo.jpg" />
     <Content Include="images\Css\lunbo1.jpg" />
     <Content Include="images\Css\lunbo2.jpg" />
     <Content Include="images\Css\lunbo3.jpg" />
+    <Content Include="images\Css\shandian.jpg" />
     <Content Include="images\Css\totop.jpg" />
+    <Content Include="images\Css\unicom.png" />
+    <Content Include="images\Css\wenhao.jpg" />
+    <Content Include="images\Css\zheng.jpg" />
     <Content Include="images\Head\1.jpg" />
     <Content Include="images\Mall\logo.jpg" />
     <Content Include="images\Mall\tx.jpg" />

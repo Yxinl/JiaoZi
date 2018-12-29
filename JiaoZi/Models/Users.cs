@@ -21,7 +21,6 @@ namespace JiaoZi.Models
             this.Attention1 = new HashSet<Attention>();
             this.BookComment = new HashSet<BookComment>();
             this.BookReply = new HashSet<BookReply>();
-            this.Orders = new HashSet<Orders>();
             this.RemarkComments = new HashSet<RemarkComments>();
             this.Remarks = new HashSet<Remarks>();
             this.Shuoshuo = new HashSet<Shuoshuo>();
@@ -30,6 +29,8 @@ namespace JiaoZi.Models
             this.Text = new HashSet<Text>();
             this.Video = new HashSet<Video>();
             this.RemarkReply = new HashSet<RemarkReply>();
+            this.Orders = new HashSet<Orders>();
+            this.OrderDetails = new HashSet<OrderDetails>();
         }
     
         public int UserID { get; set; }
@@ -53,8 +54,6 @@ namespace JiaoZi.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BookReply> BookReply { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Orders> Orders { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RemarkComments> RemarkComments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Remarks> Remarks { get; set; }
@@ -70,5 +69,9 @@ namespace JiaoZi.Models
         public virtual ICollection<Video> Video { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RemarkReply> RemarkReply { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Orders> Orders { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrderDetails> OrderDetails { get; set; }
     }
 }

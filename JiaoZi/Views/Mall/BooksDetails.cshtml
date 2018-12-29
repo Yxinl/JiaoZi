@@ -66,14 +66,23 @@
         <h4 style="color:dimgray">江浙沪顺丰包邮</h4>
         <div style="height:40px;width:100%;margin-top:20px;">
             <span>数量：</span>
-            <input type="number" min="0",max="@Model.b.Amount"  style="width:80px;"/>   
+            <input type="number" min="1" max="@Model.b.Amount" value="1" style="width:80px;" id="number" />
+            @using(Ajax.BeginForm("TakeIn","Mall",new AjaxOptions()
+            {
+             HttpMethod="Post",
+
+            }))
+            {
             <div style="margin-top:10px;">
                 <span>库存：</span>
-                <span>@Model.b.Amount</span>
+                <span id="kucun">@Model.b.Amount</span>
+                <div style="margin-top:10px;">
+                    <button style="background-color:red; color:white;" class="btn btn-default" id="jrgwc" onclick="fn()">加入购物车</button>
+                </div>
             </div>
+            }
             <div class="Anniu" style="margin-top:10px;">
-                <button style="background-color:red; color:white;" class="btn btn-default" id="jrgwc">加入购物车</button>
-                <button style="background-color:red; color:white;" class="btn btn-default" id="buy">直接购买</button>
+                <button style="background-color:red; color:white;" class="btn btn-default" id="buy" onclick="fn()">直接购买</button>
             </div>
         </div>
     </div>
@@ -97,12 +106,16 @@
     <div class="Reply">  
         @*@Html.Action("Reply", "Mall")*@
     </div>
-  
 </div>
-
 <script>
     function complete() {
         window.location.reload();
     }
-
+    function fn() {
+        var number = $("#number").val();
+        var kucun = $("#kucun").val();
+        if (number > kucun) {
+            alert("库存不足，请选择适当数量！");
+        }
+    }
 </script>
