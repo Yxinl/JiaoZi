@@ -12,6 +12,8 @@ namespace JiaoZi.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class jiaoziEntities : DbContext
     {
@@ -27,8 +29,6 @@ namespace JiaoZi.Models
     
         public virtual DbSet<Advice> Advice { get; set; }
         public virtual DbSet<Attention> Attention { get; set; }
-        public virtual DbSet<BookComment> BookComment { get; set; }
-        public virtual DbSet<BookReply> BookReply { get; set; }
         public virtual DbSet<Books> Books { get; set; }
         public virtual DbSet<News> News { get; set; }
         public virtual DbSet<RemarkComments> RemarkComments { get; set; }
@@ -44,8 +44,31 @@ namespace JiaoZi.Models
         public virtual DbSet<VideoResource> VideoResource { get; set; }
         public virtual DbSet<salestop3> salestop3 { get; set; }
         public virtual DbSet<Category> Category { get; set; }
-        public virtual DbSet<Cars> Cars { get; set; }
         public virtual DbSet<OrderDetails> OrderDetails { get; set; }
+        public virtual DbSet<Cars> Cars { get; set; }
         public virtual DbSet<Orders> Orders { get; set; }
+        public virtual DbSet<BookComment> BookComment { get; set; }
+        public virtual DbSet<BookRelpy> BookRelpy { get; set; }
+    
+        public virtual int Car_buy(string userId, string userName, string userPhone, string address)
+        {
+            var userIdParameter = userId != null ?
+                new ObjectParameter("UserId", userId) :
+                new ObjectParameter("UserId", typeof(string));
+    
+            var userNameParameter = userName != null ?
+                new ObjectParameter("UserName", userName) :
+                new ObjectParameter("UserName", typeof(string));
+    
+            var userPhoneParameter = userPhone != null ?
+                new ObjectParameter("UserPhone", userPhone) :
+                new ObjectParameter("UserPhone", typeof(string));
+    
+            var addressParameter = address != null ?
+                new ObjectParameter("Address", address) :
+                new ObjectParameter("Address", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Car_buy", userIdParameter, userNameParameter, userPhoneParameter, addressParameter);
+        }
     }
 }

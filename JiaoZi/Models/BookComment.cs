@@ -17,7 +17,7 @@ namespace JiaoZi.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public BookComment()
         {
-            this.BookReply = new HashSet<BookReply>();
+            this.BookRelpy = new HashSet<BookRelpy>();
         }
     
         public int BookCommentID { get; set; }
@@ -29,6 +29,6 @@ namespace JiaoZi.Models
         public virtual Books Books { get; set; }
         public virtual Users Users { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BookReply> BookReply { get; set; }
+        public virtual ICollection<BookRelpy> BookRelpy { get; set; }
     }
 }

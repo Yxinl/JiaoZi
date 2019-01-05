@@ -9,13 +9,13 @@ namespace JiaoZi.Models
     {
         public IEnumerable<BookComment> Bc{ get;set;}
         public string Comment_Content { get; set; }
-        public Books b { get; set; }
+        public Books B { get; set; }
         public BooksDetails(int id)
         {
             
             jiaoziEntities db = new jiaoziEntities();
             Bc = db.BookComment.Where(o => o.BookID == id);
-            b = db.Books.Where(b => b.BookID == id).FirstOrDefault();
+            B= db.Books.Where(b => b.BookID == id).FirstOrDefault();
         }
         
     }

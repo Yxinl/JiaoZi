@@ -1,14 +1,103 @@
-﻿@model IEnumerable<JiaoZi.Models.BookReply>
+﻿@model IEnumerable<JiaoZi.Models.BookRelpy>
 
+<style>
+    .replycontent {
+        margin-left: 40px;
+    }
 
-@foreach(var i in Model)
+    .Repl_box {
+        width: 300px;
+        height: 50px;
+        display: none;
+    }
+
+    .Reply_text {
+        margin: 0 auto;
+        width: 200px;
+        height: 30px;
+    }
+</style>
+
+@foreach (var i in Model)
 {
-   <div class="replybox">
-       <dl class="replylist">
-           <dd class="replycontent">
-               <a class="replyhead">@i.BookComment.Users.UserName</a>回复 <a class="replyhead">@i.BookComment.Users.UserName</a>
-               <div class="content">@i.Reply_Content</div>
-           </dd>
-       </dl>
-   </div>
+    <div class="replybox">
+        <dl class="replylist">
+            <dd class="replycontent">
+                <a class="replyhead" data-id="@i.Ruser_ID" data-Bookid="@i.BookCommentID">@i.Users1.UserName</a>回复 <a class="replyhead">@i.Users.UserName</a>             
+                <span class="content">@i.Reply_Content.Trim()</span>
+            </dd>
+            <dd>
+                <span><span style="margin-left:700px;">@i.Reply_Time</span><button class="Re_tishi">回复</button></span>
+                <div class="Repl_box">
+                    <textarea class="Reply_text"></textarea>
+                    <button type="button" class="Re_tijiao">提交</button>
+                </div>
+            </dd>
+        </dl>
+    </div>
 }
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script>
+    $(function () {
+        var Re_tijiaos = $(".Re_tijiao");
+        var Re_tishis = $(".Re_tishi");
+        for (var i = 0; i < Re_tishis.length; i++) {
+            $(Re_tishis[i]).click(function () {
+                if ($(this).parent("span").eq(0).next(".Repl_box").css("display") === "none") {
+                    $(this).parent("span").eq(0).next(".Repl_box").show()
+                }
+                else
+                    $(this).parent("span").eq(0).next(".Repl_box").hide()
+            })
+            for (var m = 0; m < Re_tijiaos.length; m++) {
+                $(Re_tijiaos[m]).click(function () {
+                        var ReID = $(this).parents("dl").eq(0).find("a").eq(0).attr("data-id");
+                        var BookID = $(this).parents("dl").eq(0).find("a").eq(0).attr("data-Bookid");
+                        var Rep_Content = $(this).prev();
+                        $.ajax({
+                            type: 'Post',
+                            //dataType:'json',
+                            url: "/Mall/Reply",
+                            data: {
+                                "id": BookID,
+                                "ReID": ReID,
+                                "Re_Content": Rep_Content.val(),
+                            },
+                            success: function (data) {
+                                $(this).parents(".Reply").eq(0).html(data);
+                                //alert(data);
+                                //window.history.go(0);
+                            },
+                            error: function () {
+                                alert("回复失败");
+                            }
+
+                        })
+                    })
+                }
+            //$(".Re_tijiao").each(function () {
+            //    $(this).click(function () {
+            //        var ReID = $(this).parents("dl").eq(0).find("a").eq(0).attr("data-id");
+            //        var Rep_Content = $(this).prev();
+                    
+            //        $.ajax({
+            //            type: 'Post',
+            //            url: "/Mall/Reply",
+            //            data: {
+            //                "ReID": ReID,
+            //                "Re_Content": Rep_Content.val(),
+            //            },
+            //            success: function (data) {
+            //                $(this).parents(".replybox").eq(0).html(data);          
+            //            },
+            //            error: function () {
+            //                alert("回复失败");
+            //            }
+                        
+            //        })
+            //    })
+            //})
+
+        }
+    })
+</script>

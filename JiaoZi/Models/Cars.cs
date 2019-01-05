@@ -15,7 +15,12 @@ namespace JiaoZi.Models
     public partial class Cars
     {
         public int CartID { get; set; }
+        public int BookID { get; set; }
         public int UserID { get; set; }
-        public int OrderID { get; set; }
+        public int Count { get; set; }
+        public int flag { get; set; }
+    
+        public virtual Books Books { get; set; }
+        public virtual Users Users { get; set; }
     }
 }

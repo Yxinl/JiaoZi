@@ -12,15 +12,17 @@ namespace JiaoZi.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class BookReply
+    public partial class BookRelpy
     {
         public int BookReplyID { get; set; }
         public int BookCommentID { get; set; }
         public int UserID { get; set; }
         public Nullable<System.DateTime> Reply_Time { get; set; }
         public string Reply_Content { get; set; }
+        public int Ruser_ID { get; set; }
     
         public virtual BookComment BookComment { get; set; }
         public virtual Users Users { get; set; }
+        public virtual Users Users1 { get; set; }
     }
 }

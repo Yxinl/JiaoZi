@@ -7,8 +7,6 @@
       <Diagram DiagramId="c8ed567810624c43a67e16faaad0b72e" Name="Diagram1">
         <EntityTypeShape EntityType="jiaoziModel.Advice" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="jiaoziModel.Attention" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="jiaoziModel.BookComment" Width="1.5" PointX="6" PointY="12.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="jiaoziModel.BookReply" Width="1.5" PointX="8.25" PointY="12.625" IsExpanded="true" />
         <EntityTypeShape EntityType="jiaoziModel.Books" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="jiaoziModel.News" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="jiaoziModel.RemarkComments" Width="1.5" PointX="5.25" PointY="16.5" IsExpanded="true" />
@@ -25,10 +23,6 @@
         <EntityTypeShape EntityType="jiaoziModel.salestop3" Width="1.5" PointX="9.75" PointY="3.75" IsExpanded="true" />
         <AssociationConnector Association="jiaoziModel.FK__Attention__Atten__4F7CD00D" ManuallyRouted="false" />
         <AssociationConnector Association="jiaoziModel.FK__Attention__UserI__4E88ABD4" ManuallyRouted="false" />
-        <AssociationConnector Association="jiaoziModel.FK__BookComme__BookI__286302EC" ManuallyRouted="false" />
-        <AssociationConnector Association="jiaoziModel.FK__BookComme__UserI__276EDEB3" ManuallyRouted="false" />
-        <AssociationConnector Association="jiaoziModel.FK__BookReply__BookC__2B3F6F97" ManuallyRouted="false" />
-        <AssociationConnector Association="jiaoziModel.FK__BookReply__UserI__2C3393D0" ManuallyRouted="false" />
         <AssociationConnector Association="jiaoziModel.FK__RemarkCom__Remar__300424B4" ManuallyRouted="false" />
         <AssociationConnector Association="jiaoziModel.FK__RemarkCom__UserI__2F10007B" ManuallyRouted="false" />
         <AssociationConnector Association="jiaoziModel.FK__Remarks__UserID__24927208" ManuallyRouted="false" />
@@ -43,14 +37,23 @@
         <AssociationConnector Association="jiaoziModel.FK__Books__CategoryI__5441852A" />
         <AssociationConnector Association="jiaoziModel.FK__RemarkRep__Remar__44FF419A" />
         <AssociationConnector Association="jiaoziModel.FK__RemarkRep__UserI__45F365D3" />
-        <EntityTypeShape EntityType="jiaoziModel.Cars" Width="1.5" PointX="0.75" PointY="8.75" />
         <EntityTypeShape EntityType="jiaoziModel.OrderDetails" Width="1.5" PointX="0.75" PointY="17.875" />
-        <EntityTypeShape EntityType="jiaoziModel.Orders" Width="1.5" PointX="3" PointY="12.5" />
         <AssociationConnector Association="jiaoziModel.FK_OrderDetails_Books" />
-        <AssociationConnector Association="jiaoziModel.FK_Orders_OrderDetails" />
-        <AssociationConnector Association="jiaoziModel.FK_Orders_Users" />
         <AssociationConnector Association="jiaoziModel.FK_OrderDetails_Users" />
-      </Diagram>
+        <EntityTypeShape EntityType="jiaoziModel.Cars" Width="1.5" PointX="5.25" PointY="8.125" />
+        <AssociationConnector Association="jiaoziModel.FK_Cars_Books" />
+        <AssociationConnector Association="jiaoziModel.FK_Cars_Users" />
+        <EntityTypeShape EntityType="jiaoziModel.Orders" Width="1.5" PointX="3" PointY="12.75" />
+        <AssociationConnector Association="jiaoziModel.FK_OrderDetails_Orders" />
+        <AssociationConnector Association="jiaoziModel.FK_Orders_Users" />
+        <EntityTypeShape EntityType="jiaoziModel.BookComment" Width="1.5" PointX="8.25" PointY="10.125" />
+        <EntityTypeShape EntityType="jiaoziModel.BookRelpy" Width="1.5" PointX="10.5" PointY="9.25" />
+        <AssociationConnector Association="jiaoziModel.FK__BookComme__BookI__3B75D760" />
+        <AssociationConnector Association="jiaoziModel.FK__BookComme__UserI__3C69FB99" />
+        <AssociationConnector Association="jiaoziModel.FK_BookRelpy_BookComment" />
+        <AssociationConnector Association="jiaoziModel.FK_BookRelpy_Users" />
+        <AssociationConnector Association="jiaoziModel.FK_BookRelpy_Users1" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

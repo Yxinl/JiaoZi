@@ -15,10 +15,18 @@ namespace JiaoZi.Models
         IEnumerable<Category> Category();
         IEnumerable<Books> GetBooksByPrice();
         IEnumerable<Books> GetBooksByTime();
-        void AddBooks(Books books);
+        void AddBooks(int Num, int BookID, int UserID);
         IEnumerable<Books> GetBooksByCategory(int id);
         void AddComment(BookComment comment);
-        IEnumerable<Orders> Orders(int? id);
+        IEnumerable<Cars> Cars(int? id);
+        IEnumerable<Orders> Ord(int? id);
         IEnumerable<OrderDetails> OrderDetails(int? id);
+        Cars Pay(int? id, DateTime dateTime,int ID);
+        void Order(string Name, string Add, string Tel, string total, int id, DateTime dateTime);
+        void Update(int Num, int CarID);
+        void Delete(int CartID);
+        void DirectBuy(int BookID, DateTime dateTime, int ID, int Num);
+        void BbookComments(int UserID, int BookID, string Comment_Content, DateTime dateTime);
+        IEnumerable<BookRelpy> BookReply(int id,  string Re_Content, int ReID, int UserID, DateTime dateTime);
     }
 }

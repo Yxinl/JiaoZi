@@ -2,6 +2,7 @@
 using JiaoZi.Models;
 using PagedList;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -69,20 +70,15 @@ namespace JiaoZi.Controllers
 
 
         //获取数目
-        public ActionResult Num(int? UserID)
+        public ActionResult Num()
         {
-            UserID = Convert.ToInt32(Session["User_id"]);
-            var OrderID = db.Orders.Where(o => o.UserID == UserID);
+            int? UserID = Convert.ToInt32(Session["User_id"]);        
             int sum = 0;
-            if (UserID != null)
+            if (UserID!=null)
             {
-                foreach (var i in OrderID)
+                foreach(var i in db.Cars.Where(o=>o.UserID==UserID))
                 {
-                    var orderDetails = db.OrderDetails.Where(o=>o.OrderDetailsID==i.OrderDetailsID);
-                    foreach (var q in orderDetails)
-                    {
-                        sum += Convert.ToInt32(q.Count);
-                    }
+                    sum += Convert.ToInt32(i.Count);
                 }
                 return Content(sum.ToString());
             }
@@ -90,11 +86,11 @@ namespace JiaoZi.Controllers
             return Content(0.ToString());
         }
 
-        //根据ID查某本图书
+        //根据ID查某本图书的详情及所有评论
         public ActionResult BooksDetails(int id)
         {
             Session["BookID"] = id;
-            BooksDetails a = new BooksDetails(id);
+            var a = db.Books.Where(o => o.BookID == id).FirstOrDefault();
             return View(a);
         }
 
@@ -128,78 +124,216 @@ namespace JiaoZi.Controllers
             return View(books);
         }
 
-        public ActionResult Comment(int BookID)
+
+        //显示评论
+        public ActionResult Comment()
         {
-            BookID = Convert.ToInt32(Session["BookID"]);
-            var comment = db.BookComment.Where(x => x.BookID == BookID);
+            int id = Convert.ToInt32(Session["BookID"]);
+            var comment = db.BookComment.Where(x => x.BookID == id);
             return PartialView(comment);
         }
 
 
-        //需重写
+        //异步评论  代码有待改进 
         [HttpPost]
         [Login]
-        public ActionResult Comment(BookComment comment)
+        public ActionResult Comment(BookComment comment,  int CommentBookID, string Comment_Content)
         {
-            #region
-            int BookID = Convert.ToInt32(Session["BookID"]);
-            BooksDetails a = new BooksDetails(BookID);
+            #region       
+            BooksDetails a = new BooksDetails(CommentBookID);
             int UserID;
             var UserComment = a.Bc;
-            ViewBag.Comment = UserComment;
-            if (Session["User_id"] != null)
-            {
+            ViewBag.Comment = UserComment;          
                 UserID = Convert.ToInt32(Session["User_id"]);
-                string textarea = Request["Comment_Content"];
+                //string textarea = Request["Comment_Content"];
                 if (ModelState.IsValid)
                 {
-                    if (textarea != "")
+                    if (Comment_Content!= "")
                     {
                         comment.UserID = UserID;
-                        comment.BookID = BookID;
-                        comment.Comment_Content = textarea;
+                        comment.BookID = CommentBookID;
+                        comment.Comment_Content = Comment_Content;
                         comment.Comment_Time = System.DateTime.Now;
                         imall.AddComment(comment);
                         UserComment = a.Bc;
-                        ViewBag.Comment = UserComment;
-                        Session["tishi"] = "评论成功";
-                        return PartialView(ViewBag.Comment as IEnumerable<BooksDetails>);
-                    }
-                    else
-                    {
-                        Session["tishi"] = "评论不能为空";
-                        return PartialView(ViewBag.Comment as IEnumerable<BooksDetails>);
-                    }
-
+                    ViewBag.Comment = UserComment;                   
+                    return PartialView(ViewBag.Comment as IEnumerable<BookComment>);
+                   
                 }
-                return PartialView(ViewBag.Comment as IEnumerable<BooksDetails>);
+                    else
+                    {                     
+                    return PartialView(ViewBag.Comment as IEnumerable<BookComment>);
+                }
+                }
+                    return PartialView(ViewBag.Comment as IEnumerable<BookComment>);
+            #endregion
 
+        }
+
+        //评论的实验代码
+        #region
+        //  [HttpPost]
+        //  [Login]
+        //  public ActionResult Comment()
+        //   {
+        //    int BookID = Convert.ToInt32(Request.Form["Comment_BookID"].ToString());
+        //    BooksDetails a = new BooksDetails(BookID);
+        //    int UserID;
+        //    var UserComment = a.Bc;
+        //    ViewBag.Comment = UserComment;
+        //    if (Session["User_id"]!=null)
+        //        {
+        //        UserID = Convert.ToInt32(Session["User_id"]);
+        //        string textarea = Request["Comment_Content"];
+        //        DateTime dateTime = System.DateTime.Now;
+        //        if(textarea!=null)
+        //        {
+        //            imall.bookComments(UserID, BookID, textarea, dateTime);
+        //            return PartialView(UserComment);
+        //        }
+        //        else
+        //        {
+        //            return Content("<script>alert(评论不能为空')</script>");
+        //        }
+        //    }
+        //    return Content("<script>alert('请先登录');window.location.href='../UserInfo/RegisteLogin';</script>");
+        //}
+        #endregion
+
+        //显示回复    
+        public ActionResult Reply(int id)
+        {
+            var BooksReply = db.BookRelpy.Where(o => o.BookCommentID == id);
+          //var BookID = Convert.ToInt32(Session["BookID"]);
+           // var Comments = db.BookComment.Where(o=>o.BookID==BookID);
+           //if(Comments.Count()>0)
+           // {
+           //     //int k = 0;
+           //     ArrayList arrayList = new ArrayList();
+           //     //BookReply[] CommentReply = null;
+           //     foreach (var i in Comments)
+           //     {
+           //         var Comment = db.BookReply.Where(o => o.BookCommentID == i.BookCommentID).FirstOrDefault();
+           //         arrayList.Add(Comment);
+           //         //CommentReply[k++]=Comment;
+           //     }
+           //     return PartialView(arrayList);
+           // }
+           // else
+            //var CommentReply = db.BookReply.Where(o => o.)
+            //var BookCommentID = db.BookComment.Where(o => o.BookID == BookID).FirstOrDefault().BookCommentID;
+            //var ReplyComment = db.BookReply.Where(o => o.BookCommentID == BookCommentID).ToList();
+            //ViewBag.ReplyComment = ReplyComment;
+            return PartialView(BooksReply.ToList());
+        }
+
+        #region
+        //[HttpPost]
+        //[Login]
+        //public JsonResult Reply(int id, string Re_Content, int ReID)
+        //{
+        //    int UserID = Convert.ToInt32(Session["User_id"]);
+        //    DateTime dateTime = System.DateTime.Now;
+        //    AjaxMsg msg = new AjaxMsg()
+        //    {
+        //        Mess = "更改成功"
+        //    };
+        //    if (Re_Content == "")
+        //    {
+        //        return base.Json("回复失败");
+        //    }
+        //    else
+        //        imall.BookReply(id, Re_Content, ReID, UserID, dateTime);
+        //    //var BooksReply = db.BookRelpy.Where(o => o.BookCommentID == id);
+        //    return base.Json(msg);
+        //}
+        #endregion
+        #region
+        [HttpPost]
+        [Login]
+        public ActionResult Reply(int id, string Re_Content, int ReID)
+        {
+            int UserID = Convert.ToInt32(Session["User_id"]);
+            DateTime dateTime = System.DateTime.Now;
+            IEnumerable<BookRelpy> a;
+            if (Re_Content == "")
+            {
+                return Content("<script>alert(评论不能为空')</script>");
+            }
+            else
+            a=  imall.BookReply(id, Re_Content, ReID, UserID, dateTime);
+            //var BooksReply = db.BookRelpy.Where(o => o.BookCommentID == id);
+            return PartialView(a);
+        }
+        #endregion
+
+        //显示购物车购物车
+        public ActionResult Cars()
+         {
+            var id = Convert.ToInt32(Session["User_id"]);
+            var cars = imall.Cars(id);
+            return View(cars);
+         }
+
+        //加入购物车
+        [HttpPost]
+        [Login]
+        public ActionResult Cars(int BookID)
+        {
+            int ID = Convert.ToInt32(Session["User_id"]);
+            var number = Convert.ToInt32(Request.Form["number"].ToString());
+            var count = db.Books.Find(BookID).Amount;
+            if (number > count)
+            {
+                return Content("<script>alert('库存不足，加入失败');history.go(-1);</script>");
             }
             else
             {
-                return Content("<script>alert('请先登录');;window.location.href='../Default/RegisteLogin';</script>");
+                imall.AddBooks(number, BookID, ID);
+               
+                return Content("<script>alert('加入成功');window.location.href='../Mall/index';</script>");
             }
-            #endregion
-            //var BookID=Session[""]
         }
 
-        //回复    
-        //public ActionResult Reply(int? BookID)
-        //{
-        //    BookID = Convert.ToInt32(Session["BookID"]);
-        //    var BookCommentID = db.BookComment.Where(o => o.BookID == BookID).FirstOrDefault().BookCommentID;
-        //    var ReplyComment = db.BookReply.Where(o => o.BookCommentID == BookCommentID).ToList();
-        //    ViewBag.ReplyComment = ReplyComment;
-        //    return PartialView(ReplyComment);
-        //}
 
+        //修改数量
+        [Login]
+        public JsonResult UpdateCar(string  Num,int CarID)
+        {
+            int num = Convert.ToInt32(Num);
+            imall.Update(num, CarID);
+            AjaxMsg msg = new AjaxMsg()
+            {
+                Mess = "更改成功"
+            };
+            return base.Json(msg);
+        }
 
-        //显示订单
+        //删除某条订单
+        [Login]
+        public JsonResult DeleteCar(int CarID)
+        {
+            imall.Delete(CarID);
+            AjaxMsg msg = new AjaxMsg()
+            {
+                Mess = "删除成功"
+            };
+            return base.Json(msg);
+
+        }
+
+        //显示已购订单
         [Login]
         public ActionResult Order(int? id)
         {
-            var orders = imall.Orders(id);
-            return View(orders);
+            
+            var orders = imall.Ord(id);
+            if (orders.Count() > 0)
+            {
+                return View(orders);
+            }
+            else
+                return View();
         }
 
 
@@ -207,17 +341,48 @@ namespace JiaoZi.Controllers
         [Login]
         public ActionResult OrderDetails(int? id)
         {
-            //id = Convert.ToInt32(Session["User_id"]);
             var Ordersdetails = imall.OrderDetails(id);
-            return View(Ordersdetails);
+            return PartialView(Ordersdetails);
+        }
+    
+
+
+        //完成订单
+        //参数分别传cartID,姓名，地址，电话，价格     下文ID为用户ID
+        [HttpPost]
+        [Login]
+        public JsonResult Buy(int[] a,string Name,string Add,string Tel,string Total)
+        {
+            int ID = Convert.ToInt32(Session["User_id"]);
+            var datetime = System.DateTime.Now;
+            imall.Order(Name, Add, Tel, Total, ID, datetime);
+            for (int i=0;i<a.Length;i++)
+            {             
+                imall.Pay(a[i],datetime,ID);           
+            }
+            AjaxMsg msg = new AjaxMsg()
+            {
+                Mess = "下单成功"
+            };        
+            return base.Json(msg);
         }
 
 
-
-        //加入购物车
-        public ActionResult TakeIn()
+        //直接购买
+        [HttpPost]
+        [Login]
+        public JsonResult DirectBuy(int BoID, string Name, string Add, string Tel, string Total,string Num)
         {
-            return View();
+            int ID = Convert.ToInt32(Session["User_id"]);
+            int num = Convert.ToInt32(Num);
+            var datetime = System.DateTime.Now;
+            imall.Order(Name, Add, Tel, Total, ID, datetime);
+            imall.DirectBuy(BoID, datetime, ID, num);
+            AjaxMsg msg = new AjaxMsg()
+            {
+                Mess = "下单成功"
+            };
+            return base.Json(msg);
         }
     }
 }

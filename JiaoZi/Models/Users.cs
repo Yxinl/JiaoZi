@@ -19,8 +19,6 @@ namespace JiaoZi.Models
         {
             this.Attention = new HashSet<Attention>();
             this.Attention1 = new HashSet<Attention>();
-            this.BookComment = new HashSet<BookComment>();
-            this.BookReply = new HashSet<BookReply>();
             this.RemarkComments = new HashSet<RemarkComments>();
             this.Remarks = new HashSet<Remarks>();
             this.Shuoshuo = new HashSet<Shuoshuo>();
@@ -29,8 +27,12 @@ namespace JiaoZi.Models
             this.Text = new HashSet<Text>();
             this.Video = new HashSet<Video>();
             this.RemarkReply = new HashSet<RemarkReply>();
-            this.Orders = new HashSet<Orders>();
             this.OrderDetails = new HashSet<OrderDetails>();
+            this.Cars = new HashSet<Cars>();
+            this.Orders = new HashSet<Orders>();
+            this.BookComment = new HashSet<BookComment>();
+            this.BookRelpy = new HashSet<BookRelpy>();
+            this.BookRelpy1 = new HashSet<BookRelpy>();
         }
     
         public int UserID { get; set; }
@@ -50,10 +52,6 @@ namespace JiaoZi.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Attention> Attention1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BookComment> BookComment { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BookReply> BookReply { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RemarkComments> RemarkComments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Remarks> Remarks { get; set; }
@@ -70,8 +68,16 @@ namespace JiaoZi.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RemarkReply> RemarkReply { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrderDetails> OrderDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Cars> Cars { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Orders> Orders { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderDetails> OrderDetails { get; set; }
+        public virtual ICollection<BookComment> BookComment { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BookRelpy> BookRelpy { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BookRelpy> BookRelpy1 { get; set; }
     }
 }

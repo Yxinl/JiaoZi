@@ -14,20 +14,14 @@ namespace JiaoZi.Models
     
     public partial class OrderDetails
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public OrderDetails()
-        {
-            this.Orders = new HashSet<Orders>();
-        }
-    
         public int OrderDetailsID { get; set; }
         public int BookID { get; set; }
         public Nullable<int> Count { get; set; }
         public Nullable<int> UserID { get; set; }
+        public int OrderId { get; set; }
     
         public virtual Books Books { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Orders> Orders { get; set; }
         public virtual Users Users { get; set; }
+        public virtual Orders Orders { get; set; }
     }
 }

@@ -74,34 +74,218 @@ namespace JiaoZi.Models
         }
 
        
-        //添加图书
-        public void AddBooks(Books books)
+        //添加购物车
+        public void AddBooks(int Num,int BookID,int UserID)
         {
-            db.Books.Add(books);
-            db.SaveChanges();
+            var Books = db.Cars.Where(o => o.BookID == BookID).FirstOrDefault();
+            if (Books == null)
+            {
+                var cars = new Cars()
+                {
+                    BookID = BookID,
+                    UserID = UserID,
+                    Count = Num,
+                };
+                db.Cars.Add(cars);
+                db.SaveChanges();
+            }
+            else
+            {
+                Books.Count = Books.Count + Num;
+                db.SaveChanges();
+            }
         }
 
+
+        //发表评论 正式代码
         public void AddComment(BookComment comment)
         {
             db.BookComment.Add(comment);
             db.SaveChanges();
         }
 
-        public IEnumerable<Orders> Orders(int? id)
+        //发表评论 实验代码  可删除
+        public void BbookComments(int UserID, int BookID, string Comment_Content, DateTime dateTime)
         {
-            var Orders = from p in db.Orders
-                         where p.UserID == id
-                         select p;
-            return Orders.ToList();
+            var bookComment = new BookComment()
+            {
+                UserID = UserID,
+                BookID = BookID,
+                Comment_Content = Comment_Content,
+                Comment_Time = dateTime
+            };
+            db.BookComment.Add(bookComment);
+            db.SaveChanges();
         }
 
+        public IEnumerable<BookRelpy> BookReply(int id, string Re_Content, int ReID,int UserID,DateTime dateTime)
+        {
+            var bookreply = new BookRelpy()
+            {
+                BookCommentID = id,
+                UserID = UserID,
+                Reply_Time = dateTime,
+                Reply_Content = Re_Content,
+                Ruser_ID = ReID,
+            };
+            db.BookRelpy.Add(bookreply);
+            db.SaveChanges();
+            var replys = db.BookRelpy.Where(o => o.BookCommentID == id);
+            return replys.ToList();
+        }
+
+        //查询购物车
+        public IEnumerable<Cars> Cars(int? id)
+        {
+            var cars = from q in db.Cars
+                       where q.UserID == id
+                       select q;
+            return cars.ToList();
+        }
+
+
+        //查询用户订单
+        public IEnumerable<Orders> Ord(int? id)
+        {
+           
+            var orders= from m in db.Orders
+                             where m.UserID == id 
+                             select m;
+            return orders.ToList();
+            
+         }
+           
+
+        //订单详情
         public IEnumerable<OrderDetails> OrderDetails(int? id)
         {
-
             var order = from q in db.OrderDetails
-                        where q.UserID==id
-                         select q;
+                        where  q.OrderId==id
+                        select q;
             return order.ToList();
         }
+
+        //修改数量
+        public void Update(int Num,int CarID)
+        {
+            var cars = db.Cars.Where(o => o.CartID == CarID).FirstOrDefault();
+            cars.Count = Num;
+            db.SaveChanges();
+        }
+
+
+        //删除某条订单
+        public void Delete(int CartID)
+        {
+            var Cars = db.Cars.Where(o => o.CartID == CartID).FirstOrDefault();
+            db.Cars.Remove(Cars);
+            db.SaveChanges();
+        }
+
+        //存储订单地址等信息
+        public void Order(string Name,string Add,string Tel,string total,int id,DateTime dateTime)
+        {
+           
+            var orders = new Orders()
+            {
+                UserID=id,
+                Tel = Tel,
+                Name = Name,
+                Address = Add,
+                Time = dateTime,
+                total = Convert.ToDouble(total)
+            };
+            db.Orders.Add(orders);
+            
+            db.SaveChanges();
+          
+
+        }
+
+
+        //下单
+        public Cars Pay(int? id, DateTime dateTime,int ID)
+        {
+            //将选中订单的flag设置为1          
+              var  cars = db.Cars.FirstOrDefault(o => o.CartID == id);
+              cars.flag = 1;
+              db.SaveChanges();  
+            //获取书 ID  并修改库存
+            var bookid = cars.BookID;
+            var books = db.Books.Where(o => o.BookID == bookid).FirstOrDefault();
+            books.Amount = books.Amount - cars.Count;
+            db.SaveChanges();
+            //添加进订单详情         
+            var orders = db.Orders.Where(o => o.UserID == ID);
+            foreach (var i in orders)
+            {
+                if (String.Compare(i.Time.Ticks.ToString(), dateTime.Ticks.ToString()) == 0)
+                {
+                    var OrderID = i.OrderID;
+                    var orderdetails = new OrderDetails()
+                    {
+                        BookID = cars.BookID,
+                        Count = cars.Count,
+                        UserID = cars.UserID,
+                        OrderId = OrderID
+                    };
+                    db.OrderDetails.Add(orderdetails);
+                   
+                }
+            }
+            db.SaveChanges();
+            //未将对象设置引用到实例,时间比较有问题  linq不支持trick,tostring....
+            #region
+            //var Datetime = dateTime.ToString();
+            //var Or = db.Orders.Where(o => o.Time.ToString().CompareTo(Datetime) == 0).FirstOrDefault();
+            //var OrderID = Or.OrderID;
+            ////var OrderID = (from p in db.Orders
+            ////         where p.Time.ToString("yyyy-mm-nn aa:bb:cc").CompareTo(dateTime.ToString("yyyy-mm-nn aa:bb:cc")) == 0 && p.UserID == ID
+            ////         select p).FirstOrDefault().OrderID;
+
+            //var orderdetails = new OrderDetails()
+            //{
+            //    BookID = cars.BookID,
+            //    Count = cars.Count,
+            //    UserID = cars.UserID,
+            //    OrderId = OrderID
+            //};
+            //db.OrderDetails.Add(orderdetails);
+            //db.SaveChanges();
+            #endregion
+            //删除购物车中的订单
+            var carts = db.Cars.Where(o => o.CartID == id && o.flag == 1).FirstOrDefault();
+            db.Cars.Remove(carts);           
+            db.SaveChanges();
+            return cars;
+        }
+
+        //id用户ID
+        public void DirectBuy(int BookID,DateTime dateTime,int ID,int Num)
+        {
+            var Books = db.Books.Where(o => o.BookID == BookID).FirstOrDefault();
+            Books.Amount = Books.Amount - Num;
+            db.SaveChanges();
+            var orders = db.Orders.Where(o => o.UserID == ID);
+            foreach (var i in orders)
+            {
+                if (String.Compare(i.Time.Ticks.ToString(), dateTime.Ticks.ToString()) == 0)
+                {
+                    var OrderID = i.OrderID;
+                    var orderdetails = new OrderDetails()
+                    {
+                        BookID = BookID,
+                        Count = Num,
+                        UserID = ID,
+                        OrderId = OrderID
+                    };
+                    db.OrderDetails.Add(orderdetails);
+                }
+            }
+            db.SaveChanges();
+        }
+
+
+       
     }
 }

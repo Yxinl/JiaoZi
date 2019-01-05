@@ -207,14 +207,12 @@
             </ul>
         </div>
         <span class="car">
-            <a href="@Url.Action("OrderDetails","Mall",new { id=Session["User_id"]})" style="color:red">我的购物车 </a>
+            <a href="@Url.Action("Cars","Mall",new { id=Session["User_id"]})" style="color:red">我的购物车 </a>
         </span>
         <span class="badge" style="position:relative;left:190px;top:-60px;border-radius:50%;background-color:coral" id="Amount">@Html.Action("Num","Mall")</span>   
         
     </div>
     <div class="Tx">
-        @*<img src="~/images/Mall/tx.jpg">
-            <p style="text-align: center;margin-top: 2px; color:palevioletred"><span>Hi!您好</span></p>*@
         @Html.Partial("TX")
     </div>
     @Html.Action("Nav", "Mall")
