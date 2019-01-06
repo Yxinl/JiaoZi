@@ -74,7 +74,7 @@ namespace JiaoZi.Controllers
                 var id = db.Users.Where(m => m.Email == Email).FirstOrDefault().UserID;
                 return Content("<script>alert('注册成功！请记住您的ID：" + id + "');window.location.href='../Default/RegisteLogin';</script>");
             }
-            return Content("<script>alert('您的邮箱已被注册！请重试');history.go(-1);</script>");
+            return Content("<script>alert('您的邮箱已被注册！请重试');windows.history.go(-1);</script>");
         }
 
 
@@ -83,13 +83,14 @@ namespace JiaoZi.Controllers
         public ActionResult RegisteLogin(int? UserID, string PasswordL, string YZM)
         {
             string data;
-            var url = Request.UrlReferrer;
+            //var url = Request.UrlReferrer.ToString();
             var a = iuser.Login(UserID, PasswordL);
             var b = CheckYZM(YZM);
             if (a && !b)
             {
                 data = "验证码输入错误，请重试";
                 return Content(data);
+                //return Content("<script>alert('验证码输入错误，请重试')</script>");
             }
             else if (a && b)
             {
@@ -98,6 +99,9 @@ namespace JiaoZi.Controllers
                 Session["User_image"] = db.Users.Where(m => m.UserID == UserID).FirstOrDefault().HeadImage;
                 Session["User_Name"] = db.Users.Where(m => m.UserID == UserID).FirstOrDefault().UserName;
                 data = "登录成功";
+                //Response.Redirect(Url);
+                //return Content("<script>alert('登录成功');windows.history.go(-2);</script>");
+                ////return Redirect(url);
                 return Content(data);
 
             }
@@ -105,10 +109,12 @@ namespace JiaoZi.Controllers
             {
                 data = "账号或密码错误，请重试";
                 return Content(data);
+                //return Content("<script>alert('账号或密码错误，请重试')</script>");
             }
             else
                 data = "请按照格式输入";
-                return Content(data);
+            return Content(data);
+            //return Content("<script>alert('请按照格式输入')</script>");
         }
 
 

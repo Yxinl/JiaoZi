@@ -118,7 +118,7 @@ namespace JiaoZi.Models
             db.SaveChanges();
         }
 
-        public IEnumerable<BookRelpy> BookReply(int id, string Re_Content, int ReID,int UserID,DateTime dateTime)
+        public void BookReply(int id,  string Re_Content, int ReID, int UserID, DateTime dateTime)
         {
             var bookreply = new BookRelpy()
             {
@@ -130,8 +130,7 @@ namespace JiaoZi.Models
             };
             db.BookRelpy.Add(bookreply);
             db.SaveChanges();
-            var replys = db.BookRelpy.Where(o => o.BookCommentID == id);
-            return replys.ToList();
+           
         }
 
         //查询购物车

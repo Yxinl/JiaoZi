@@ -189,6 +189,57 @@
 
             })
         });
+
+
+
+
+
+
+
+
+
+      
+        var Re_tishis = $(".Re_tishi");
+        for (var i = 0; i < Re_tishis.length; i++) {
+            $(Re_tishis[i]).click(function () {
+                if ($(this).parent("span").eq(0).next(".Repl_box").css("display") === "none") {
+                    $(this).parent("span").eq(0).next(".Repl_box").eq(0).show()
+                }
+                else
+                    $(this).parent("span").eq(0).next(".Repl_box").hide()
+            });
+        }
+
+        $(".Re_tijiao").each(function () {
+            $(this).click(function () {
+                var ReID = $(this).parents("dl").eq(0).find("a").eq(0).attr("data-id");
+                var BookID = $(this).parents("dl").eq(0).find("a").eq(0).attr("data-Bookid");
+                var Rep_Content = $(this).prev();
+                $.ajax({
+                    type: 'Post',
+                    dataType: 'json',
+                    url: "/Mall/ReplyBox",
+                    traditional: true,
+                    data: {
+                        "id": BookID,
+                        "ReID": ReID,
+                        "Re_Content": Rep_Content.val(),
+                    },
+                    success: function (data) {
+                        //$(this).parents(".Reply").eq(0).html(data);
+                        alert(data.Mess);
+                        window.history.go(0);
+                    },
+                    error: function () {
+                        alert("回复失败");
+                    }
+
+                })
+            })
+        })
+
+
+
     })
    
 

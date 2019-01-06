@@ -8,6 +8,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+
 namespace JiaoZi.Controllers
 {
     public class MallController : Controller
@@ -203,30 +204,16 @@ namespace JiaoZi.Controllers
         //显示回复    
         public ActionResult Reply(int id)
         {
-            var BooksReply = db.BookRelpy.Where(o => o.BookCommentID == id);
-          //var BookID = Convert.ToInt32(Session["BookID"]);
-           // var Comments = db.BookComment.Where(o=>o.BookID==BookID);
-           //if(Comments.Count()>0)
-           // {
-           //     //int k = 0;
-           //     ArrayList arrayList = new ArrayList();
-           //     //BookReply[] CommentReply = null;
-           //     foreach (var i in Comments)
-           //     {
-           //         var Comment = db.BookReply.Where(o => o.BookCommentID == i.BookCommentID).FirstOrDefault();
-           //         arrayList.Add(Comment);
-           //         //CommentReply[k++]=Comment;
-           //     }
-           //     return PartialView(arrayList);
-           // }
-           // else
-            //var CommentReply = db.BookReply.Where(o => o.)
-            //var BookCommentID = db.BookComment.Where(o => o.BookID == BookID).FirstOrDefault().BookCommentID;
-            //var ReplyComment = db.BookReply.Where(o => o.BookCommentID == BookCommentID).ToList();
-            //ViewBag.ReplyComment = ReplyComment;
+            var BooksReply = db.BookRelpy.Where(o => o.BookCommentID == id);        
             return PartialView(BooksReply.ToList());
         }
 
+
+        [HttpGet]
+        public  ActionResult ReplyBox()
+        {
+            return PartialView();
+        }
         #region
         //[HttpPost]
         //[Login]
@@ -251,22 +238,39 @@ namespace JiaoZi.Controllers
         #region
         [HttpPost]
         [Login]
-        public ActionResult Reply(int id, string Re_Content, int ReID)
+        public JsonResult ReplyBox(int id, string Re_Content, int ReID)
         {
             int UserID = Convert.ToInt32(Session["User_id"]);
             DateTime dateTime = System.DateTime.Now;
-            IEnumerable<BookRelpy> a;
             if (Re_Content == "")
             {
-                return Content("<script>alert(评论不能为空')</script>");
+                //return Content("<script>alert(评论不能为空')</script>");
+                return base.Json("评论不能为空");
             }
             else
-            a=  imall.BookReply(id, Re_Content, ReID, UserID, dateTime);
-            //var BooksReply = db.BookRelpy.Where(o => o.BookCommentID == id);
-            return PartialView(a);
+                imall.BookReply(id, Re_Content, ReID, UserID, dateTime);
+            AjaxMsg msg = new AjaxMsg()
+            {
+                Mess = "评论成功"
+            };
+            return base.Json(msg);
         }
         #endregion
 
+        //[HttpPost]
+        //[Login]
+        //public ActionResult ReplyBox(int id,string Re_Content,int ReID)
+        //{
+        //    int UserID = Convert.ToInt32(Session["User_id"]);
+        //    DateTime dateTime = System.DateTime.Now;
+        //    if (Re_Content == "")
+        //    {
+        //        return Content("<script>alert(评论不能为空')</script>");
+        //    }
+        //    else
+        //        imall.BookReply(id, Re_Content, ReID, UserID, dateTime);
+        //    return PartialView();
+        //}
         //显示购物车购物车
         public ActionResult Cars()
          {

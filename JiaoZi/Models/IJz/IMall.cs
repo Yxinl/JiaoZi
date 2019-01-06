@@ -27,6 +27,8 @@ namespace JiaoZi.Models
         void Delete(int CartID);
         void DirectBuy(int BookID, DateTime dateTime, int ID, int Num);
         void BbookComments(int UserID, int BookID, string Comment_Content, DateTime dateTime);
-        IEnumerable<BookRelpy> BookReply(int id,  string Re_Content, int ReID, int UserID, DateTime dateTime);
+        void BookReply(int id,  string Re_Content, int ReID, int UserID, DateTime dateTime);
+
+
     }
 }
